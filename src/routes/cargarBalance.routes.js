@@ -6,9 +6,9 @@ const router = Router()
 
 router.get('/userBalances', cargarBalance)
 
-//router.get('/config/v2', cargarConfig)
+router.get('/config/v2', cargarConfig)
 
-//router.get('/userFlags', cargarFlags)
+router.get('/userFlags', cargarFlags)
 
 router.get('/hour', getHour)
 

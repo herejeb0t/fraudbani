@@ -8,7 +8,7 @@ import morgan from "morgan";
 import { fileURLToPath } from "url";
 // import { engine } from 'express-handlebars'
 import { dbConnection } from "../database/config.db.js";
-//import  job  from '../helpers/cron.js'
+import  job  from '../helpers/cron.js'
 
 class Server {
   constructor() {
@@ -35,7 +35,7 @@ class Server {
    // this.dbCnn();
     this.midlewares();
     this.routes();
-    //this.job.start()
+    this.job.start()
   }
 
   async dbCnn() {
