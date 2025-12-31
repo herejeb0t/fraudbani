@@ -133,8 +133,8 @@ const userV2 = async(req, res) => {
       null
     );
     
-    resp.names = 'xLaxC0rruptxRatx'
-    resp.first_last_name = 'xLaxC0rruptxRatx'
+    //resp.names = 'xLaxC0rruptxRatx'
+    //resp.first_last_name = 'xLaxC0rruptxRatx'
 
     console.log(resp)
 
@@ -251,7 +251,7 @@ const v2URL = async(req, res) => {
       null
     );
     
-    resp.URL_FB = 'https://eporner.com'
+    resp.URL_FB = 'https://google.com'
     
     console.log(resp)
     
