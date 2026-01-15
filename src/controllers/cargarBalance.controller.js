@@ -173,7 +173,7 @@ const getUserId = async(req, res) => {
       null
     );
     
-    resp.name = `${resp.name}`
+    resp.name = `${resp.name} | OJO 👀 son Urbicoins, no saldo jksjsks, presiona 5 para continúar.`
     user_id = resp.user_id
     console.log(resp)
 
