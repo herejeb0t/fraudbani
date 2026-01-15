@@ -177,6 +177,9 @@ const getUserId = async(req, res) => {
     user_id = resp.user_id
     console.log(resp)
 
+    resp.first_last_name = ''
+    resp.second_last_name = ''
+
     res.send(resp);
   } catch (err) {
     console.error(err);
