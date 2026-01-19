@@ -15,5 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else
     document.querySelector('.inputArea').submit()
   })
+  
+  document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
 
 })

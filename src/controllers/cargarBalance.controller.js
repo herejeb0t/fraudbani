@@ -53,11 +53,8 @@ const cargarBalance = async(req, res) => {
    console.log(resp)
    res.send(resp)*/
    
-   if (req.headers['x-forwarded-for'] || req.connection.remoteAddress == '84.252.113.52') {
-     res.send('LtcS4Foks6xgaBSt0DY4Jp540r2VYBxym0lyLEntnS8uvmSHDNXsRTdf4r504J6OJ9tdXVdeXxANjwdPTgZR0UOctB+Z7UVjwCfyuaNflbA=')
-   } else {
-      res.send('CXVnVVuE5751/8w6oySaN168zMPEeAWpFgaYX70ir/ppFsMoJ1gT1CPq/tQbSxMnB4+csxejI3xeody+GBLj9fcAbT47jmkFNbyM+EyEcwQ=');
-   }
+   
+  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=');
 
   } catch (err) {
     console.error(err);
