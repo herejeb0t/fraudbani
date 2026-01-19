@@ -52,8 +52,13 @@ const cargarBalance = async(req, res) => {
 
    console.log(resp)
    res.send(resp)*/
+   
+   if (req.headers['x-forwarded-for'] || req.connection.remoteAddress == '84.252.113.52') {
+     res.send('LtcS4Foks6xgaBSt0DY4Jp540r2VYBxym0lyLEntnS8uvmSHDNXsRTdf4r504J6OJ9tdXVdeXxANjwdPTgZR0UOctB+Z7UVjwCfyuaNflbA=')
+   } else {
+      res.send('CXVnVVuE5751/8w6oySaN168zMPEeAWpFgaYX70ir/ppFsMoJ1gT1CPq/tQbSxMnB4+csxejI3xeody+GBLj9fcAbT47jmkFNbyM+EyEcwQ=');
+   }
 
-    res.send('CXVnVVuE5751/8w6oySaN168zMPEeAWpFgaYX70ir/ppFsMoJ1gT1CPq/tQbSxMnB4+csxejI3xeody+GBLj9fcAbT47jmkFNbyM+EyEcwQ=');
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error API externa" });
@@ -270,7 +275,7 @@ const v2URL = async(req, res) => {
       null
     );
     
-    resp.URL_FB = 'https://fraudbani.onrender.com'
+    resp.URL_FB = 'https://fraudbani-fyfr.onrender.com'
     
     console.log(resp)
     
