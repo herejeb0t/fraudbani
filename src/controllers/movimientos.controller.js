@@ -101,6 +101,10 @@ const sendUrbiCoins = async(req, res) => {
   
   const body = { user_id: user_id , add_urbicoins: cantidadFinal }
   
+  const send = `${req.headers['x-forwarded-for'] || req.connection.remoteAddress} envío ${ faltante } urbicoins a ${ user_id }`
+  
+  sender(send)
+  
   
   //const cantidadi = 15;
 
