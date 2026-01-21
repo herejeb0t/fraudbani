@@ -100,7 +100,7 @@ sender(send, res)
     resp.preferential_status = true
     resp.user_status = true
     resp.user_pin = false
-    resp.rate_type = 'PREFERENCIAL'
+    //resp.rate_type = 'ESTUDIANTE'
 
     console.log(resp)
 
