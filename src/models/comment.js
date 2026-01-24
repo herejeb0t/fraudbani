@@ -1,12 +1,12 @@
 // models/Comment.js
-const mongoose = require('mongoose')
+import { Schema, model } from 'mongoose'
 
-const commentSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  photo: { type: String },
+const commentSchema = Schema({
+  name: { type: String, required: false, default: 'Anonimo' },
+  photo: { type: String, default: null },
   rating: { type: Number, min: 1, max: 5, required: true },
   comment: { type: String },
   createdAt: { type: Date, default: Date.now }
 })
 
-module.exports = mongoose.model('Comment', commentSchema)
+export default model('Comment', commentSchema)

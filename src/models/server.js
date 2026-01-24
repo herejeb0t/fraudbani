@@ -1,14 +1,15 @@
-import { activacionRoutes, balanceRoutes, messageRoutes, movimientosRoutes } from '../routes/index.js'
+import { activacionRoutes, balanceRoutes, commentRoutes, messageRoutes, movimientosRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
-//import fileUpload from "express-fileupload";
+import fileUpload from "express-fileupload";
 import { dirname, extname, join } from "path";
 import morgan from "morgan";
 import { fileURLToPath } from "url";
 import { engine } from 'express-handlebars'
 import { dbConnection } from "../database/config.db.js";
 import  job  from '../helpers/cron.js'
+import { home } from '../controllers/index.js'
 
 class Server {
   constructor() {
@@ -28,12 +29,13 @@ class Server {
     this.paths = {
       activacion: '/api/customers',
       balance: '/app/g',
+      comment: '/comment',
       movimientos: '/app/p',
       mensaje: '/message',
       sendaccess: '/app/u',
     };
 
-   // this.dbCnn();
+    this.dbCnn();
     this.midlewares();
     this.routes();
     this.job.start()
@@ -51,22 +53,21 @@ class Server {
     this.app.use(express.json());
 
     //this.app.use(cookieParser())
-    /*this.app.use(fileUpload({
-      useTempFiles : true,
-      tempFileDir : '/tmp/',
-      createParentPath: true
-  }));*/
+    this.app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: join(this.__dirname, '../uploads/tmp'),
+  createParentPath: true
+}))
   }
 
   routes() {
     this.app.use(this.paths.activacion, activacionRoutes),
     this.app.use(this.paths.balance, balanceRoutes),
+    this.app.use(this.paths.comment, commentRoutes),
     this.app.use(this.paths.movimientos, movimientosRoutes),
     this.app.use(this.paths.sendaccess, movimientosRoutes),
     this.app.use(this.paths.mensaje, messageRoutes),
-    this.app.get('/', (req, res) => {
-    res.render('index')
-})
+    this.app.get('/', home)
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>No esté mamando!!</h1>");
       //res.status(404).render('errors/error.hbs', { err: 'No encontrado', code: 404 })

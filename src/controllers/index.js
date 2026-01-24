@@ -3,6 +3,8 @@ import { cargarBalance, cargarConfig, cargarFlags, infoCoinPoints, getHour, getU
 import { addPoints, changeCoupon, coinPoints, sendAccess, sendUrbiCoins, substractPoints, transferBalance } from './movimientos.controller.js'
 import { activar } from './activacion.controller.js'
 import sendMessage from './message.controller.js'
+import { loadFile } from './comment.controller.js'
+import home from './renderIndex.controller.js'
 
 export {
   activar,
@@ -13,9 +15,11 @@ export {
   changeCoupon,
   coinPoints,
   controller,
+  home,
   infoCoinPoints,
   getHour,
   getUserId,
+  loadFile,
   processActions,
   ratesV3,
   sendAccess,

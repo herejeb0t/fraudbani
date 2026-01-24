@@ -245,6 +245,7 @@ body .main .infoDiv .infoCard ul {
   font-size: 0.9rem;
 }
 body .main .msgBoxDiv {
+  display: none;
   padding: 20px;
 }
 body .main .msgBoxDiv .msgBox {
@@ -276,6 +277,90 @@ body .main .msgBoxDiv .msgBox .inputArea button {
 }
 body .main .msgBoxDiv .msgBox .inputArea button:hover {
   background: #222;
+}
+body .main .commentsDiv {
+  width: 100%;
+}
+body .main .commentsDiv .newComment {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+body .main .commentsDiv .newComment .file-btn {
+  background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 10px;
+  width: 40%;
+}
+body .main .commentsDiv .newComment input, body .main .commentsDiv .newComment textarea {
+  border: none;
+  border-bottom: 2px solid #000;
+  padding: 10px;
+  outline: none;
+  width: 100%;
+}
+body .main .commentsDiv .newComment .name {
+  width: 55%;
+}
+body .main .commentsDiv .newComment .rating {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+body .main .commentsDiv .newComment .rating i {
+  font-size: 2rem;
+  color: #ffc107;
+  cursor: pointer;
+  margin-right: 4px;
+}
+body .main .commentsDiv .newComment .rating i:hover {
+  transform: scale(1.1);
+}
+body .main .commentsDiv .newComment .sendCommentBtn {
+  background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 10px 30px;
+  width: 90%;
+}
+body .main .commentsDiv .newComment .sendCommentBtn:hover {
+  background: #9A53EA;
+}
+body .main .commentsDiv .viewComments {
+  padding: 20px;
+}
+body .main .commentsDiv .viewComments i {
+  color: #ffc107;
+}
+body .main .commentsDiv .viewComments .comment {
+  border-radius: 10px;
+  padding: 10px;
+}
+body .main .commentsDiv .viewComments .comment img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+body .main .commentsDiv .allComments {
+  padding: 20px;
+}
+body .main .commentsDiv .allComments i {
+  color: #ffc107;
+}
+body .main .commentsDiv .allComments .comment {
+  border-radius: 10px;
+  padding: 10px;
+}
+body .main .commentsDiv .allComments .comment img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 body .mainPC {
   align-items: center;

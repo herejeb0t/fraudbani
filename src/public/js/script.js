@@ -16,6 +16,69 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.inputArea').submit()
   })
   
-  document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
+  const stars = document.querySelectorAll('#rating i')
+  const ratingInput = document.getElementById('rating-value')
+  let selectedRating = 0
+
+  stars.forEach(star => {
+    star.addEventListener('mouseover', () => {
+      fillStars(star.dataset.value)
+    })
+
+    star.addEventListener('click', () => {
+      selectedRating = star.dataset.value
+      ratingInput.value = selectedRating
+    })
+
+    star.addEventListener('mouseout', () => {
+      fillStars(selectedRating)
+    })
+  })
+
+  function fillStars(value) {
+    stars.forEach(star => {
+      if (star.dataset.value <= value) {
+        star.classList.remove('bi-star')
+        star.classList.add('bi-star-fill')
+      } else {
+        star.classList.remove('bi-star-fill')
+        star.classList.add('bi-star')
+      }
+    })
+  }
+  
+  const fileInput = document.getElementById('file')
+  const preview = document.getElementById('preview')
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0]
+    if (!file) return
+
+    preview.src = URL.createObjectURL(file)
+    preview.style.display = 'block'
+    document.querySelector('.file-btn').style.display = 'none'
+    document.querySelector('.name').style.width = '100%'
+  })
+  
+  document.querySelector('.sendCommentBtn').addEventListener('click', (e) => {
+    e.preventDefault()
+    
+    const comentario = document.querySelector('.comentario')
+    const rating = document.querySelector('.ratingInpt')
+    
+    if (!comentario.value || !rating.value) {
+      comentario.style.borderColor = '#cc0000'
+      }
+      else
+      {
+    document.querySelector('.commentForm').submit()
+      }
+  })
+  
+  document.getElementById("showAllBtn")?.addEventListener("click", () => {
+    document.getElementById("allComments").style.display = "block";
+    document.querySelector('.viewComments').style.display = "none";
+    document.getElementById("showAllBtn").style.display = "none";
+  });
 
 })
