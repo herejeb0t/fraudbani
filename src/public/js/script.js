@@ -80,5 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.viewComments').style.display = "none";
     document.getElementById("showAllBtn").style.display = "none";
   });
+  
+  document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
 
 })
