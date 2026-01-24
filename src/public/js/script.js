@@ -8,6 +8,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
+const subir = document.querySelector('.subir');
+const share = document.querySelector('.share');
+  window.addEventListener('scroll', function () {
+  if (window.scrollY > 1000) {
+    subir.style = 'display: block;'
+  } else {
+    subir.style = 'display: none;'
+  }
+  })
+  
+  subir.addEventListener('click', () => { 
+    window.scrollTo(0,0)
+    //location.href = './iframe.html'
+  })
+  
+  share.addEventListener('click', () => { 
+    sharePage()
+    //location.href = './iframe.html'
+  })
+  
+const sharePage = () => {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Fraudbani',
+      text: 'Chécalo 👀',
+      url: window.location.href
+    })
+    .catch(err => console.log('Share cancelado', err))
+  } else {
+    alert('Tu navegador no soporta compartir 😢')
+  }
+}
+
   document.querySelector('.msgBtn').addEventListener('click', (e) => {
     const input = document.querySelector('.msgInpt')
     e.preventDefault()

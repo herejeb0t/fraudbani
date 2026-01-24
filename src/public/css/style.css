@@ -375,6 +375,28 @@ body .fot {
 body .fot footer {
   color: #fff;
 }
+body .fot footer .subir, body .fot footer .share {
+  border: none;
+  border-radius: 50%;
+  bottom: 75px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 14px;
+  height: 50px;
+  line-height: 21px;
+  margin: 0;
+  overflow-x: visible;
+  overflow-y: visible;
+  position: fixed;
+  right: 20px;
+  transition: opacity 0.8s ease;
+  width: 50px;
+  z-index: 1;
+}
+body .fot footer .share {
+  display: block;
+}
 body .fot footer .fotContent {
   align-items: center;
   display: flex;
