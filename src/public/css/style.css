@@ -5,6 +5,18 @@
   box-sizing: border-box;
 }
 
+.dev-badge {
+  background: linear-gradient(45deg, #6a4ae3, #9f7bff);
+  color: white;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 6px;
+  font-weight: bold;
+  vertical-align: middle;
+  box-shadow: 0 0 6px rgba(106,74,227,0.4);
+}
+
 html {
   scroll-behavior: smooth;
 }
