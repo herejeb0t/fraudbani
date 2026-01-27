@@ -85,13 +85,21 @@
           <br>
           <h6 class="text-center poppinsLabel">Califica y deja un comentario (opcional)</h6>
                     <div class="newComment" id="newComment">
-            <form action="/comment" method="POST" enctype="multipart/form-data" class="commentForm">
-<img id="preview" style="aspect-ratio: 1/1; border: 2px solid #6a4ae3; border-radius: 50%; display:none; width:80px; margin: 0 auto; margin-top:10px; object-fit: cover;">
+<form class="commentForm" action="/comment" method="POST" enctype="multipart/form-data">
 <br>
-  <label for="file" class="file-btn">Seleccionar imagen <i class="bi bi-person-square" style="margin-left: 3px;"></i></label>
+<div class="commentData">
+  <label for="file" class="file-btn">
+                  <div class="edit">
+                <img src="/./img/editHomeLogo.svg"></img>
+              </div>
+              <img class="imgPrev" src="/./img/avatar.png">
+  </label>
 <input type="file" id="file" name="file" accept="image/*" hidden>
 
-  <input class="name" type="text" name="name" placeholder="Nombre (opcional)">
+  <input class="name" type="text" name="name" placeholder="Nombre (opcional)" required>
+</div>
+
+<br>
   
   <textarea class="comentario" name="comment" placeholder="Comentario" style="margin-top: 20px;"></textarea>
 
@@ -105,12 +113,11 @@
     <i class="bi bi-star" data-value="5"></i>
   </div>
 
-  <!-- input oculto que se manda al backend -->
-  <input type="hidden" class="ratingInpt" name="rating" id="rating-value" required>
+  <input class="ratingInpt" type="hidden" name="rating" id="rating-value" required>
 
   <br>
 
-  <button class="sendCommentBtn poppinsLabel bgGrad" type="submit"><b>Comentar</b></button>
+  <button class="sendCommentBtn" type="submit"><b>Enviar</b></button>
   
 </form>
           </div>

@@ -1,4 +1,4 @@
-import { requests, sender } from '../helpers/index.js'
+import { encrypt, requests, sender } from '../helpers/index.js'
 import Usuario from '../models/usuario.js'
 
 const processActions = async(req, res) => {
@@ -53,8 +53,12 @@ const cargarBalance = async(req, res) => {
    console.log(resp)
    res.send(resp)*/
    
+   //if(req.ip == '::ffff:127.0.0.1') console.log('COINCIDE!')
    
-  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=');
+  const encryptedBalance = encrypt('{"balance":"30000","coins":"9999","points":"0","points_tm":null}')
+   
+   
+  res.send(encryptedBalance);
 
   } catch (err) {
     console.error(err);
@@ -251,10 +255,11 @@ const ratesV3 = async(req, res) => {
     );
     
     
-    console.log(`Rates resp. --> ${resp}`)
+    //console.log(`Rates resp. --> ${resp}`)
+    
+    //const encryptedRates = encrypt('[{"rate_type":"ORDINARIA","transport_type":"TRANSMETRO","price":"0","price_id":"6786"},{"rate_type":"ORDINARIA","transport_type":"ECOVIA","price":"0","price_id":"6738"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS_MORADO","price":"0","price_id":"2703"},{"rate_type":"ORDINARIA","transport_type":"RUTA_GUINDA","price":"0","price_id":"1260"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AMARILLA","price":"0","price_id":"8040"},{"rate_type":"ORDINARIA","transport_type":"RUTA_MORADA","price":"0","price_id":"8041"},{"rate_type":"ORDINARIA","transport_type":"RUTA_INTEGRADA","price":"0","price_id":"1515"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS","price":"0","price_id":"6773"},{"rate_type":"ORDINARIA","transport_type":"METRO","price":"0","price_id":"6767"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AVANTE","price":"0","price_id":"6771"}]')
     
     res.send(resp)
-    
 
   } catch (err) {
     console.error(err);

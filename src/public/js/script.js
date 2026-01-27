@@ -81,16 +81,13 @@ const sharePage = () => {
   }
   
   const fileInput = document.getElementById('file')
-  const preview = document.getElementById('preview')
+  const preview = document.querySelector('.imgPrev')
 
   fileInput.addEventListener('change', () => {
     const file = fileInput.files[0]
     if (!file) return
 
     preview.src = URL.createObjectURL(file)
-    preview.style.display = 'block'
-    document.querySelector('.file-btn').style.display = 'none'
-    document.querySelector('.name').style.width = '100%'
   })
   
   document.querySelector('.sendCommentBtn').addEventListener('click', (e) => {

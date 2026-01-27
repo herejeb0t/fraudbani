@@ -23,6 +23,12 @@ class Server {
       layoutsDir: join(this.app.get('views'), 'layouts'),
       partialsDir: join(this.app.get('views'), 'partials'),
       extname: '.hbs',
+      helpers: {
+        stars: (rating) => {
+          rating = Number(rating) || 0
+          return '⭐'.repeat(rating)
+        }
+      }
   })) 
     this.app.set('view engine', '.hbs')
 
