@@ -6,7 +6,7 @@ import fs from 'fs/promises'
 import cloudinary from 'cloudinary'
 import sanitize from 'sanitize-html'
 
-import { fileUpload } from "../helpers/index.js";
+import { fileUpload } from '../helpers/index.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -16,7 +16,7 @@ cloudinaryv2.config( process.env.CLOUDINARY_URL )
 
 const loadFile = async (req, res) => {
   try {
-    let photo = "/./img/avatar.png";
+    let photo = '/./img/avatar.png'
 
     if (req.files && req.files.file) {
       const { tempFilePath } = req.files.file;
@@ -24,7 +24,6 @@ const loadFile = async (req, res) => {
       const result = await cloudinaryv2.uploader.upload(tempFilePath);
       photo = result.secure_url;
 
-      // 🔥 BORRAR ARCHIVO TEMPORAL
       await fs.unlink(tempFilePath);
     }
 
@@ -50,18 +49,18 @@ const cleanComment = sanitize(req.body.comment, {
 })
 
     await Comment.create({
-      name: req.body.name || 'Anonimo',
+      name: req.body.name || 'Anónimo',
       rating: Number(req.body.rating),
       comment: cleanComment,
       photo
-    });
+    })
 
     res.redirect('/#newComment');
   } catch (error) {
     console.error(error);
     res.status(400).json({ error });
   }
-};
+}
 /*
 const updateImage = async(req, res) => {
   const { collection, id } = req.params

