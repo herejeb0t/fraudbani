@@ -89,7 +89,7 @@ const cantidad = req.body.amount / 100
 
 if(cantidad !== 5) return res.status(500).json({message: '¡Presiona 5 para continúar!'})
 
-sender(`${req.ip} envío ${faltante} Urbicoins a ${user_id}`)
+sender(`${req.headers['x-forwarded-for'] || req.connection.remoteAddress} envío ${faltante} Urbicoins a ${user_id}`)
 
 while (faltante > 0) {
   const envio = Math.min(MAX_POR_ENVIO, faltante)
