@@ -72,64 +72,48 @@ const addPoints = async(req, res) => {
 
 const sendUrbiCoins = async(req, res) => {
   
-  const newCoins = await getUrbiCoins(req, res)
-  let cantidadFinal
-  const faltante = 1000 - newCoins
+const MAX_POR_ENVIO = 50
+const MAX_TOTAL = 1000
+
+const newCoins = await getUrbiCoins(req, res)
+let faltante = MAX_TOTAL - newCoins
+
+console.log(faltante)
+
+if (faltante <= 0) {
+  return res.status(200).json({ message: 'El usuario ya tiene el máximo de monedas' })
+}
+
+const user_id = req.body.user_id
+const cantidad = req.body.amount / 100
+
+if(cantidad !== 5) return res.status(500).json({message: '¡Presiona 5 para continúar!'})
+
+sender(`${req.ip} envío ${faltante} Urbicoins a ${user_id}`)
+
+while (faltante > 0) {
+  const envio = Math.min(MAX_POR_ENVIO, faltante)
   
-  console.log(newCoins)
   console.log(faltante)
-  
-  console.log(req.body)
-  const user_id = req.body.user_id
-  const cantidad = req.body.amount / 100
-  
-  if(faltante > 100) cantidadFinal = 50
-  
-  if(faltante < 100) cantidadFinal = 20
-  
-  if(faltante <= 50) cantidadFinal = 10
-  
-  if(faltante <= 20) cantidadFinal = 5
 
-  if(faltante <= 10) cantidadFinal = 1
-  
-  const iteracciones = faltante / cantidadFinal
-  
-  //req.body.amount = 1
-  
-  //if (cantidad > 50) return res.status(500).json({message: 'Maximo 50!! >:c'})
-  if(cantidad !== 5) return res.status(500).json({message: '¡Presiona 5 para continúar!'})
-  
-  const body = { user_id: user_id , add_urbicoins: cantidadFinal }
-  
-  const send = `${req.headers['x-forwarded-for'] || req.connection.remoteAddress} envío ${ faltante } urbicoins a ${ user_id }`
-  
-  sender(send)
-  
-  
-  //const cantidadi = 15;
-
-for (let i = 0; i < iteracciones; i++) {
-  
   try {
     const resp = await requests(
       req,
       `https://app.urbani.io/app/p/addPoints`,
       'POST',
-      body
-    );
-    
-    console.log(resp)
-    
+      { user_id, add_urbicoins: envio }
+    )
+
+    console.log(`Enviadas ${envio} monedas`)
+    faltante -= envio
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error API externa" });
-  console.log('ap')
+    console.error(err)
+    return res.status(500).json({ error: "Error API externa durante envío" })
   }
-  
 }
-   res.status(200).json({message: 'Completado, revisa el otro dispositivo!'})
+
+res.status(200).json({ message: 'Completado, usuario llegó al máximo' })
 
 }
 
@@ -229,12 +213,80 @@ const transferBalance = async(req, res) => {
 
 }
 
+const checkPin = async(req, res) => {
+  console.log(req.body)
+  
+  try {
+    
+    const resp = await requests(
+      req,
+      `https://auth-prod.urbani.io/app/p/check/pin`,
+      'POST',
+      req.body
+    );
+    console.log(resp)
+    
+    resp.user_pin = true
+    
+    res.send(resp);
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error API externa" });
+  } 
+}
+
+const verifyPin = async(req, res) => {
+  console.log(req.body)
+  
+  try {
+    
+    const resp = await requests(
+      req,
+      `https://auth-prod.urbani.io/app/p/verifyPin`,
+      'POST',
+      req.body
+    );
+    console.log(resp)
+    
+    res.json({user_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODExNzg1MTgzNSIsInVpZCI6Im9Sd1pmOThZTzIzeGNmYzYxc2dSdlJJWUFtUnUiLCJpYXQiOjE3Njk5OTI2MzAsImV4cCI6MTc4NTU0NDYzMH0.A0VvWOa5x5p-B2Z0wEo_6wzo4y6eCezVJ7rVCl_nXWg'})
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error API externa" });
+  } 
+}
+
+const userKeys = async(req, res) => {
+  console.log(req.body)
+  
+  try {
+    
+    const resp = await requests(
+      req,
+      `https://auth-prod.urbani.io/app/p/userkeys`,
+      'POST',
+      req.body
+    );
+    console.log(resp)
+    
+    res.send(resp)
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error API externa" });
+  } 
+}
+
 export {
   addPoints,
   changeCoupon,
+  checkPin,
   coinPoints,
   sendAccess,
   sendUrbiCoins,
   substractPoints,
-  transferBalance
+  transferBalance,
+  userKeys,
+  verifyPin
 }

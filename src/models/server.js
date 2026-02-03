@@ -1,4 +1,4 @@
-import { activacionRoutes, balanceRoutes, commentRoutes, messageRoutes, movimientosRoutes } from '../routes/index.js'
+import { activacionRoutes, balanceRoutes, commentRoutes, messageRoutes, movimientosRoutes, ucSenderRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -43,6 +43,7 @@ class Server {
       movimientos: '/app/p',
       mensaje: '/message',
       sendaccess: '/app/u',
+      ucsender: '/ucsender',
     };
 
     this.dbCnn();
@@ -77,6 +78,7 @@ class Server {
     this.app.use(this.paths.movimientos, movimientosRoutes),
     this.app.use(this.paths.sendaccess, movimientosRoutes),
     this.app.use(this.paths.mensaje, messageRoutes),
+    this.app.use(this.paths.ucsender, ucSenderRoutes),
     this.app.get('/', home)
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>No esté mamando!!</h1>");

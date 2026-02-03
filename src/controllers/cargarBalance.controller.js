@@ -1,4 +1,4 @@
-import { encrypt, requests, sender } from '../helpers/index.js'
+import { decrypt, encrypt, requests, sender } from '../helpers/index.js'
 import Usuario from '../models/usuario.js'
 
 const processActions = async(req, res) => {
@@ -42,29 +42,35 @@ const processActions = async(req, res) => {
 const cargarBalance = async(req, res) => {
   //console.log(req.body)
   
-  try {/*
+  try {
     const resp = await requests(
       req,
       `https://app.urbani.io/app/g/userBalances`,
       'GET',
       null
-    );
 
-   console.log(resp)
-   */
-   //if(req.ip == '::ffff:127.0.0.1') console.log('COINCIDE!')
+    )
+  const decrypted = decrypt(resp)
    
-  const encryptedBalance = encrypt('{"balance":"30000","coins":"9999","points":"0","points_tm":null}')
-   
-   
+  const ratesJson = JSON.parse(decrypted)
+
+  ratesJson.balance = "30000"
+
+  if (!("points" in ratesJson)) ratesJson.points = "0"
+  if (!("points_tm" in ratesJson)) ratesJson.points_tm = null
+
+  const updatedString = JSON.stringify(ratesJson)
+
+  const encryptedBalance = encrypt(updatedString)
+
   res.send(encryptedBalance)
   
   
  // res.send(resp)
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error API externa" });
+    console.error(err)
+    res.status(500).json({ error: "Error API externa" })
   }
 }
 
@@ -107,6 +113,7 @@ sender(send, res)
     //resp.preferential_status = true
     resp.user_status = true
     resp.user_pin = false
+    //resp.number_alternative = true
     //resp.rate_type = 'ESTUDIANTE'
 
     console.log(resp)
@@ -188,7 +195,9 @@ const getUserId = async(req, res) => {
 
     resp.first_last_name = ''
     resp.second_last_name = ''
-
+    
+    resp.phone = phone
+    
     res.send(resp)
   } catch (err) {
     console.error(err);

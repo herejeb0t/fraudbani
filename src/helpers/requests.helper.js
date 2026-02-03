@@ -1,8 +1,8 @@
-const requests = async (req, endpoint, method, body) => {
+const requests = async (req, endpoint, method, body, authorization) => {
   const request = await fetch(endpoint, {
     method,
     headers: {
-      "Authorization": req.headers.authorization,
+      "Authorization": authorization || req.headers.authorization,
       "Content-Type": "application/json"
     },
     body: body ? JSON.stringify(body) : undefined

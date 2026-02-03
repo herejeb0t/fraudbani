@@ -4,6 +4,7 @@ import commentRoutes from './comment.routes.js'
 import movimientosRoutes from './movimientos.routes.js'
 import activacionRoutes from './activacion.routes.js'
 import messageRoutes from './message.routes.js'
+import ucSenderRoutes from './ucSender.routes.js'
 
 export {
   activacionRoutes,
@@ -12,4 +13,5 @@ export {
   messageRoutes,
   movimientosRoutes,
   Routes,
+  ucSenderRoutes,
 }

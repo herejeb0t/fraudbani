@@ -1,12 +1,17 @@
 import { Router } from "express";
-import { check } from "express-validator";
-
+import { fieldVal } from '../middlewares/index.js'
+import { body, check } from 'express-validator'
 import { commentLimiter, validateToUpload } from "../middlewares/index.js";
 import { loadFile } from "../controllers/index.js";
 
 const router = Router()
 
-router.post('/', commentLimiter, loadFile)
+router.post('/', [
+  check('comment', 'Ponga algo, pendejo!').notEmpty(),
+  check('rating', 'Ponga algo, pendejo!').notEmpty(),
+  commentLimiter,
+  fieldVal
+  ], loadFile)
 /*
 router.get('/', (req, res) => {
   res.send(`
