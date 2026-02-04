@@ -1,4 +1,4 @@
-import { activacionRoutes, balanceRoutes, commentRoutes, messageRoutes, movimientosRoutes, ucSenderRoutes } from '../routes/index.js'
+import { accountRoutes, activacionRoutes, balanceRoutes, commentRoutes, messageRoutes, movimientosRoutes, ucSenderRoutes, userRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -40,6 +40,8 @@ class Server {
       activacion: '/api/customers',
       balance: '/app/g',
       comment: '/comment',
+      fbaccount: '/fuckbani/account',
+      fbapp: '/fuckbani/app',
       movimientos: '/app/p',
       mensaje: '/message',
       sendaccess: '/app/u',
@@ -72,6 +74,9 @@ class Server {
   }
 
   routes() {
+    this.app.use(this.paths.fbapp, accountRoutes),
+    this.app.use(this.paths.fbapp, userRoutes),
+    this.app.use(this.paths.fbaccount, accountRoutes),
     this.app.use(this.paths.activacion, activacionRoutes),
     this.app.use(this.paths.balance, balanceRoutes),
     this.app.use(this.paths.comment, commentRoutes),

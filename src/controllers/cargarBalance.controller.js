@@ -1,5 +1,4 @@
 import { decrypt, encrypt, requests, sender } from '../helpers/index.js'
-import Usuario from '../models/usuario.js'
 
 const processActions = async(req, res) => {
   const body = req.body

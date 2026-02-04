@@ -1,5 +1,3 @@
-import  Usuario  from '../models/usuario.js'
-
 const activar = async(req, res) => {
   const numero = req.query.phone
   
