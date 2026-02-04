@@ -7,7 +7,7 @@ const router = Router()
 
 //router.get('/')
 
-//router.get('/getuc',
+router.get('/getuc',
 /*
 [
   check('phone', 'Ponga algo, pendejo!').notEmpty(),
@@ -15,7 +15,7 @@ const router = Router()
   fieldVal
   ] ,
   */
-  //getUCinfo)
+  getUCinfo)
   
   router.get('/send', ucSender)
 
