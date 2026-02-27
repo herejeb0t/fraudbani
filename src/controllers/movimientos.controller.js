@@ -226,7 +226,7 @@ const checkPin = async(req, res) => {
     );
     console.log(resp)
     
-    resp.user_pin = true
+    //resp.user_pin = true
     
     res.send(resp);
     
@@ -249,7 +249,9 @@ const verifyPin = async(req, res) => {
     );
     console.log(resp)
     
-    res.json({user_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODExNzg1MTgzNSIsInVpZCI6Im9Sd1pmOThZTzIzeGNmYzYxc2dSdlJJWUFtUnUiLCJpYXQiOjE3Njk5OTI2MzAsImV4cCI6MTc4NTU0NDYzMH0.A0VvWOa5x5p-B2Z0wEo_6wzo4y6eCezVJ7rVCl_nXWg'})
+    res.send(resp)
+    
+    //res.json({user_token: ''})
     
   } catch (err) {
     console.error(err);

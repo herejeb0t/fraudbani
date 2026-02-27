@@ -44,9 +44,7 @@
           <div class="recomendaciones infoCard bg-body-tertiary">
             <h6><b>Recomendaciones:</b></h6>
             <ul class="poppinsText">
-              <li>Utilizar siempre con conexión, <b>no permitir que se ponga en modo offline</b>. (obligatorio)</li>
               <li>Ir a <b>Perfil</b> < <b>Cerrar sesión</b> antes de desinstalar la app original.</li>
-              <li>En caso de haber puesto la app en modo offline por error, y las funciones de <b>Fraudbani</b> dejen de estar disponibles ir a <b>Ajustes</b> <  <b>Aplicaciones</b> < <b>Urbani</b> < <b>Eliminar datos</b>.</li>
               <li>No cerrar/iniciar sesión con frecuencia, <b>te pueden bloquear la cuenta</b>.</li>
             </ul>
           </div>
@@ -135,6 +133,7 @@
         {{this.name}}
         {{{devBadge this.itsAFraudbaniDev}}}
         </strong>
+        <small>{{timeAgo this.createdAt}}</small>
       <p class="" style="padding: 10px;">{{this.comment}}</p>
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
     </div>
@@ -154,6 +153,7 @@
         {{this.name}}
         {{{devBadge this.itsAFraudbaniDev}}}
       </strong>
+      <small>{{timeAgo this.createdAt}}</small>
       <p style="padding: 10px;">{{this.comment}}</p>
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
     </div>

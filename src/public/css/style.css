@@ -33,6 +33,13 @@ html {
   font-weight: normal;
   src: url("../fonts/Web437_ACM_VGA_9x16.woff") format("woff");
 }
+@font-face {
+  font-family: "Docallisme";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/DOCALLISME ON STREET.ttf") format("woff");
+}
+
 .bgGrad {
   background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
 }
@@ -450,10 +457,14 @@ body .fot footer .fotContent .ftLogo img {
   width: 30%;
 }
 body .fot footer .fotContent .byTag {
-  color: #4da6ff;
-  font-family: evilSound, Sans-Serif;
+  background: linear-gradient(to bottom, #aa80ff, #66ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-family: Docallisme, Sans-Serif;
   font-weight: bold;
-  margin: 0 0 0 10px;
+  font-size: 1.4rem;
+  padding: 0 4px;
 }
 
 @media (width <= 768px) {

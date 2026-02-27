@@ -31,7 +31,27 @@ class Server {
         devBadge: (isDev) => {
           if (!isDev) return ''
           return `<span class="dev-badge">DEV</span>`
-        }
+        },
+        timeAgo: (date) => {
+    const seconds = Math.floor((new Date() - new Date(date)) / 1000)
+
+    const intervals = {
+      año: 31536000,
+      mes: 2592000,
+      día: 86400,
+      hora: 3600,
+      minuto: 60
+    }
+
+    for (let key in intervals) {
+      const interval = Math.floor(seconds / intervals[key])
+      if (interval >= 1) {
+        return `Hace ${interval} ${key}${interval > 1 ? 's' : ''}`
+      }
+    }
+
+    return 'Hace unos segundos'
+  }
       }
   })) 
     this.app.set('view engine', '.hbs')

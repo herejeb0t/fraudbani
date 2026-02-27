@@ -63,9 +63,6 @@ const cargarBalance = async(req, res) => {
   const encryptedBalance = encrypt(updatedString)
 
   res.send(encryptedBalance)
-  
-  
- // res.send(resp)
 
   } catch (err) {
     console.error(err)
@@ -155,9 +152,6 @@ const userV2 = async(req, res) => {
       'GET',
       null
     );
-    
-    //resp.names = 'xLaxC0rruptxRatx'
-    //resp.first_last_name = 'xLaxC0rruptxRatx'
 
     console.log(resp)
     
