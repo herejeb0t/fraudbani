@@ -450,11 +450,10 @@ body .fot footer .fotContent {
   width: 100%;
 }
 body .fot footer .fotContent .ftLogo {
-  padding: 30px;
   width: 100%;
 }
 body .fot footer .fotContent .ftLogo img {
-  width: 30%;
+  width: 70%;
 }
 body .fot footer .fotContent .byTag {
   background: linear-gradient(to bottom, #aa80ff, #66ffcc);
