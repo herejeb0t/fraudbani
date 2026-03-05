@@ -240,7 +240,7 @@ const verifyPin = async(req, res) => {
   console.log(req.body)
   
   try {
-    /*
+    
     const resp = await requests(
       req,
       `https://auth-prod.urbani.io/app/p/verifyPin`,
@@ -249,9 +249,7 @@ const verifyPin = async(req, res) => {
     );
     console.log(resp)
     
-    res.send(resp)*/
-    
-    res.json({user_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODExNzg1MTgzNSIsInVpZCI6Im9Sd1pmOThZTzIzeGNmYzYxc2dSdlJJWUFtUnUiLCJpYXQiOjE3Njk5OTI2MzAsImV4cCI6MTc4NTU0NDYzMH0.A0VvWOa5x5p-B2Z0wEo_6wzo4y6eCezVJ7rVCl_nXWg'})
+    res.send(resp)
     
   } catch (err) {
     console.error(err);
