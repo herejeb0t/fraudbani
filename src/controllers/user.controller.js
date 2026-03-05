@@ -7,7 +7,7 @@ import { encrypt } from '../helpers/index.js'
 const userV2FB = async (req, res) => {
   try {
     const user = await User.findOne({ user_id: req.user.user_id })
-      .select('-_id -__v -pin_hash') // 🚫 nunca enviar el hash
+      .select('-_id -__v -pin_hash') 
 
     if (!user) return res.status(404).json({ message: 'Usuario no encontrado' })
 

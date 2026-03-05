@@ -41,7 +41,7 @@ const processActions = async(req, res) => {
 const cargarBalance = async(req, res) => {
   //console.log(req.body)
   
-  try {/*
+  try {
     const resp = await requests(
       req,
       `https://app.urbani.io/app/g/userBalances`,
@@ -62,8 +62,8 @@ const cargarBalance = async(req, res) => {
 
   const encryptedBalance = encrypt(updatedString)
 
-  res.send(encryptedBalance)*/
-  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
+  res.send(encryptedBalance)
+  //res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
 
   } catch (err) {
     console.error(err)
@@ -124,24 +124,31 @@ sender(send, res)
 
 const getHour = async(req, res) => {
   try {
-    
+    /*
     const resp = await requests(
       req,
       `https://app.urbani.io/app/g/hour`,
       'GET',
       null
-    );
+    );*/
+    const fecha = new Date().toLocaleString("sv-SE", {
+    timeZone: "America/Monterrey"
+}).replace("T"," ");
+
     
-   // resp.current_time = '2025-12-24 15:15:00'
-    resp.promotional_date = '2027-01-01 00:00:00'
+    //constcurrent_time = fecha
+    const promotional_date = '2027-01-01 00:00:00'
     
-    console.log(resp)
+    //console.log(resp)
     
-    res.send(resp)
+    res.json({
+      current_time: fecha,
+      promotional_date
+    })
     
   } catch(err) {
     console.error(err);
-    res.status(500).json({ error: "Error API externa" });
+    res.status(500).json({ error: "Error" });
   }
 }
 

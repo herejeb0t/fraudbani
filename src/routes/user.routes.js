@@ -32,14 +32,33 @@ const formatDate = (date) => {
 }
 
 router.get('/:g/hour', (req, res) => {
-  const now = new Date()
+  try {
+    /*
+    const resp = await requests(
+      req,
+      `https://app.urbani.io/app/g/hour`,
+      'GET',
+      null
+    );*/
+    const fecha = new Date().toLocaleString("sv-SE", {
+    timeZone: "America/Monterrey"
+}).replace("T"," ");
 
-  const promotionalDate = new Date('2027-01-01T00:00:00')
-
-  res.json({
-    current_time: formatDate(now),
-    promotional_date: formatDate(promotionalDate)
-  })
+    
+    //constcurrent_time = fecha
+    const promotional_date = '2027-01-01 00:00:00'
+    
+    //console.log(resp)
+    
+    res.json({
+      current_time: fecha,
+      promotional_date
+    })
+    
+  } catch(err) {
+    console.error(err);
+    res.status(500).json({ error: "Error" });
+  }
 })
 
 export default router
