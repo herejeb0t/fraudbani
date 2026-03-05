@@ -41,7 +41,7 @@ const processActions = async(req, res) => {
 const cargarBalance = async(req, res) => {
   //console.log(req.body)
   
-  try {
+  try {/*
     const resp = await requests(
       req,
       `https://app.urbani.io/app/g/userBalances`,
@@ -62,8 +62,8 @@ const cargarBalance = async(req, res) => {
 
   const encryptedBalance = encrypt(updatedString)
 
-  res.send(encryptedBalance)
-  //res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
+  res.send(encryptedBalance)*/
+  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
 
   } catch (err) {
     console.error(err)
