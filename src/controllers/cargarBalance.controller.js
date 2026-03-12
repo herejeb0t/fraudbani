@@ -20,7 +20,7 @@ const processActions = async(req, res) => {
   
   console.log(JSON.stringify(body, null, 2));
   
-  try {
+  try {/*
     const resp = await requests(
       req,
       `https://app.urbani.io/app/p/processActions/v2`,
@@ -33,7 +33,13 @@ const processActions = async(req, res) => {
     
     console.log(resp)
     
-    await res.send(resp)
+    res.send(resp)*/
+    
+    res.json({
+  message: 'Acciones procesadas',
+  actions: { charge: 1, refund: 0 },
+  balance: '30000'
+}).status(200)
 
   } catch (err) {
     console.error(err);

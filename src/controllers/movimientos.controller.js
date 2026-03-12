@@ -27,7 +27,7 @@ const sendAccess = async(req, res) => {
 
   console.log(body)
   
-  try {
+  try {/*
     const resp = await requests(
       req,
       `https://app.urbani.io/app/u/send/access`,
@@ -38,7 +38,9 @@ const sendAccess = async(req, res) => {
     
     console.log(resp)
     
-    res.send(resp)
+    res.send(resp)*/
+    
+    res.json({ message: 'Datos enviados', length: 1 }).status(200)
 
   } catch (err) {
     console.error(err);
