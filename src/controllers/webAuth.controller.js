@@ -30,7 +30,9 @@ const webAuth = async (req, res) => {
     
     
     return res.cookie('x_token', token, {
-      sameSite: 'strict',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
       maxAge: 1000 * 60 * 60 * 24 * 180,
     })
     .redirect('/panel')

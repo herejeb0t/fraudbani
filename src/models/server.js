@@ -88,7 +88,7 @@ class Server {
     this.app.use(morgan("dev"));
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(express.json());
-
+    this.app.set('trust proxy', 1)
     this.app.use(cookieParser())
     this.app.use(fileUpload({
   useTempFiles: true,
