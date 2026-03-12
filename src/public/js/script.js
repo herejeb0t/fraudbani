@@ -112,5 +112,5 @@ const sharePage = () => {
   });
   
   document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
-
+  
 })

@@ -9,6 +9,12 @@ import { checkPinFB, loginFB, signUpFB, verifyPinFB } from './account.controller
 
 import { configV2FB, processActionsFB, ratesV3FB, sendAccessFB, userBalancesFB, userFlagsFB, userV2FB } from './user.controller.js'
 
+import { getEvents } from './events.controller.js'
+
+import { renderForm, webAuth } from './webAuth.controller.js'
+
+import { renderPanel, updateData } from './panel.controller.js'
+
 export {
   activar,
   addPoints,
@@ -22,6 +28,7 @@ export {
   configV2FB,
   home,
   infoCoinPoints,
+  getEvents,
   getHour,
   getUCinfo,
   getUserId,
@@ -32,6 +39,8 @@ export {
   processActionsFB,
   ratesV3,
   ratesV3FB,
+  renderForm,
+  renderPanel,
   sendAccess,
   sendAccessFB,
   sendMessage,
@@ -40,6 +49,7 @@ export {
   substractPoints,
   transferBalance,
   ucSender,
+  updateData,
   userBalancesFB,
   userFlagsFB,
   userKeys,
@@ -47,5 +57,6 @@ export {
   userV2FB,
   v2URL,
   verifyPin,
-  verifyPinFB
+  verifyPinFB,
+  webAuth
 }

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { cargarBalance, cargarConfig, cargarFlags, getHour, getReports, getUserId, infoCoinPoints, ratesV3, userV2, v2URL } from '../controllers/index.js'
+import { cargarBalance, cargarConfig, cargarFlags, getEvents, getHour, getReports, getUserId, infoCoinPoints, ratesV3, userV2, v2URL } from '../controllers/index.js'
 
 const router = Router()
 
@@ -22,5 +22,7 @@ router.post('/rates/v3', ratesV3)
 router.get('/v2/url', v2URL)
 
 router.get('/reports', getReports)
+
+router.get('/events', getEvents)
 
 export default router

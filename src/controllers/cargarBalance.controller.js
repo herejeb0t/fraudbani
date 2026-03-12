@@ -10,9 +10,9 @@ const processActions = async(req, res) => {
   
   const last = body.transactions[0];
   //req.session.uid = last.access.uid
-  last.access.balance_new = 30000
-  last.access.balance_old = 30000
-  last.action = 'refund'
+  //last.access.balance_new = 30000
+ // last.access.balance_old = 30000
+ // last.action = 'refund'
   
   console.log(JSON.stringify(body, null, 2));
   
@@ -80,7 +80,7 @@ const cargarConfig = async(req, res) => {
       null
     );
 
-    console.log(resp)
+    console.log(decrypt(resp))
 
     res.send(resp);
   } catch (err) {

@@ -15,6 +15,7 @@ const getUrbiCoins = async(req, res, authorization, id) => {
       body,
       authorization || null
     );
+    console.log(resp)
     console.log(`Dentro da faltante --> ${resp.new_coins
     || 'FALSO'}`)
     return resp.new_coins

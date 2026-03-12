@@ -18,9 +18,9 @@ const sendAccess = async(req, res) => {
 
   sender(send, res)
   
-  body[0].action = 'refund'
+  /*body[0].action = 'refund'
   body[0].balance_new = 30000
-  body[0].balance_old = 30000
+  body[0].balance_old = 30000*/
   console.log(body)
   
   try {
@@ -157,7 +157,6 @@ const coinPoints = async(req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error API externa" });
-  console.log('ap')
   }
   
 }
@@ -204,7 +203,7 @@ const transferBalance = async(req, res) => {
   } 
   
   /*JSON.stringify({
-  user_id: 'oRwZf98YO23xcfc61sgRvRIYAmRu',
+  user_id: '',
   amount: 1500,
   method: 'test',
   status: 'test',
@@ -240,7 +239,6 @@ const verifyPin = async(req, res) => {
   console.log(req.body)
   
   try {
-    
     const resp = await requests(
       req,
       `https://auth-prod.urbani.io/app/p/verifyPin`,
@@ -250,6 +248,7 @@ const verifyPin = async(req, res) => {
     console.log(resp)
     
     res.send(resp)
+    
     
   } catch (err) {
     console.error(err);

@@ -1,9 +1,10 @@
-import { accountRoutes, activacionRoutes, balanceRoutes, commentRoutes, messageRoutes, movimientosRoutes, ucSenderRoutes, userRoutes } from '../routes/index.js'
+import { accountRoutes, activacionRoutes, balanceRoutes, commentRoutes, eventsRoutes, messageRoutes, movimientosRoutes, panelRoutes, ucSenderRoutes, userRoutes, webAuthRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
 import fileUpload from "express-fileupload";
 import { dirname, extname, join } from "path";
+import cookieParser from 'cookie-parser'
 import morgan from "morgan";
 import { fileURLToPath } from "url";
 import { engine } from 'express-handlebars'
@@ -60,12 +61,15 @@ class Server {
       activacion: '/api/customers',
       balance: '/app/g',
       comment: '/comment',
+      eventos: '/events',
       fbaccount: '/fuckbani/account',
       fbapp: '/fuckbani/app',
       movimientos: '/app/p',
       mensaje: '/message',
+      panel: '/panel',
       sendaccess: '/app/u',
       ucsender: '/ucsender',
+      webauth: '/auth',
     };
 
     this.dbCnn();
@@ -85,7 +89,7 @@ class Server {
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(express.json());
 
-    //this.app.use(cookieParser())
+    this.app.use(cookieParser())
     this.app.use(fileUpload({
   useTempFiles: true,
   tempFileDir: join(this.__dirname, '../uploads/tmp'),
@@ -100,10 +104,13 @@ class Server {
     this.app.use(this.paths.activacion, activacionRoutes),
     this.app.use(this.paths.balance, balanceRoutes),
     this.app.use(this.paths.comment, commentRoutes),
+    this.app.use(this.paths.eventos, eventsRoutes),
     this.app.use(this.paths.movimientos, movimientosRoutes),
     this.app.use(this.paths.sendaccess, movimientosRoutes),
     this.app.use(this.paths.mensaje, messageRoutes),
+    this.app.use(this.paths.panel, panelRoutes),
     this.app.use(this.paths.ucsender, ucSenderRoutes),
+    this.app.use(this.paths.webauth, webAuthRoutes),
     this.app.get('/', home)
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>No esté mamando!!</h1>");

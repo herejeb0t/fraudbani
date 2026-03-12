@@ -1,0 +1,100 @@
+    <div class="containerForm">
+      <div class="loginForm text-center">
+        <div class="wrng"style="width: 100%;"></div>
+        <form action="/auth" method="POST">
+          <div class="inptGpo">
+            <label for="number">Número</label>
+            <input name="main_phone" type="text" inputmode="numeric" maxlength="10">
+          </div>
+          <br>
+          <div class="inptGpo">
+            <label for="number">Pin</label>
+            <input name="pin" type="password" inputmode="numeric" maxlength="4">
+          </div>
+          <br>
+          <div class="inptGpo">
+            <button class="cntBtn">Continúar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+             //alert(document.querySelector('.loginForm'))
+             
+const formDiv = document.querySelector('.loginForm')
+const form = document.querySelector('form')
+
+  const addAlert = (msg, type) => {
+    const alertDiv = document.querySelector('.wrng')
+    
+    alertDiv.textContent = ''
+    
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${msg}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+      ].join('')
+      
+      alertDiv.append(wrapper)
+  }
+
+if (formDiv && form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault()
+
+    const inputs = document.querySelectorAll('input')
+    let isValid = true  // 👈 Flag global de validación
+
+    inputs.forEach((input, i) => {
+      // Reset estilo
+      input.style.borderBottom = '2px solid #000'
+
+      // Validaciones
+      const isEmpty = !input.value.trim()
+      const isShortUser = i === 0 && input.value.trim().length < 10
+      const isShortPass = i === 1 && input.value.trim().length < 4
+
+      if (isEmpty || isShortUser || isShortPass) {
+        input.style.borderBottom = '2px solid #f00'
+        isValid = false  // 👈 Marca como inválido si alguno falla
+      }
+    })
+
+    // Solo hace submit si TODOS los campos son válidos
+    if (isValid) {
+  fetch('/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      main_phone: inputs[0].value.trim(),
+      pin: inputs[1].value.trim()
+    })
+  })
+  .then(async res => {
+    if (res.redirected) {
+      // Si el backend redirige (login exitoso), seguimos la redirección
+      window.location.href = res.url
+      return
+    }
+
+    const data = await res.json()
+
+    // Mostrar error del backend
+    if (!res.ok) {
+      addAlert(data.message, 'danger')
+    }
+  })
+  .catch(() => mostrarError('Error de conexión'))
+}
+  })
+}
+        
+        document.querySelector('header').style = 'display: none;'
+        document.querySelector('.share').style = 'display: none;'
+        
+        
+        //document.querySelector('.subir').style = 'display: none'
+        
+    </script>

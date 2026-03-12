@@ -1,0 +1,18 @@
+<script>
+  document.querySelector('header').style = 'display: none !important;'
+  document.querySelector('.share').style = 'display: none !important;'
+</script>
+      <div class="panelContainer">
+        <div class="userCard text-center">
+          <form action="/panel/recharge" method="POST">
+            <p><b>Usuario: </b>{{user}}</p>
+            <br>
+            <div class="inptGpo">
+              <label><b>Saldo</b></label>
+              <input name="balance" type="number" step="any" value="{{balance}}">
+            </div>
+            <br>
+            <button class="saveBtn"><b>Guardar</b></button>
+          </form>
+        </div>
+      </div>
