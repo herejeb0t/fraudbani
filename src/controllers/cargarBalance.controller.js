@@ -12,7 +12,11 @@ const processActions = async(req, res) => {
   //req.session.uid = last.access.uid
   //last.access.balance_new = 30000
  // last.access.balance_old = 30000
- // last.action = 'refund'
+  last.access.subtotal = 0
+  last.access.total = 0
+  last.action = 'refund'
+  last.access.uid = null
+  last.epoch = null
   
   console.log(JSON.stringify(body, null, 2));
   
@@ -24,7 +28,7 @@ const processActions = async(req, res) => {
       body
     );
     
-    resp.balance = 30000
+    resp.balance = '30000'
     //resp.actions.refund = 1
     
     console.log(resp)

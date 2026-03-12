@@ -18,9 +18,13 @@ const sendAccess = async(req, res) => {
 
   sender(send, res)
   
-  /*body[0].action = 'refund'
+  body[0].action = 'refund'
   body[0].balance_new = 30000
-  body[0].balance_old = 30000*/
+  body[0].balance_old = 30000
+  body[0].subtotal = 0
+  body[0].total = 0
+  body[0].uid = null
+
   console.log(body)
   
   try {
@@ -248,7 +252,6 @@ const verifyPin = async(req, res) => {
     console.log(resp)
     
     res.send(resp)
-    
     
   } catch (err) {
     console.error(err);
