@@ -1,35 +1,34 @@
-      <p class="poppinsLabel" style="color: #000; font-size: .8rem; padding: 20px;">Accede a tu transporte</p>
-      
-      <div class="main">
-        <div class="dwnlCard">
-          <div class="franja"></div>
-          <img class="boat" src="/./img/boat.png">
-          <div class="dwnlCardBody">
-            <p class="poppinsBalance" style="color: #000; font-size: 1rem;">TODOS</p>
-            <p class="poppinsText" style="color: #000; font-size: .7rem;">TARIFA</p>
-            <br>
-            
-            <div class="tarifa poppinsText">
-              <p>Metrorrey</p>
-              <p><b>$0</b></p>
-            </div>
-            <div class="tarifa poppinsText">
-              <p>Muevo León</p>
-              <p><b>$0</b></p>
-            </div>
-            <div class="tarifa poppinsText">
-              <p>Ruta integrada</p>
-              <p><b>$0</b></p>
-            </div>
-            
-            <br>
-            
-            <a download href="https://github.com/bornredjames/Testing/releases/download/Si/com.miruta.mty.v3.0.3_antisplit_sign.apk" class="dwnBtn poppinsText">DESCARGAR</a>
+       <div class="main">
+        
+        <div class="dwnCard">
+          <img src="/./img/van.png" class="van">
+          <p class="poppinsText text-center" style="color: #444;"><b>TRANSPORTES</b></p>
+          <ul class="poppinsText">
+            <li>
+              <span>Metrorrey</span> <strong>Gratis</strong>
+            </li>
+            <li>
+              <span>Ruta Integrada</span> <strong>Gratis</strong>
+            </li>
+            <li>
+              <span>Muevo León</span> <strong>Gratis</strong>
+            </li>
+          </ul>
+          <a href="https://github.com/bornredjames/Testing/releases/download/Si/com.miruta.mty.v3.0.3_antisplit_sign.apk" class="poppinsLabel dwnlBtn">DESCARGAR</a>
+        </div>
+        
+        <div class="bar">
+          <div class="lSide">
+            <p><b>Deja un comentario c:</b></p>
+          </div>
+          <div class="rSide">
+            <a href="#newComment" style="text-decoration: none; color: #fff;"><i class="bi bi-chat-heart"></i></a>
           </div>
         </div>
+        
         <div class="infoDiv">
           
-          <div class="instrucciones infoCard bg-body-tertiary">
+          <div class="instrucciones infoCard">
             <h6><b>Instrucciones:</b></h6>
             <ul class="poppinsText">
               <li>Cierra sesión en urbani en caso de tener sesión activa.</li>
@@ -41,7 +40,7 @@
           
           <br>
           
-          <div class="recomendaciones infoCard bg-body-tertiary">
+          <div class="recomendaciones infoCard">
             <h6><b>Recomendaciones:</b></h6>
             <ul class="poppinsText">
               <li>Ir a <b>Perfil</b> < <b>Cerrar sesión</b> antes de desinstalar la app original.</li>
@@ -51,7 +50,7 @@
           
           <br>
           
-          <div class="funciones infoCard bg-body-tertiary">
+          <div class="funciones infoCard">
             <h6><b>Funciones:</b></h6>
             <ul class="poppinsText">
               <li>Saldo congelado en <b>$300</b> basta con <b>Entrar/Salir</b> de la app para que se restablezca.</li>
@@ -61,23 +60,7 @@
 
         </div>
         
-        <div class="msgBoxDiv">
-          <div class="msgBox bg-body-tertiary">
-            <p><b>Envía un comentario, queja, sugerencia, rayamela o no sé c:</b></p>
-            <form action="/message" method="POST" class="inputArea">
-              <label for="nombre">Nombre: </label>
-              <input class="inpt" name="nombre" type="text" placeholder="Anonimo (vacío)">
-              <label for="mensaje">Mensaje:</label>
-              <input class="msgInpt inpt" name="mensaje" type="text">
-              <!--<textarea></textarea>-->
-              <br>
-              <button class="msgBtn"><i class="bi bi-send-fill"></i></button>
-                            <br>
-              <p class="text-center" style="font-size: 1rem;"><b>Telegram:</b></p>
-                            <a href="https://t.me/herejeb0t" class="text-center" style="color: #6a4ae3; font-size: 1rem;"><b>https://t.me/herejeb0t</b></a>
-            </form>
-          </div>
-        </div>
+     
         <br>
                 <div class="commentsDiv">
           <br>
@@ -88,8 +71,8 @@
 <div class="commentData">
   <label for="file" class="file-btn">
                   <div class="edit">
-                <img src="/./img/editHomeLogo.svg"></img>
-              </div>
+                    <i class="bi bi-pencil-square"></i>
+                  </div>
               <img class="imgPrev" src="/./img/avatar.png">
   </label>
 <input type="file" id="file" name="file" accept="image/*" hidden>
@@ -121,13 +104,13 @@
           </div>
           
           <br>
-<h2 class="poppinsBalance" style="padding: 0 20px;"><i class="bi bi-star-fill" style="color: #ffc107;"></i> {{avgRating}} / 5</h2>
+<h2 class="poppinsBalance" style="padding: 0 20px;"><i class="bi bi-star-fill" style="color: #000;"></i> {{avgRating}} / 5</h2>
 <br>
 
 <div class="viewComments">
 
   {{#each commentsPreview}}
-    <div class="comment bg-body-tertiary" style="padding: 15px;">
+    <div class="comment " style="padding: 15px;">
       <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
       <strong class="" style="padding: 10px;">
         {{this.name}}
@@ -141,13 +124,13 @@
   {{/each}}
 
   {{#if commentsAll.length}}
-    <a id="showAllBtn" class="sendCommentBtn poppinsLabel" style="display: block; border: none; background: none; color: #6a4ae3; text-align: center; text-decoration: none;">Mostrar todos los comentarios</a>
+    <a id="showAllBtn" class="sendCommentBtn poppinsLabel" style="display: block; border: none; background: none; color: #a07cfa; text-align: center; text-decoration: none;">Mostrar todos los comentarios</a>
   {{/if}}
 </div>
 
 <div class="allComments" id="allComments" style="display:none">
   {{#each commentsAll}}
-    <div class="comment bg-body-tertiary" style="padding: 15px;">
+    <div class="comment" style="padding: 15px;">
       <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
       <strong style="padding: 10px;">
         {{this.name}}

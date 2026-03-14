@@ -39,6 +39,18 @@ html {
   font-weight: normal;
   src: url("../fonts/DOCALLISME ON STREET.ttf") format("woff");
 }
+@font-face {
+  font-family: "brandingSB";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/BrandingSF-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "InterMedium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Inter-Medium.ttf") format("truetype");
+}
 
 .bgGrad {
   background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
@@ -93,167 +105,267 @@ html {
 body {
   font-size: 16px;
 }
+
+
+body {
+  background: url("../img/mapHeader.png") no-repeat;
+  background-size: contain;
+  font-size: 16px;
+}
 body p, body h1, body h2, body h3, body h4, body h5, body h6, body img {
   margin: 0;
   padding: 0;
 }
 body .navbar {
-  background: #000;
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(3px);
   padding: 10px 0;
 }
 body .navbar a {
   margin: 0 auto;
 }
-body header {
-  background: url("../img/bannerhometop.png") no-repeat center center;
-  background-size: 100% 100%;
-  margin-top: 75px;
-  border-radius: 0 0 50px 50px;
-  display: none;
+body .gradient {
+  opacity: 0.9;
+  position: absolute;
+  z-index: -1;
 }
-body header .header {
-  padding: 15px;
-}
-body header .header .barraTop {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-body header .header .barraTop .btEl {
-  width: 10%;
-}
-body header .header .barraTop .btEl img {
+body .gradient img {
   width: 100%;
 }
-body header .header .barraTop .profPic {
-  border: 4px solid #fff;
+body header {
+  color: #fff;
+  display: none;
+  padding: 15px;
+}
+body header .accInfo {
+  display: flex;
+  margin-top: 75px;
+  width: 100%;
+}
+body header .accInfo .profPic {
+  border: 1px solid #fff;
   border-radius: 100%;
-  height: 50px;
+  height: 40px;
   position: relative;
-  width: 50px;
+  width: 40px;
 }
-body header .header .barraTop .profPic .edit {
-  align-items: center;
-  aspect-ratio: 1/1;
-  background: #007AFF;
+body header .accInfo .profPic img {
   border-radius: 100%;
-  display: flex;
-  height: 20px;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 25%;
-  transform: translateY(31px);
-  width: 20px;
+  width: 100%;
 }
-body header .header .barraTop .profPic .edit img {
-  width: 10px;
-}
-body header .header .barraTop .support {
-  width: 35px;
-}
-body header .header .barraTop .hdLogo {
-  width: 35px;
-}
-body header .header .barraBottom {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-}
-body header .header .barraBottom .version {
-  width: 15%;
-}
-body header .header .barraBottom .urbicoins {
-  width: 100px;
-  display: flex;
-}
-body header .header .barraBottom .urbicoins img {
-  width: 15%;
-}
-body header .header .barraBottom .urbicoins p {
-  width: 85%;
-}
-body header .header .barraBottom .ubicacion {
-  display: flex;
-  width: 95px;
-  padding: 0 5px;
-}
-body header .header .barraBottom .ubicacion img {
-  width: 15px;
-}
-body header .header .hdBody {
-  padding-top: 10px;
-}
-body header .header .hdBody .userStatus {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-  width: 70px;
-}
-body header .header .hdBody .userStatus .sPoint {
+body header .accInfo .profPic .sPoint {
   aspect-ratio: 1/1;
   background: #24D779;
   border-radius: 100%;
   display: inline-block;
-  height: 14px;
-  width: 14px;
+  height: 12px;
+  position: absolute;
+  right: 0;
+  width: 12px;
+}
+body header .accInfo .profTxt {
+  display: relative;
+  padding: 0 10px;
+  position: relative;
+}
+body header .accInfo .profTxt .pLoct {
+  font-size: 0.8rem;
+}
+body header .accInfo .profTxt .arrowD {
+  aspect-ratio: 1/1;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  color: #8B5EF7;
+  font-weight: bold;
+  line-height: 0;
+  padding: 1px 2px;
+}
+body header .accInfo .support {
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  display: flex;
+  background: radial-gradient(circle at top left, rgba(120, 0, 255, 0.5), transparent 40%), linear-gradient(135deg, #2b2de0, #00c6ff);
+  justify-content: center;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+}
+body header .accInfo .support img {
+  margin: 0;
+  padding: 0;
+}
+body header .balLoc {
+  display: flex;
+  width: 100%;
+}
+body header .balLoc .balInfo {
+  width: 50%;
+}
+body header .balLoc .balInfo .balance {
+  align-items: center;
+  display: flex;
+}
+body header .balLoc .balInfo .balance .recharge {
+  aspect-ratio: 1/1;
+  margin-left: 10px;
+  padding: 0;
+}
+body header .balLoc .balInfo .urbicoins {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  width: 130px;
+}
+body header .balLoc .balInfo .urbicoins img {
+  width: 20px;
+}
+body header .balLoc .balInfo .urbicoins p {
+  margin-left: 5px;
+}
+body header .balLoc .locInfo {
+  text-align: center;
+  width: 50%;
+}
+body header .balLoc .locInfo .tag {
+  margin-left: 15px;
+  width: 100%;
+}
+body header .balLoc .locInfo .tag img {
+  width: 50%;
+}
+body header .balLoc .locInfo .point {
+  margin-left: 15px;
+  width: 100%;
+}
+body header .balLoc .locInfo .point img {
+  margin-right: 2px;
+  width: 20%;
+}
+body header .catSel {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: #444;
+  display: flex;
+  font-family: InterMedium;
+  font-size: 0.8rem;
+  margin: 0 auto;
+  padding: 5px;
+  width: 95%;
+}
+body header .catSel div {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+  width: 50%;
+}
+body header .catSel div .pubImg {
+  width: 16px;
+}
+body header .catSel div .privImg {
+  width: 18px;
+}
+body header .catSel div p {
+  margin-left: 5px;
+}
+body header .catSel .pub {
+  background: #E1D4FF;
+  border-radius: 20px;
 }
 body .main {
+  margin: 0;
+  /*background: url('../img/background1.jpg') no-repeat center center;
+  background-size: cover;*/
   align-items: center;
   display: none;
   flex-direction: column;
   min-height: 100dvh;
+  z-index: 3;
 }
-body .main .dwnlCard {
-  border: 0.5px solid #999;
-  border-radius: 0 0 20px 20px;
-  margin-top: 40px;
-  margin-bottom: 250px;
+body .main .dwnCard {
+  aspect-ratio: 4/3;
+  border-radius: 25px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin-top: 30px;
+  padding: 40px 10px 10px 10px;
   position: relative;
   text-align: center;
-  width: 50%;
+  width: 192px;
 }
-body .main .dwnlCard .franja {
-  background: #000;
-  padding: 10px;
-}
-body .main .dwnlCard .boat {
-  height: 100px;
+body .main .dwnCard .van {
   position: absolute;
   top: 0;
-  right: 25%;
-  transform: translateY(-70px);
+  right: 20%;
+  transform: translateY(-35px);
   pointer-events: none;
-  width: 100px;
+  width: 125px;
 }
-body .main .dwnlCard .dwnlCardBody {
-  padding: 20px;
-}
-body .main .dwnlCard .dwnlCardBody .tarifa {
-  align-items: center;
-  display: flex;
-  font-size: 0.9rem;
-  justify-content: space-between;
-  width: 100%;
-}
-body .main .dwnlCard .dwnBtn {
-  background: #000;
-  border-radius: 25px;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 10px 30px;
+body .main .dwnCard a {
+  font-size: 0.7rem;
+  padding: 10px;
   text-decoration: none;
 }
-body .main .dwnlCard .dwnBtn:hover {
-  background: #222;
+body .main .dwnCard ul {
+  color: #444;
+  list-style: none;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 0 10px;
+  text-align: start;
+  width: 100%;
 }
+body .main .dwnCard ul li {
+  display: flex;
+  font-size: 0.7rem;
+  justify-content: space-between;
+}
+body .main .dwnCard .dwnlBtn {
+  background: #aa80ff;
+  border-radius: 25px;
+  color: #fff;
+  display: inline-block;
+  width: 90%;
+}
+body .main .bar {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: #444;
+  display: flex;
+  font-family: InterMedium;
+  font-size: 0.8rem;
+  margin: 0 auto;
+  margin-bottom: 300px;
+  margin-top: 50px;
+  width: 80%;
+}
+body .main .bar .lSide {
+  padding: 12px 20px;
+  width: 80%;
+}
+body .main .bar .rSide {
+  background: url("../img/searchBackground.png") no-repeat center center;
+  background-size: 100% 100%;
+  border-radius: 0 25px 25px 0;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px;
+  text-align: center;
+  width: 20%;
+}
+
 body .main .infoDiv {
   padding: 20px;
 }
 body .main .infoDiv .infoCard {
+  background: #E1D4FF;
   border-radius: 10px;
   padding: 15px;
 }
@@ -262,40 +374,6 @@ body .main .infoDiv .infoCard h6 {
 }
 body .main .infoDiv .infoCard ul {
   font-size: 0.9rem;
-}
-body .main .msgBoxDiv {
-  display: none;
-  padding: 20px;
-}
-body .main .msgBoxDiv .msgBox {
-  border-radius: 10px;
-  font-size: 0.8rem;
-  padding: 15px;
-}
-body .main .msgBoxDiv .msgBox .inputArea {
-  display: flex;
-  flex-direction: column;
-}
-body .main .msgBoxDiv .msgBox .inputArea label {
-  padding: 5px 0;
-}
-body .main .msgBoxDiv .msgBox .inputArea .inpt {
-  border: 1px solid #333;
-  border-radius: 2px;
-  padding: 10px;
-  outline: none;
-}
-body .main .msgBoxDiv .msgBox .inputArea button {
-  background: #000;
-  border: none;
-  border-radius: 25px;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 10px 30px;
-  text-decoration: none;
-}
-body .main .msgBoxDiv .msgBox .inputArea button:hover {
-  background: #222;
 }
 body .main .commentsDiv {
   width: 100%;
@@ -312,7 +390,7 @@ body .main .commentsDiv .newComment form .commentData {
   width: 100%;
 }
 body .main .commentsDiv .newComment .file-btn {
-  border: 8px solid #6A4AE3;
+  border: 4px solid #A07CFA;
   border-radius: 100%;
   height: 100px;
   position: relative;
@@ -321,16 +399,18 @@ body .main .commentsDiv .newComment .file-btn {
 body .main .commentsDiv .newComment .file-btn .edit {
   align-items: center;
   aspect-ratio: 1/1;
-  background: #007AFF;
+  background: #A07CFA;
+  border: 1px solid #fff;
   border-radius: 100%;
+  color: #fff;
   display: flex;
-  height: 40px;
+  height: 30px;
   justify-content: center;
   position: absolute;
   top: 0;
-  right: 25%;
-  transform: translateY(62px);
-  width: 40px;
+  right: 35%;
+  transform: translateY(75px);
+  width: 30px;
 }
 body .main .commentsDiv .newComment .file-btn .edit img {
   width: 20px;
@@ -358,7 +438,7 @@ body .main .commentsDiv .newComment .rating {
 }
 body .main .commentsDiv .newComment .rating i {
   font-size: 2rem;
-  color: #ffc107;
+  color: #000;
   cursor: pointer;
   margin-right: 4px;
 }
@@ -366,7 +446,7 @@ body .main .commentsDiv .newComment .rating i:hover {
   transform: scale(1.1);
 }
 body .main .commentsDiv .newComment .sendCommentBtn {
-  background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
+  background: linear-gradient(to bottom, #A07CFA 25%, #bfaaff 50%, #A07CFA 70%);
   border: none;
   border-radius: 25px;
   color: #fff;
@@ -375,16 +455,19 @@ body .main .commentsDiv .newComment .sendCommentBtn {
   width: 90%;
 }
 body .main .commentsDiv .newComment .sendCommentBtn:hover {
-  background: #9A53EA;
+  opacity: .8;
 }
 body .main .commentsDiv .viewComments {
   padding: 20px;
 }
 body .main .commentsDiv .viewComments i {
-  color: #ffc107;
+  color: #000;
 }
 body .main .commentsDiv .viewComments .comment {
+  background: #E1D4FF;
   border-radius: 10px;
+  font-family: InterMedium;
+  color: #444;
   padding: 10px;
 }
 body .main .commentsDiv .viewComments .comment img {
@@ -395,10 +478,13 @@ body .main .commentsDiv .allComments {
   padding: 20px;
 }
 body .main .commentsDiv .allComments i {
-  color: #ffc107;
+  color: #000;
 }
 body .main .commentsDiv .allComments .comment {
+  background: #E1D4FF;
   border-radius: 10px;
+  color: #444;
+  font-family: InterMedium;
   padding: 10px;
 }
 body .main .commentsDiv .allComments .comment img {
@@ -413,8 +499,12 @@ body .containerForm {
 }
 body .containerForm .loginForm {
   align-items: center;
-  border: 0.5px solid #333;
+  backdrop-filter: blur(2px);
+  background: transparent;
+  border: none;
   border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -425,8 +515,10 @@ body .containerForm .loginForm label {
   font-weight: bold;
 }
 body .containerForm .loginForm input {
+  background: transparent;
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #fff;
+  color: #fff;
   font-weight: bold;
   outline: 0;
   padding: 10px;
@@ -434,14 +526,16 @@ body .containerForm .loginForm input {
   width: 100%;
 }
 body .containerForm .loginForm input:focus {
-  border-bottom: 2px solid #4A37F5 !important;
+  border-bottom: 2px solid #888 !important;
 }
 body .containerForm .loginForm .cntBtn {
-  background: #4A37F5;
+  background: #A07CFA;
   border: none;
   border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(255,255,255,0.5);
   color: #fff;
   font-weight: bold;
+  margin-top: 20px;
   padding: 15px;
   width: 100%;
 }
@@ -457,8 +551,12 @@ body .panelContainer {
 }
 body .panelContainer .userCard {
   align-items: center;
-  border: 0.5px solid #333;
+  backdrop-filter: blur(2px);
+  background: transparent;
+  border: none;
   border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -466,8 +564,10 @@ body .panelContainer .userCard {
   padding: 20px;
 }
 body .panelContainer .userCard input {
+  background: none;
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #fff;
+  color: #fff;
   font-weight: bold;
   outline: 0;
   padding: 10px;
@@ -475,15 +575,17 @@ body .panelContainer .userCard input {
   width: 100%;
 }
 body .panelContainer .userCard input:focus {
-  border-bottom: 2px solid #4A37F5;
+  border-bottom: 2px solid #888;
 }
 body .panelContainer .userCard .saveBtn {
-  background: #4A37F5;
+  background: #A07CFA;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(255,255,255,0.5);
   color: #fff;
   font-weight: bold;
   padding: 15px;
+  width: 100%;
 }
 body .panelContainer .userCard .saveBtn:hover {
   opacity: 0.8;
@@ -502,6 +604,7 @@ body .fot footer {
   color: #fff;
 }
 body .fot footer .subir, body .fot footer .share {
+  background: linear-gradient(to bottom, #A07CFA 25%, #bfaaff 50%, #A07CFA 70%);
   border: none;
   border-radius: 50%;
   bottom: 75px;

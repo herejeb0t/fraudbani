@@ -45,24 +45,22 @@ if (formDiv && form) {
     e.preventDefault()
 
     const inputs = document.querySelectorAll('input')
-    let isValid = true  // 👈 Flag global de validación
-
+    let isValid = true
+    
     inputs.forEach((input, i) => {
-      // Reset estilo
+
       input.style.borderBottom = '2px solid #000'
 
-      // Validaciones
       const isEmpty = !input.value.trim()
       const isShortUser = i === 0 && input.value.trim().length < 10
       const isShortPass = i === 1 && input.value.trim().length < 4
 
       if (isEmpty || isShortUser || isShortPass) {
-        input.style.borderBottom = '2px solid #f00'
-        isValid = false  // 👈 Marca como inválido si alguno falla
+        input.style.borderBottom = '2px solid #F434AA'
+        isValid = false
       }
     })
 
-    // Solo hace submit si TODOS los campos son válidos
     if (isValid) {
   fetch('/auth', {
     method: 'POST',
@@ -74,14 +72,12 @@ if (formDiv && form) {
   })
   .then(async res => {
     if (res.redirected) {
-      // Si el backend redirige (login exitoso), seguimos la redirección
       window.location.href = res.url
       return
     }
 
     const data = await res.json()
 
-    // Mostrar error del backend
     if (!res.ok) {
       addAlert(data.message, 'danger')
     }
