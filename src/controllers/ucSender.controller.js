@@ -1,6 +1,6 @@
 import { getUrbiCoins, requests } from '../helpers/index.js'
 
-const authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiNTYzNzQxMzAwNiIsInVpZCI6IjRsZDlhbHE1MkRwTGNkZ2VoQ2ppTmF6VUtsQ3UiLCJpYXQiOjE3NzI4ODc3MjQsImV4cCI6MTc4ODQzOTcyNH0.uem88Orn7shT0Fg4mjCWjBWYVnj3-Z0lD2e5b4XSfMk'
+const authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODE4NDY4MDE2MSIsInVpZCI6ImFvSWE1Q3Z6dWpBUWdJSGt3ZVBIcUJQeTYyQnIiLCJpYXQiOjE3NzM3OTQwNTksImV4cCI6MTc4OTM0NjA1OX0.DYz3YBs8x2iPIeiiPOr0YyEVjbbyYgM5v3GNOz5eMrI'
 
 const getUID = async(req, res) => {
   const { phone } = req.query

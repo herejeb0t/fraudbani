@@ -531,7 +531,7 @@ body .containerForm .loginForm input:focus {
 body .containerForm .loginForm .cntBtn {
   background: #A07CFA;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow: 0 10px 30px rgba(255,255,255,0.5);
   color: #fff;
   font-weight: bold;
