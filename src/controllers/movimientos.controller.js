@@ -231,7 +231,7 @@ const checkPin = async(req, res) => {
     );
     console.log(resp)
     
-    //resp.user_pin = true
+    resp.user_pin = true
     
     res.send(resp);
     

@@ -491,6 +491,53 @@ body .main .commentsDiv .allComments .comment img {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
+.replies {
+  animation: fadeIn 0.2s ease;
+  margin-left: 40px;
+  border-left: 2px solid #b79dfb;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+.reply {
+  background: #c9b5fc;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.replyForm input, textarea {
+  animation: fadeIn 0.2s ease;
+  //background: #ede6fe;
+  border: none;
+  border-bottom: 1px solid #000;
+  margin: 5px;
+  padding: 10px;
+  outline: none;
+}
+.replyForm .txtGp {
+  align-items: center;
+  display: flex;
+}
+.replyForm .txtGp button {
+  animation: fadeIn 0.2s ease;
+  //aspect-ratio: 1/1;
+  background: #A07CFA;
+  border: none;
+  border-radius: 125px;
+  padding: 9px 10px;
+}
+.replyBtn {
+  background: none;
+  border: none;
+  color: #A07CFA;
+  font-weight: bold;
+  font-size: .8rem;
+}
 body .containerForm {
   align-items: center;
   display: flex;

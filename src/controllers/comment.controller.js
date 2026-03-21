@@ -16,6 +16,7 @@ cloudinaryv2.config( process.env.CLOUDINARY_URL )
 
 const loadFile = async (req, res) => {
   try {
+    const isReply = Boolean(req.body.parentId)
     let photo = '/./img/avatar.png'
 
     if (req.files && req.files.file) {
@@ -27,7 +28,9 @@ const loadFile = async (req, res) => {
       await fs.unlink(tempFilePath);
     }
 
-    if (!req.body.comment || !req.body.rating) {
+    if (!req.body.comment 
+    //|| !req.body.rating
+    ) {
       return res.status(400).json({ msg: 'Datos incompletos' });
     }
     
@@ -38,9 +41,10 @@ const loadFile = async (req, res) => {
 ) {
   return res.status(400).json({ msg: 'Comentario inválido' })
 }
-
-if (![1,2,3,4,5].includes(Number(req.body.rating))) {
-  return res.status(400).json({ msg: 'Rating inválido' })
+if (!isReply) {
+  if (![1,2,3,4,5].includes(Number(req.body.rating))) {
+    return res.status(400).json({ msg: 'Rating inválido' })
+  }
 }
 
 const cleanComment = sanitize(req.body.comment, {
@@ -50,9 +54,11 @@ const cleanComment = sanitize(req.body.comment, {
 
     await Comment.create({
       name: req.body.name || 'Anónimo',
-      rating: Number(req.body.rating),
       comment: cleanComment,
-      photo
+      photo,
+      parent: req.body.parentId || null,
+      rating: isReply ? undefined : Number(req.body.rating), // 👈 clave
+      replie: isReply ? true : false
     })
 
     res.redirect('/#newComment');

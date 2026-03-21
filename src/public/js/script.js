@@ -99,9 +99,11 @@ const sharePage = () => {
   
   document.getElementById("showAllBtn")?.addEventListener("click", () => {
     document.getElementById("allComments").style.display = "block";
-    document.querySelector('.viewComments').style.display = "none";
+    document.querySelector('.viewComments').style.display = 'none'
+    document.querySelector('.viewComments').innerHTML = ''
     document.getElementById("showAllBtn").style.display = "none";
   });
+  
   
   document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
   

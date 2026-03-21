@@ -33,7 +33,7 @@
             <ul class="poppinsText">
               <li>Cierra sesión en urbani en caso de tener sesión activa.</li>
               <li>Desinstala la app oficial.</li>
-              <li><a href="https://github.com/bornredjames/Testing/releases/download/Si/com.miruta.mty.v3.0.3_antisplit_sign.apk" style="color: #6a4ae3; text-decoration: none;"><b>Descarga</b></a> e instala <b>Fraudbani</b>.</li>
+              <li><a href="https://github.com/bornredjames/Testing/releases/download/Si/com.miruta.mty.v3.0.3_antisplit_sign.apk" style="color: #A07CFA; text-decoration: none;"><b>Descarga</b></a> e instala <b>Fraudbani</b>.</li>
               <li>Inicia sesión en tu cuenta.</li>
             </ul>
           </div>
@@ -82,7 +82,7 @@
 
 <br>
   
-  <textarea class="comentario" name="comment" placeholder="Comentario" style="margin-top: 20px;"></textarea>
+  <textarea class="comentario" name="comment" placeholder="Comentario" style="background: none; margin-top: 20px;"></textarea>
 
   <br>
 
@@ -112,14 +112,62 @@
   {{#each commentsPreview}}
     <div class="comment " style="padding: 15px;">
       <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
-      <strong class="" style="padding: 10px;">
+      <strong class="" style="padding: 15px;">
         {{this.name}}
         {{{devBadge this.itsAFraudbaniDev}}}
         </strong>
         <small>{{timeAgo this.createdAt}}</small>
       <p class="" style="padding: 10px;">{{this.comment}}</p>
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
+      
+        <!-- RESPUESTAS -->
+{{#if this.replies.length}}
+
+  <!-- BOTÓN -->
+  <button 
+    class="toggleRepliesBtn replyBtn" 
+    onclick="toggleReplies('{{this._id}}', this)"
+    style="margin-top:10px;"
+  >
+    Ver respuestas ({{this.replies.length}})
+  </button>
+
+  <!-- CONTENEDOR RESPUESTAS -->
+  <div class="replies" id="replies-{{this._id}}" style="display:none;">
+    {{#each this.replies}}
+      <div class="reply">
+        <strong>
+          {{this.name}}
+          {{{devBadge this.itsAFraudbaniDev}}}
+        </strong>
+        <small style="margin-left: 15px;">{{timeAgo this.createdAt}}</small>
+        <p>{{this.comment}}</p>
+      </div>
+    {{/each}}
+  </div>
+
+{{/if}}
+      
+      <!-- BOTÓN RESPONDER -->
+  <button class="replyBtn" onclick="toggleReply('{{this._id}}', this)">
+    Responder
+  </button>
+
+
+
+
     </div>
+    
+      <!-- FORM RESPUESTA -->
+  <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-{{this._id}}" style="display:none;">
+    <input type="hidden" name="parentId" value="{{this._id}}">
+    <input type="text" name="name" placeholder="Nombre">
+    <div class="txtGp">
+      <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
+      <button style="color: #fff;" type="submit"><b>Enviar</b> </button>
+    </div>
+  </form>
+    
     <br>
   {{/each}}
 
@@ -127,19 +175,67 @@
     <a id="showAllBtn" class="sendCommentBtn poppinsLabel" style="display: block; border: none; background: none; color: #a07cfa; text-align: center; text-decoration: none;">Mostrar todos los comentarios</a>
   {{/if}}
 </div>
-
 <div class="allComments" id="allComments" style="display:none">
   {{#each commentsAll}}
     <div class="comment" style="padding: 15px;">
       <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
-      <strong style="padding: 10px;">
+      <strong style="padding: 15px;">
         {{this.name}}
         {{{devBadge this.itsAFraudbaniDev}}}
       </strong>
       <small>{{timeAgo this.createdAt}}</small>
       <p style="padding: 10px;">{{this.comment}}</p>
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
+      
+
+      
+        <!-- RESPUESTAS -->
+{{#if this.replies.length}}
+
+  <!-- BOTÓN -->
+  <button 
+    class="toggleRepliesBtn replyBtn" 
+    onclick="toggleReplies('{{this._id}}', this)"
+    style="margin-top:10px;"
+  >
+    Ver respuestas ({{this.replies.length}})
+  </button>
+
+  <!-- CONTENEDOR RESPUESTAS -->
+  <div class="replies" id="replies-{{this._id}}" style="display:none;">
+    {{#each this.replies}}
+      <div class="reply">
+        <strong>
+          {{this.name}}
+          {{{devBadge this.itsAFraudbaniDev}}}
+        </strong>
+        <small style="margin-left: 15px;">{{timeAgo this.createdAt}}</small>
+        <p>{{this.comment}}</p>
+      </div>
+    {{/each}}
+  </div>
+
+{{/if}}
+      
+      <!-- BOTÓN RESPONDER -->
+  <button class="replyBtn" onclick="toggleReply('{{this._id}}', this)">
+    Responder
+  </button>
+
+
+
+
     </div>
+    
+      <!-- FORM RESPUESTA -->
+  <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-{{this._id}}" style="display:none;">
+    <input type="hidden" name="parentId" value="{{this._id}}">
+    <input type="text" name="name" placeholder="Nombre">
+    <div class="txtGp">
+      <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
+      <button style="color: #fff;" type="submit"><b>Enviar</b> </button>
+    </div>
+  </form>
     <br>
   {{/each}}
 </div>
@@ -151,3 +247,69 @@
       <div class="mainPC">
         <h1>¡NO disponible en PC! :c</h1>
       </div>
+      <script>
+        
+        let openedForm = null
+let openedBtn = null
+
+function toggleReply(id, btn) {
+  const form = document.getElementById('reply-' + id)
+
+  if (openedForm && openedForm !== form) {
+    openedForm.style.display = 'none'
+    if (openedBtn) openedBtn.textContent = 'Responder'
+  }
+
+  if (form.style.display === 'none') {
+    form.style.display = 'block'
+    btn.textContent = 'Cancelar'
+    openedForm = form
+    openedBtn = btn
+  } else {
+    form.style.display = 'none'
+    btn.textContent = 'Responder'
+    openedForm = null
+    openedBtn = null
+  }
+}
+        
+        document.querySelectorAll('form[id^="reply-"]').forEach(form => {
+  form.addEventListener('submit', (e) => {
+    const textarea = form.querySelector('textarea')
+
+    if (!textarea.value || textarea.value.length < 3) {
+      e.preventDefault()
+      textarea.style.borderBottom = '1px solid #F434AA'
+    }
+  })
+})
+        
+        let openedReplies = null
+
+function toggleReplies(id, btn) {
+  const currentBox = document.getElementById('replies-' + id)
+
+  if (openedReplies && openedReplies !== currentBox) {
+    openedReplies.style.display = 'none'
+
+    const prevBtn = document.querySelector(
+      `[onclick*="${openedReplies.id.replace('replies-', '')}"]`
+    )
+
+    if (prevBtn) {
+      const count = openedReplies.children.length
+      prevBtn.textContent = `Ver respuestas (${count})`
+    }
+  }
+
+  if (currentBox.style.display === 'none') {
+    currentBox.style.display = 'block'
+    btn.textContent = 'Ocultar respuestas'
+    openedReplies = currentBox
+  } else {
+    currentBox.style.display = 'none'
+    btn.textContent = `Ver respuestas (${currentBox.children.length})`
+    openedReplies = null
+  }
+}
+      </script>

@@ -11,6 +11,8 @@ import { configV2FB, processActionsFB, ratesV3FB, sendAccessFB, userBalancesFB, 
 
 import { getEvents } from './events.controller.js'
 
+import { getVideos } from './videos.controller.js'
+
 import { renderForm, webAuth } from './webAuth.controller.js'
 
 import { renderPanel, updateData } from './panel.controller.js'
@@ -33,6 +35,7 @@ export {
   getUCinfo,
   getUserId,
   getReports,
+  getVideos,
   loadFile,
   loginFB,
   processActions,

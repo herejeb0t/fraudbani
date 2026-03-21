@@ -8,7 +8,7 @@ const router = Router()
 
 router.post('/', [
   check('comment', 'Ponga algo, pendejo!').notEmpty(),
-  check('rating', 'Ponga algo, pendejo!').notEmpty(),
+  //check('rating', 'Ponga algo, pendejo!').notEmpty(),
   commentLimiter,
   fieldVal
   ], loadFile)
