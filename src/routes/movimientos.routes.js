@@ -3,11 +3,11 @@ import { addPoints, changeCoupon, checkPin, coinPoints, processActions, sendAcce
 
 const router = Router()
 
-router.post('/processActions/v2', processActions)
+//router.post('/processActions/v2', processActions)
 
-//router.post('/send/access', sendAccess)
+router.post('/send/access', sendAccess)
 
-//router.post('/addPoints', addPoints)
+router.post('/addPoints', addPoints)
 
 router.post('/transferBalance', sendUrbiCoins)
 
