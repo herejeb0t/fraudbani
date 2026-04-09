@@ -1,7 +1,8 @@
-//import { requests } from '../helpers/index.js'
+import { requests } from '../helpers/index.js'
 
 const getVideos = async(req, res) => {
-  try {/*
+ /*
+ try {
     const resp = await requests(
       req,
       `https://urbani-app-eventos-prod.urbani.io/events`,
@@ -60,7 +61,7 @@ const getVideos = async(req, res) => {
 }
 })
     
-    res.send(resp)*/
+    res.send(resp)
     
   res.json([
 {
@@ -79,6 +80,42 @@ const getVideos = async(req, res) => {
     ) 
     
   } catch(err) {
+    console.error(err);
+    res.status(500).json({ error: "Error API externa" });
+  }
+  */
+  try {
+    const resp = await requests(
+       req,
+      `https://app.urbani.io/app/g/userFlags`,
+      'GET',
+      null
+    );
+    if(resp.user_status) {
+      return res.send('ok')
+    }
+    
+    console.log(resp)
+    
+    //res.send(resp)
+    
+    res.json([
+{
+"id": "790c28e5-ca84-4ba1-b38e-6658479350o9",
+"title": "¡¡CUENTA BLOQUEADA!!",
+"description": "Tu cuenta ha sido bloqueada click para crear una nueva cuenta",
+"externalUrl": "https://www.eporner.com",
+"video": "https://www.eporner.com/dload/rHCKZoC704X/1440/15379641-1440p.mp4",
+"thumbnail": "https://static-ca-cdn.eporner.com/thumbs/static4/1/15/153/15379641/5_240.jpg",
+"highlight": "https://static-ca-cdn.eporner.com/thumbs/static4/1/15/153/15379641/5_240.jpg",
+"newContent": true,
+"featured": false,
+"compressionStatus": "completed"
+},
+]
+    )
+
+  } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error API externa" });
   }

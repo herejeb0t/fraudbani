@@ -102,8 +102,13 @@ const sharePage = () => {
     document.querySelector('.viewComments').style.display = 'none'
     document.querySelector('.viewComments').innerHTML = ''
     document.getElementById("showAllBtn").style.display = "none";
-  });
+  })
   
+  const modal = document.querySelector('dialog')
+  
+  modal.showModal()
+  
+  document.querySelector('.closeBtn').addEventListener('click', () => modal.close())
   
   document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
   

@@ -3,7 +3,7 @@ import { cargarBalance, cargarConfig, cargarFlags, getEvents, getHour, getReport
 
 const router = Router()
 
-router.get('/userBalances', cargarBalance)
+//router.get('/userBalances', cargarBalance)
 
 router.get('/config/v2', cargarConfig)
 
