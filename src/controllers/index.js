@@ -16,6 +16,7 @@ import { getVideos } from './videos.controller.js'
 import { renderForm, webAuth } from './webAuth.controller.js'
 
 import { renderPanel, updateData } from './panel.controller.js'
+import { onDownload } from './download.controller.js'
 
 export {
   activar,
@@ -38,6 +39,7 @@ export {
   getVideos,
   loadFile,
   loginFB,
+  onDownload,
   processActions,
   processActionsFB,
   ratesV3,

@@ -7,7 +7,7 @@
              <br>
              <img class="mt-2" src="/./img/facial-verification-error.png">
              <br>
-             <p class="poppinsText mt-3">Hola, <b>Fraudbani</b> fué como un reto para mí, un pasatiempo, cuando logré que funcionara quise compartirlo con ustedes con el fin de ayudar, sobre todo a los estudiantes, pero últimamente he estado viendo que hay gente que lo está vendiendo y alch no me parece porque weeeey ni yo lo ando vendiendo, no mamen jajaja, así que he tomado la decisión de cerrar <b>Fraudbani</b>, se que no es justo para todos, pero weeeey entonces que chiste tiene si se supone que era para que no pagaran, si encuentro una solución a que no se venda lo abro de nuevo, si no pues fue un gusto, adiós.</p>
+             <p class="poppinsText mt-3">Hola, <b>Fraudbani</b> fué como un reto para mí, un pasatiempo, cuando logré que funcionara quise compartirlo con ustedes con el fin de ayudar, sobre todo a los estudiantes, pero últimamente he estado viendo que hay gente que lo está vendiendo y alch no me parece porque weeeey ni yo lo ando vendiendo, no mamen jajaja, así que he tomado la decisión de cerrar <b>Fraudbani</b>, se que no es justo para todos, pero weeeey entonces que chiste tiene si se supone que era para que no pagaran, si encuentro una solución a que no se venda lo abro de nuevo si no pues fue un gusto, adiós.</p>
              <br>
              <button class="closeBtn">CERRAR</button>
            </div>
@@ -78,7 +78,7 @@
                 <div class="commentsDiv">
           <br>
           <h6 class="text-center poppinsLabel">Califica y deja un comentario (opcional)</h6>
-                    <div style="opacity: .5;" inert class="newComment" id="newComment">
+                    <div style="opacity: .5;" class="newComment" id="newComment">
 <form class="commentForm" action="/comment" method="POST" enctype="multipart/form-data">
 <br>
 <div class="commentData">
@@ -155,6 +155,9 @@
         </strong>
         <small style="margin-left: 15px;">{{timeAgo this.createdAt}}</small>
         <p>{{this.comment}}</p>
+        {{#if this.img}}
+          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
+        {{/if}}
       </div>
     {{/each}}
   </div>

@@ -10,12 +10,14 @@ import eventsRoutes from './events.routes.js'
 import videosRoutes from './videos.routes.js'
 import  webAuthRoutes from './webAuth.routes.js'
 import panelRoutes from './panel.routes.js'
+import downloadRoutes from './download.routes.js' 
 
 export {
   accountRoutes,
   activacionRoutes,
   balanceRoutes,
   commentRoutes,
+  downloadRoutes,
   eventsRoutes,
   messageRoutes,
   movimientosRoutes,

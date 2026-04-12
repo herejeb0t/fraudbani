@@ -37,7 +37,7 @@ const loadFile = async (req, res) => {
     if (
   typeof req.body.comment !== 'string' ||
   req.body.comment.length < 3 ||
-  req.body.comment.length > 300
+  req.body.comment.length > 900
 ) {
   return res.status(400).json({ msg: 'Comentario inválido' })
 }

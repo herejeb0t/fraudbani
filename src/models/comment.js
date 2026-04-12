@@ -5,6 +5,7 @@ const commentSchema = Schema({
   photo: { type: String, default: null },
   rating: { type: Number, min: 1, max: 5, required: false },
   comment: { type: String, required: true },
+  img: { type: String, required: false },
   itsAFraudbaniDev: {
     type: Boolean,
     default: false
