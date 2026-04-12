@@ -1,9 +1,10 @@
 import { model, Schema } from 'mongoose'
 
 const ipSchema = Schema({
-  token: {
+  encIp: {
     type: String,
     required: true,
+    unique: true,
   }
 })
 

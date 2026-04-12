@@ -1,4 +1,4 @@
-import { jwtGen } from '../helpers/index.js'
+import { encrypt, jwtGen } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 const onDownload = async(req, res) => {
@@ -7,13 +7,19 @@ const onDownload = async(req, res) => {
     || ''
   const ip = raw.split(',')[0].trim()
   
-  const token = await jwtGen(ip, '10m', process.env.ipKEY)
+  const encIp = encrypt(ip)
+  
+  const encIpExs = await IP.findOne({encIp})
+  
+  if(encIpExs) {
+    return res.json({message: 'Error, intenta más tarde...'})
+  }
   
   await IP.create({
-    token
+    encIp
   })
   
-  res.json({token})
+  res.redirect('/')
 }
 
 export {
