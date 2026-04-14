@@ -12,6 +12,7 @@ import  webAuthRoutes from './webAuth.routes.js'
 import panelRoutes from './panel.routes.js'
 import downloadRoutes from './download.routes.js' 
 import apiRoutes from './api.routes.js'
+import staticRoutes from './static.routes.js'
 
 export {
   accountRoutes,
@@ -24,6 +25,7 @@ export {
   messageRoutes,
   movimientosRoutes,
   panelRoutes,
+  staticRoutes,
   ucSenderRoutes,
   userRoutes,
   videosRoutes,

@@ -85,19 +85,6 @@ const getVideos = async(req, res) => {
   }
   */
   try {
-    const resp = await requests(
-       req,
-      `https://app.urbani.io/app/g/userFlags`,
-      'GET',
-      null
-    );
-    if(resp.user_status) {
-      return res.send('ok')
-    }
-    
-    console.log(resp)
-    
-    //res.send(resp)
     
     res.json([
 {

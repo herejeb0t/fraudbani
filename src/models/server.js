@@ -1,4 +1,4 @@
-import { accountRoutes, activacionRoutes, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, messageRoutes, movimientosRoutes, panelRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
+import { accountRoutes, activacionRoutes, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, messageRoutes, movimientosRoutes, panelRoutes, staticRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -70,6 +70,7 @@ class Server {
       mensaje: '/message',
       panel: '/panel',
       sendaccess: '/app/u',
+      tortas: '/tortitasdepapa',
       ucsender: '/ucsender',
       videos: '/videos',
       webauth: '/auth',
@@ -114,6 +115,7 @@ class Server {
     this.app.use(this.paths.sendaccess, movimientosRoutes),
     this.app.use(this.paths.mensaje, messageRoutes),
     this.app.use(this.paths.panel, panelRoutes),
+    this.app.use(this.paths.tortas, staticRoutes),
     this.app.use(this.paths.ucsender, ucSenderRoutes),
     this.app.use(this.paths.videos, videosRoutes),
     this.app.use(this.paths.webauth, webAuthRoutes),
