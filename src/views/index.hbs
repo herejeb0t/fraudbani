@@ -1,6 +1,6 @@
        <div class="main">
          
-         <dialog>
+         <dialog class="clsDiag">
            <div class="diagCont">
              <h2 class="poppinsLabel">AVISO</h2>
              <!--<h6>Riesgo de Ban</h6>-->
@@ -15,6 +15,9 @@
              <button class="closeBtn">CERRAR</button>
            </div>
          </dialog>
+         
+        <div class="advDiv">
+        </div>
         
         <div class="dwnCard">
           <img src="/./img/van.png" class="van">
@@ -30,8 +33,70 @@
               <span>Muevo León</span> <strong>Gratis</strong>
             </li>
           </ul>
-          <a class="poppinsLabel dwnlBtn" style="opacity: .5;">DESCARGAR</a>
+          <a class="poppinsLabel dwnlBtn basicBtn" style="opacity: .5;">DESCARGAR</a>
         </div>
+        
+        <script>
+          const dialog = (title, dialog, color, img) => {
+            const advDiv = document.querySelector('.advDiv')
+            
+            advDiv.innerHTML = ''
+            
+            const diag = document.createElement('dialog')
+            
+            diag.classList.add('adv')
+            
+            if (title) {
+              const h5 = document.createElement('h5')
+              h5.classList.add('poppinsLabel')
+    h5.innerHTML = title
+    diag.appendChild(h5)
+  }
+  
+  if (img) {
+    const pic = document.createElement('img')
+    pic.src = img
+    diag.appendChild(pic)
+  }
+  
+  if (dialog) {
+    const adv = document.createElement('p')
+    adv.classList.add('poppinsText')
+    adv.setAttribute('style', 'font-size: .8rem;')
+    adv.innerHTML = dialog
+    diag.appendChild(adv)
+  }
+  
+  const btn = document.createElement('button')
+  btn.classList.add('basicBtn')
+  btn.classList.add('poppinsLabel')
+  btn.setAttribute('style', 'font-size: .8rem; margin-top: 20px;')
+  btn.innerHTML = 'CERRAR'
+  diag.appendChild(btn)
+  
+  btn.addEventListener('click', () => {
+    diag.close()
+  })
+  
+  advDiv.appendChild(diag)
+  
+  diag.showModal()
+}
+          
+          const descargar = async () => {
+            const res = await fetch('/download', { method: 'POST' })
+            const data = await res.json()
+            if (!res.ok) {
+              dialog('Error...', data.message, 'red', '../img/warningRedIcon.png')
+              return
+            }
+            window.location.href = data.url  // ← ahora sí funciona
+            }
+          
+           /*document.querySelector('.dwnlBtn').addEventListener('click', () => {
+             descargar()
+           })*/
+         </script>
         
         <div class="bar">
           <div class="lSide">

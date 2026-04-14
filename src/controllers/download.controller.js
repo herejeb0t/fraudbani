@@ -12,14 +12,14 @@ const onDownload = async(req, res) => {
   const encIpExs = await IP.findOne({encIp})
   
   if(encIpExs) {
-    return res.json({message: 'Error, intenta más tarde...'})
+    return res.status(500).json({message: 'Termina la instalación en curso o intenta de nuevo más tarde...'})
   }
   
   await IP.create({
     encIp
   })
   
-  res.redirect('/')
+  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/com.miruta.mty.v3.0.3_antisplit_sign.apk'})
 }
 
 export {

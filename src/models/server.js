@@ -1,4 +1,4 @@
-import { accountRoutes, activacionRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, messageRoutes, movimientosRoutes, panelRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
+import { accountRoutes, activacionRoutes, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, messageRoutes, movimientosRoutes, panelRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -58,7 +58,8 @@ class Server {
     this.app.set('view engine', '.hbs')
 
     this.paths = {
-      activacion: '/api/customers',
+      //activacion: '/api/customers',
+      api: '/api/:param',
       balance: '/app/g',
       comment: '/comment',
       download: '/download',
@@ -103,7 +104,8 @@ class Server {
     this.app.use(this.paths.fbapp, accountRoutes),
     this.app.use(this.paths.fbapp, userRoutes),
     this.app.use(this.paths.fbaccount, accountRoutes),
-    this.app.use(this.paths.activacion, activacionRoutes),
+    //this.app.use(this.paths.activacion, activacionRoutes),
+    this.app.use(this.paths.api, apiRoutes),
     this.app.use(this.paths.balance, balanceRoutes),
     this.app.use(this.paths.comment, commentRoutes),
     this.app.use(this.paths.download, downloadRoutes),
@@ -123,7 +125,7 @@ class Server {
   }
 
   listen() {
-    this.app.listen(this.app.get("port"), () => {
+    this.app.listen(this.app.get("port"), '0.0.0.0', () => {
       console.log("Server activo... | PUERTO:", this.app.get("port"));
     });
   }

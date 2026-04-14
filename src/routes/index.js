@@ -11,10 +11,12 @@ import videosRoutes from './videos.routes.js'
 import  webAuthRoutes from './webAuth.routes.js'
 import panelRoutes from './panel.routes.js'
 import downloadRoutes from './download.routes.js' 
+import apiRoutes from './api.routes.js'
 
 export {
   accountRoutes,
   activacionRoutes,
+  apiRoutes,
   balanceRoutes,
   commentRoutes,
   downloadRoutes,

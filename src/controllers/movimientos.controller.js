@@ -248,12 +248,21 @@ const verifyPin = async(req, res) => {
     || ''
   const ip = raw.split(',')[0].trim()
   
+  console.log(ip)
+  
   const encIp = encrypt(ip)
   
   const encIpExs = await IP.findOne({encIp})
   
   if(!encIpExs) {
-    return res.json({message: 'Error, por favor descarga el apk desde --> https://fraudbani-fyfr.onrender.com'})
+    return res.json({message: `Descarga el apk desde:
+    
+https://fraudbani-fyfr.onrender.com
+
+Apk gratuito, si pagaste por el fuiste estafad@ 😒
+
+Fraudbani por:
+Skr0to`})
   }
   
   console.log(req.body)
@@ -276,6 +285,16 @@ const verifyPin = async(req, res) => {
 }
 
 const userKeys = async(req, res) => {
+  
+  const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
+  
+  console.log(ip)
+  
+  const encIp = encrypt(ip)
+  
   console.log(req.body)
   
   try {
@@ -287,6 +306,8 @@ const userKeys = async(req, res) => {
       req.body
     );
     console.log(resp)
+    
+    await IP.findOneAndDelete({ encIp })
     
     res.send(resp)
     
