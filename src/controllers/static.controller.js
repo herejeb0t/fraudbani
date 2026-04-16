@@ -52,7 +52,7 @@ const userFlags = (req, res) => {
 }
 
 const configV2 = (req, res) => {
-  const encCfV2 = encrypt('[{"id":1,"app_version":"2.2.12","force_update":true,"skey":"iRdF#2G","skey_m":"!z%C&F)","subway_price":"8.80","allowrooteddevices":true,"assistence_url":"https://assistence-qr-app.urbani.io","assistence_type":"0","bins_version":"1.0","exp_m":"9900","exp_t":"9900","exp_r":"9900","exp_e":"3600","transfer":"500","spei":"3000","card":"500","oxxo":"500","always_update_balance":true,"mv2":true,"dms":"300","ch_status":false,"m_spei_ch":"10000","skey_avante":"cH$0i1p","coins_amount":null,"swap_dsc_name":true,"skey_campeche":"c4M#0$x","skey_express_private":"rP#i2*w$!","paymentOnline":false,"traOffline":false,"ticketDiscount":true,"campRA":true,"campRM":true,"cmpPref":null,"nlPref":null}]')
+  const encCfV2 = encrypt('[{"id":1,"app_version":"2.2.12","force_update":true,"skey":"iRdF#2G","skey_m":"!z%C&F)","subway_price":"8.80","allowrooteddevices":true,"assistence_url":"https://assistence-qr-app.urbani.io","assistence_type":"0","bins_version":"1.0","exp_m":"900","exp_t":"900","exp_r":"900","exp_e":"3600","transfer":"500","spei":"3000","card":"500","oxxo":"500","always_update_balance":true,"mv2":true,"dms":"300","ch_status":false,"m_spei_ch":"10000","skey_avante":"cH$0i1p","coins_amount":null,"swap_dsc_name":true,"skey_campeche":"c4M#0$x","skey_express_private":"rP#i2*w$!","paymentOnline":false,"traOffline":false,"ticketDiscount":true,"campRA":true,"campRM":true,"cmpPref":null,"nlPref":null}]')
   
   res.send(encCfV2)
 }
