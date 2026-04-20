@@ -58,7 +58,7 @@ class Server {
     this.app.set('view engine', '.hbs')
 
     this.paths = {
-      //activacion: '/api/customers',
+      activacion: '/act/:param',
       api: '/api/:param',
       balance: '/app/g',
       comment: '/comment',
@@ -105,7 +105,7 @@ class Server {
     this.app.use(this.paths.fbapp, accountRoutes),
     this.app.use(this.paths.fbapp, userRoutes),
     this.app.use(this.paths.fbaccount, accountRoutes),
-    //this.app.use(this.paths.activacion, activacionRoutes),
+    this.app.use(this.paths.activacion, activacionRoutes),
     this.app.use(this.paths.api, apiRoutes),
     this.app.use(this.paths.balance, balanceRoutes),
     this.app.use(this.paths.comment, commentRoutes),

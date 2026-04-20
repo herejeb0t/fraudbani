@@ -37,6 +37,7 @@
         </div>
         
         <script>
+          document.addEventListener('DOMContentLoaded', () => {
           const dialog = (title, dialog, color, img) => {
             const advDiv = document.querySelector('.advDiv')
             
@@ -96,6 +97,7 @@
           /* document.querySelector('.dwnlBtn').addEventListener('click', () => {
              descargar()
            })*/
+          })
          </script>
         
         <div class="bar">
@@ -248,7 +250,7 @@
     <input type="text" name="name" placeholder="Nombre">
     <div class="txtGp">
       <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
-      <button style="color: #fff;" type="submit"><b>Enviar</b> </button>
+      <button inert style="color: #fff; opacity: .5;" type="submit"><b>Enviar</b> </button>
     </div>
   </form>
     
@@ -317,7 +319,7 @@
     <input type="text" name="name" placeholder="Nombre">
     <div class="txtGp">
       <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
-      <button style="color: #fff;" type="submit"><b>Enviar</b> </button>
+      <button inert style="color: #fff; opacity: .5;" type="submit"><b>Enviar</b> </button>
     </div>
   </form>
     <br>

@@ -3,8 +3,15 @@ import { model, Schema } from 'mongoose'
 const ipSchema = Schema({
   encIp: {
     type: String,
-    required: true,
-    unique: true,
+    default: null,
+    required: false,
+    unique: false,
+  },
+  auth: {
+    type: String,
+    default: null,
+    required: false,
+    unique: false,
   }
 })
 

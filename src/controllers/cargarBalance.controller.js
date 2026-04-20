@@ -1,4 +1,5 @@
 import { decrypt, encrypt, requests, sender } from '../helpers/index.js'
+import IP from '../models/ip.js'
 
 const processActions = async(req, res) => {
   const body = req.body
@@ -72,8 +73,27 @@ const cargarBalance = async(req, res) => {
   const encryptedBalance = encrypt(updatedString)
 
   res.send(encryptedBalance)*/
-  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
+  //res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
 
+const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
+  
+  console.log(ip)
+  
+  const encIp = encrypt(ip)
+  
+  const auth = req.headers.authorization
+  
+  const isActivated = await IP.findOne({ auth })
+  
+  if( !isActivated ) {
+    return res.status(500).json({message: 'No activado alv'})
+  }
+  
+  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
+  
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: "Error API externa" })

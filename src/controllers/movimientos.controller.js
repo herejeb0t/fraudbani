@@ -243,7 +243,7 @@ const checkPin = async(req, res) => {
 }
 
 const verifyPin = async(req, res) => {
-  const raw = req.headers['x-forwarded-for'] 
+  /*const raw = req.headers['x-forwarded-for'] 
     || req.connection.remoteAddress 
     || ''
   const ip = raw.split(',')[0].trim()
@@ -266,8 +266,8 @@ Skr0to`})
   }
   
   console.log(req.body)
-  
-  try {
+  */
+  try {/*
     const resp = await requests(
       req,
       `https://auth-prod.urbani.io/app/p/verifyPin`,
@@ -276,7 +276,8 @@ Skr0to`})
     );
     console.log(resp)
     
-    res.send(resp)
+    res.send(resp)*/
+    
     
   } catch (err) {
     console.error(err);

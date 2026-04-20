@@ -5,7 +5,7 @@ const router = Router()
 
 //router.post('/processActions/v2', processActions)
 
-router.post('/send/access', sendAccess)
+//router.post('/send/access', sendAccess)
 
 router.post('/addPoints', addPoints)
 
@@ -21,6 +21,6 @@ router.post('/subtract/points', substractPoints)
 
 //router.post('/verifyPin', verifyPin)
 
-//router.post('/userkeys', userKeys)
+router.post('/userkeys', userKeys)
 
 export default router

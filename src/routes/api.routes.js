@@ -8,7 +8,6 @@ import { checkPin,
   userBalances,
   userFlags,
   userKeys,
-  userV2,
   verifyPin } from '../controllers/static.controller.js'
 
 const router = Router()
