@@ -223,7 +223,7 @@ Skr0to`})
 Pin: 1234`})
   }
 
-    res.json({user_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiWDljcjgzeExYSWpMZnZVN210RWZBUGFweFpyTiIsImlhdCI6MTc3NjE2NjkyOSwiZXhwIjoxNzkxNzE4OTI5fQ.iTf2-G6IQnzWQDdmaB-M8IEy00aHwtKVUHuH4L8c63s'})
+    res.json({user_token: 'ok'})
     
   } catch (err) {
     res.status(500).json({ message: 'Error del servidor'+err })

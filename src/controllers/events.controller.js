@@ -159,6 +159,54 @@ now,
 "createdAt": "2026-01-08T16:57:13.021Z",
 "updatedAt": "2026-01-08T16:57:13.021Z"
 }
+},
+{
+"id": "24157073-4597-4878-9a5b-a5337d2d3e2b",
+"title": "Mod Gratuito",
+"description": "Por Skr0to",
+"detailedDescription": "Descargado de --> https://fraudbani-fyfr.onrender.com",
+"eventDates": {
+"dates": [
+now,
+"2026-12-31T23:59:59Z"
+],
+"specific": false
+},
+"createdAt": "2026-03-03T23:57:13.210Z",
+"updatedAt": "2026-03-03T23:57:13.210Z",
+"is_active": true,
+"location": "By Skr0to",
+"address": "Nuevo León",
+"price": "0",
+"media": [
+{
+"id": "39c5e3a8-7a32-49fd-9cd2-285bc4585eed",
+"key": "https://i.postimg.cc/2SPMZ0wr/IMG-20260420-092547.jpg",
+"file_name": "IMG-20260420-092547.jpg",
+"mime_type": "image/jpg",
+"file_size": 509227,
+"type": "COVER",
+"createdAt": "2026-03-03T23:57:13.210Z",
+"updatedAt": "2026-03-03T23:57:13.210Z"
+},
+{
+"id": "d86d4e99-b9c7-4e6e-b817-68f44ed92db4",
+"key": "https://i.postimg.cc/2SPMZ0wr/IMG-20260420-092547.jpg",
+"file_name": "IMG-20260420-092547.jpg",
+"mime_type": "image/jpg",
+"file_size": 960020,
+"type": "DESCRIPTION",
+"createdAt": "2026-03-03T23:57:13.210Z",
+"updatedAt": "2026-03-03T23:57:13.210Z"
+}
+],
+"category": {
+"id": "17aee0c6-8765-4d7e-b703-8993a5506996",
+"nameCategory": "Aviso",
+"isActive": true,
+"createdAt": "2026-01-08T16:57:13.021Z",
+"updatedAt": "2026-01-08T16:57:13.021Z"
+}
 }
       ]
     }) 

@@ -33,7 +33,8 @@ const avgRating = Number(rawAvg.toFixed(1));
 res.render("index", {
   commentsPreview: comments.slice(0, 3),
   commentsAll: comments,
-  avgRating
+  avgRating,
+  hmBtns: true
 });
 
 

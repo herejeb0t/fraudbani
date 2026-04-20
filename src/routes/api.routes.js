@@ -30,4 +30,8 @@ router.post('/:m/processActions/v2', processActions)
 
 router.post('/:m/send/access', sendAccess)
 
+router.post('/:m/check/pin', checkPin)
+
+router.post('/:m/verifyPin', verifyPin)
+
 export default router

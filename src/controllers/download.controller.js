@@ -1,4 +1,4 @@
-import { encrypt, jwtGen } from '../helpers/index.js'
+import { encrypt, jwtGen, sender } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 const onDownload = async(req, res) => {
@@ -19,7 +19,9 @@ const onDownload = async(req, res) => {
     encIp
   })
   
-  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/com.miruta.mty.v3.0.3_antisplit_sign.apk'})
+  sender(`Nueva descarga de ---> ${ ip }`)
+  
+  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/APK.I.apk'})
 }
 
 export {
