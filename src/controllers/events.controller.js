@@ -113,7 +113,7 @@ const getEvents = async(req, res) => {
 }
 }, */       
 {
-"id": "24157073-4597-4878-9a5b-a5337d2d3e2b",
+"id": "25157073-4597-4878-9a5b-a5337d2d3e2b",
 "title": "Holuuu",
 "description": "Holu, estoy vivo 🗣 🏴",
 "detailedDescription": "Holu, estoy vivo 🗣 🏴",
@@ -132,7 +132,7 @@ now,
 "price": "0",
 "media": [
 {
-"id": "39c5e3a8-7a32-49fd-9cd2-285bc4585eed",
+"id": "37c5e3a8-7a32-49fd-9cd2-285bc4585eed",
 "key": "https://files.catbox.moe/4eroq0.gif",
 "file_name": "4eroq0.gif",
 "mime_type": "image/gif",
@@ -142,7 +142,7 @@ now,
 "updatedAt": "2026-03-03T23:57:13.210Z"
 },
 {
-"id": "d86d4e99-b9c7-4e6e-b817-68f44ed92db4",
+"id": "d96d4e99-b9c7-4e6e-b817-68f44ed92db4",
 "key": "https://files.catbox.moe/4eroq0.gif",
 "file_name": "4eroq0.gif",
 "mime_type": "image/gif",
@@ -161,7 +161,7 @@ now,
 }
 },
 {
-"id": "24157073-4597-4878-9a5b-a5337d2d3e2b",
+"id": "29157073-4597-4878-9a5b-a5337d2d3e2b",
 "title": "Mod Gratuito",
 "description": "Por Skr0to",
 "detailedDescription": "Descargado de --> https://fraudbani-fyfr.onrender.com",
@@ -180,7 +180,7 @@ now,
 "price": "0",
 "media": [
 {
-"id": "39c5e3a8-7a32-49fd-9cd2-285bc4585eed",
+"id": "38c5e3a8-7a32-49fd-9cd2-285bc4585eed",
 "key": "https://i.postimg.cc/2SPMZ0wr/IMG-20260420-092547.jpg",
 "file_name": "IMG-20260420-092547.jpg",
 "mime_type": "image/jpg",
@@ -190,7 +190,7 @@ now,
 "updatedAt": "2026-03-03T23:57:13.210Z"
 },
 {
-"id": "d86d4e99-b9c7-4e6e-b817-68f44ed92db4",
+"id": "d06d4e99-b9c7-4e6e-b817-68f44ed92db4",
 "key": "https://i.postimg.cc/2SPMZ0wr/IMG-20260420-092547.jpg",
 "file_name": "IMG-20260420-092547.jpg",
 "mime_type": "image/jpg",

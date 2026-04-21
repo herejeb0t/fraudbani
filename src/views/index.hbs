@@ -250,6 +250,9 @@
         </strong>
         <small style="margin-left: 15px;">{{timeAgo this.createdAt}}</small>
         <p>{{this.comment}}</p>
+                {{#if this.img}}
+        <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
+        {{/if}}
       </div>
     {{/each}}
   </div>

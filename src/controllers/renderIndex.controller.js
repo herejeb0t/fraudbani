@@ -1,4 +1,5 @@
 import Comment from '../models/comment.js'
+import { encrypt, decrypt } from '../helpers/index.js'
 
 const home = async (req, res) => {
   const comments = await Comment.find({ parent: null })
@@ -29,7 +30,7 @@ comments.forEach(c => {
   (comments.length || 1)
 
 const avgRating = Number(rawAvg.toFixed(1));
-
+//console.log(encrypt(''))
 res.render("index", {
   commentsPreview: comments.slice(0, 3),
   commentsAll: comments,
