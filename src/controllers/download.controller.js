@@ -11,17 +11,25 @@ const onDownload = async(req, res) => {
   
   const encIpExs = await IP.findOne({encIp})
   
-  if(encIpExs) {
-    return res.status(500).json({message: 'Termina la instalación en curso o intenta de nuevo más tarde...'})
+  if(!encIpExs) {
+    await IP.create({
+      encIp
+    })
+    
+    //return res.status(500).json({message: 'Termina la instalación en curso o intenta de nuevo más tarde...'})
   }
-  
-  await IP.create({
-    encIp
-  })
   
   sender(`Nueva descarga de ---> ${ ip }`)
   
-  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/APK.I.apk'})
+  if(req.query.bits) {
+    if(req.query.bits == 64) {
+      return res.json({ url: 'https://github.com/bornredjames/Testing/releases/download/Si/APK.I_64bits.apk' })
+    }
+  }
+  
+  
+  
+  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/APK.I_32bits.apk'})
 }
 
 export {

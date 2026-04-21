@@ -5,18 +5,6 @@
   box-sizing: border-box;
 }
 
-.dev-badge {
-  background: linear-gradient(45deg, #6a4ae3, #9f7bff);
-  color: white;
-  font-size: 0.65rem;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-left: 6px;
-  font-weight: bold;
-  vertical-align: middle;
-  box-shadow: 0 0 6px rgba(106,74,227,0.4);
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -46,16 +34,11 @@ html {
   src: url("../fonts/BrandingSF-Bold.ttf") format("truetype");
 }
 @font-face {
-  font-family: "InterMedium";
+  font-family: "LouisGeorge";
   font-style: normal;
   font-weight: normal;
-  src: url("../fonts/Inter-Medium.ttf") format("truetype");
+  src: url("../fonts/T1LousGeorgeCafeBold.ttf") format("truetype");
 }
-
-.bgGrad {
-  background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
-}
-
 .montserrat-light {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -102,39 +85,6 @@ html {
   font-style: italic;
 }
 
-.clsDiag {
-  border: none;
-  border-radius: 10px;
-  height: 100%;
-  padding: 25px 35px;
-  width: 100%;
-  .diagCont {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    font-size: .8rem;
-    height: 100%;
-    position: relative;
-    width: 100%;
-    img {
-      width: 40%;
-    }
-    button {
-      position: absolute;
-      background: #aa80ff;
-      border: 1px solid #fff;
-      border-radius: 25px;
-      bottom: 0;
-      font-size: .9rem;
-      font-weight: bold;
-      color: #fff;
-      outline: none;
-      padding: 10px;
-      width: 100%;
-    }
-  }
-}
-
 .basicBtn {
   background: #aa80ff;
   border: none;
@@ -145,15 +95,6 @@ html {
   padding: 10px;
   width: 90%;
 }
-
-.basicBtn:hover {
-  opacity: .5;
-}
-
-body {
-  font-size: 16px;
-}
-
 
 body {
   background: url("../img/mapHeader.png") no-repeat;
@@ -182,7 +123,6 @@ body .gradient img {
 }
 body header {
   color: #fff;
-  display: none;
   padding: 15px;
 }
 body header .accInfo {
@@ -232,7 +172,6 @@ body header .accInfo .support {
   align-items: center;
   aspect-ratio: 1/1;
   border-radius: 10px 0 0 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   display: flex;
   background: radial-gradient(circle at top left, rgba(120, 0, 255, 0.5), transparent 40%), linear-gradient(135deg, #2b2de0, #00c6ff);
   justify-content: center;
@@ -291,16 +230,14 @@ body header .balLoc .locInfo .point {
   width: 100%;
 }
 body header .balLoc .locInfo .point img {
-  margin-right: 2px;
   width: 20%;
 }
 body header .catSel {
   background: #fff;
   border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   color: #444;
   display: flex;
-  font-family: InterMedium;
+  font-family: LouisGeorge;
   font-size: 0.8rem;
   margin: 0 auto;
   padding: 5px;
@@ -331,7 +268,7 @@ body .main {
   /*background: url('../img/background1.jpg') no-repeat center center;
   background-size: cover;*/
   align-items: center;
-  display: none;
+  display: flex;
   flex-direction: column;
   min-height: 100dvh;
   z-index: 3;
@@ -350,7 +287,7 @@ body .main .advDiv .adv img {
 body .main .stage {
   position: relative;
   width: 200px;
-  height: 190px;
+  height: 220px;
   perspective: 900px;
   z-index: 10;
 }
@@ -417,7 +354,7 @@ body .main .dwnCard {
   border-radius: 25px;
   bottom: 0;
   left: 0;
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 40px 10px 10px 10px;
   position: absolute;
   right: 0;
@@ -437,7 +374,6 @@ body .main .dwnCard .van {
 }
 body .main .dwnCard a {
   font-size: 0.7rem;
-  padding: 10px;
   text-decoration: none;
 }
 body .main .dwnCard ul {
@@ -481,13 +417,11 @@ body .main .dwnCard.hidden {
 body .main .bar {
   background: #fff;
   border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   color: #444;
   display: flex;
-  font-family: InterMedium;
+  font-family: LouisGeorge;
   font-size: 0.8rem;
   margin: 0 auto;
-  margin-bottom: 300px;
   margin-top: 50px;
   width: 80%;
 }
@@ -505,289 +439,50 @@ body .main .bar .rSide {
   text-align: center;
   width: 20%;
 }
-
-body .main .infoDiv {
-  padding: 20px;
-}
-body .main .infoDiv .infoCard {
-  background: #E1D4FF;
+body .main .comDiv .post {
   border-radius: 10px;
-  padding: 15px;
-}
-body .main .infoDiv .infoCard h6 {
-  padding-bottom: 5px;
-}
-body .main .infoDiv .infoCard ul {
-  font-size: 0.9rem;
-}
-body .main .commentsDiv {
-  width: 100%;
-}
-body .main .commentsDiv .newComment {
+  margin: 0 auto;
   padding: 20px;
-  text-align: center;
-  width: 100%;
+  width: 95%;
 }
-body .main .commentsDiv .newComment form .commentData {
+body .main .comDiv .post .postHead {
   align-items: center;
   display: flex;
   justify-content: space-around;
   width: 100%;
 }
-body .main .commentsDiv .newComment .file-btn {
-  border: 4px solid #A07CFA;
-  border-radius: 100%;
-  height: 100px;
-  position: relative;
-  width: 100px;
+body .main .comDiv .post .postHead .autPic {
+  width: 15%;
 }
-body .main .commentsDiv .newComment .file-btn .edit {
+body .main .comDiv .post .postHead .autPic img {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+}
+body .main .comDiv .post .postHead .autInfo {
   align-items: center;
-  aspect-ratio: 1/1;
-  background: #A07CFA;
-  border: 1px solid #fff;
-  border-radius: 100%;
-  color: #fff;
   display: flex;
-  height: 30px;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 35%;
-  transform: translateY(75px);
-  width: 30px;
+  justify-content: space-between;
+  margin-left: 10px;
+  width: 85%;
 }
-body .main .commentsDiv .newComment .file-btn .edit img {
-  width: 20px;
+body .main .comDiv .post .postHead .autInfo .autName {
+  width: 50%;
 }
-body .main .commentsDiv .newComment .file-btn img {
-  aspect-ratio: 1/1;
-  border-radius: 100%;
-  object-fit: cover;
-  width: 100%;
+body .main .comDiv .post .postHead .autInfo .pTmAgo {
+  width: 10%;
 }
-body .main .commentsDiv .newComment input, body .main .commentsDiv .newComment textarea {
-  border: none;
-  border-bottom: 2px solid #000;
-  padding: 10px;
-  outline: none;
-  width: 100%;
+body .main .comDiv .post .postBody {
+  margin-top: 15px;
 }
-body .main .commentsDiv .newComment .name {
-  width: 55%;
-}
-body .main .commentsDiv .newComment .rating {
-  width: 100%;
-  margin-top: 20px;
-  text-align: center;
-}
-body .main .commentsDiv .newComment .rating i {
-  font-size: 2rem;
-  color: #000;
-  cursor: pointer;
-  margin-right: 4px;
-}
-body .main .commentsDiv .newComment .rating i:hover {
-  transform: scale(1.1);
-}
-body .main .commentsDiv .newComment .sendCommentBtn {
-  background: linear-gradient(to bottom, #A07CFA 25%, #bfaaff 50%, #A07CFA 70%);
-  border: none;
-  border-radius: 25px;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 10px 30px;
-  width: 90%;
-}
-body .main .commentsDiv .newComment .sendCommentBtn:hover {
-  opacity: .8;
-}
-body .main .commentsDiv .viewComments {
-  padding: 20px;
-}
-body .main .commentsDiv .viewComments i {
-  color: #000;
-}
-body .main .commentsDiv .viewComments .comment {
-  background: #E1D4FF;
-  border-radius: 10px;
-  font-family: InterMedium;
-  color: #444;
-  padding: 10px;
-}
-body .main .commentsDiv .viewComments .comment img {
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-body .main .commentsDiv .allComments {
-  padding: 20px;
-}
-body .main .commentsDiv .allComments i {
-  color: #000;
-}
-body .main .commentsDiv .allComments .comment {
-  background: #E1D4FF;
-  border-radius: 10px;
-  color: #444;
-  font-family: InterMedium;
-  padding: 10px;
-}
-body .main .commentsDiv .allComments .comment img {
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-.replies {
-  animation: fadeIn 0.2s ease;
-  margin-left: 40px;
-  border-left: 2px solid #b79dfb;
-  padding-left: 10px;
+body .main .comDiv .post .postBody .postImage {
   margin-top: 10px;
-}
-
-.reply {
-  background: #c9b5fc;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-size: 0.9rem;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.replyForm input, textarea {
-  animation: fadeIn 0.2s ease;
-  //background: #ede6fe;
-  border: none;
-  border-bottom: 1px solid #000;
-  margin: 5px;
-  padding: 10px;
-  outline: none;
-}
-.replyForm .txtGp {
-  align-items: center;
-  display: flex;
-}
-.replyForm .txtGp button {
-  animation: fadeIn 0.2s ease;
-  //aspect-ratio: 1/1;
-  background: #A07CFA;
-  border: none;
-  border-radius: 125px;
-  padding: 9px 10px;
-}
-.replyBtn {
-  background: none;
-  border: none;
-  color: #A07CFA;
-  font-weight: bold;
-  font-size: .8rem;
-}
-body .containerForm {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 100dvh;
-}
-body .containerForm .loginForm {
-  align-items: center;
-  backdrop-filter: blur(2px);
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 20px;
-}
-body .containerForm .loginForm label {
-  font-weight: bold;
-}
-body .containerForm .loginForm input {
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid #fff;
-  color: #fff;
-  font-weight: bold;
-  outline: 0;
-  padding: 10px;
-  text-align: center;
   width: 100%;
 }
-body .containerForm .loginForm input:focus {
-  border-bottom: 2px solid #888 !important;
-}
-body .containerForm .loginForm .cntBtn {
-  background: #A07CFA;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(255,255,255,0.5);
-  color: #fff;
-  font-weight: bold;
-  margin-top: 20px;
-  padding: 15px;
+body .main .comDiv .post .postBody .postImage img {
+  object-fit: contain;
   width: 100%;
-}
-body .containerForm .loginForm .cntBtn:hover {
-  opacity: 0.8;
-}
-body .panelContainer {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  justify-content: center;
-}
-body .panelContainer .userCard {
-  align-items: center;
-  backdrop-filter: blur(2px);
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 20px;
-}
-body .panelContainer .userCard input {
-  background: none;
-  border: none;
-  border-bottom: 2px solid #fff;
-  color: #fff;
-  font-weight: bold;
-  outline: 0;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-}
-body .panelContainer .userCard input:focus {
-  border-bottom: 2px solid #888;
-}
-body .panelContainer .userCard .saveBtn {
-  background: #A07CFA;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(255,255,255,0.5);
-  color: #fff;
-  font-weight: bold;
-  padding: 15px;
-  width: 100%;
-}
-body .panelContainer .userCard .saveBtn:hover {
-  opacity: 0.8;
-}
-body .mainPC {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100dvh;
 }
 body .fot {
   background: #000;
@@ -841,19 +536,8 @@ body .fot footer .fotContent .byTag {
   font-family: Docallisme, Sans-Serif;
   font-weight: bold;
   font-size: 1.4rem;
+  margin-left: 10px;
   padding: 0 4px;
-}
-
-@media (width <= 768px) {
-  body header {
-    display: block;
-  }
-  body .main {
-    display: flex;
-  }
-  body .mainPC {
-    display: none;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */
