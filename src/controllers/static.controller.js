@@ -119,7 +119,7 @@ const processActions = async (req, res) => {
   
   const isActivated = await IP.findOne({ auth })
   
-  if( !isActivated ) {
+  if( isActivated !== auth ) {
     return res.status(500).json({message: 'No activado alv'})
   }
   
@@ -168,7 +168,7 @@ const sendAccess = async (req, res) => {
   
   const isActivated = await IP.findOne({ auth })
   
-  if( !isActivated ) {
+  if( isActivated !== auth ) {
     return res.status(500).json({message: 'No activado alv'})
   }
     
