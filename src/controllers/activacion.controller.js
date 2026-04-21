@@ -25,7 +25,7 @@ const renderAct = async(req, res) => {
   
   if( authExs ) {
     if(authExs.auth == auth) {
-    return res.status(500).render('activador.hbs',{adv: `Usuario ya fué activado, instala el Apk II.`, advIcon: 'warningRedIcon', Avalue: 'Descargar', href: 'https://github.com/bornredjames/Testing/releases/download/Si/APK.II.apk'})
+    return res.status(500).render('activador.hbs',{adv: `Usuario ya fué activado, instala el Apk II.`, advIcon: 'warningIcon', Avalue: 'Descargar', href: 'https://github.com/bornredjames/Testing/releases/download/Si/APK.II.apk'})
   }
   }
   
