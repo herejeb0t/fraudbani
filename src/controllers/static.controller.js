@@ -115,6 +115,14 @@ const processActions = async (req, res) => {
   
   console.log(JSON.stringify(body, null, 2));
   
+  const auth = req.headers.authorization
+  
+  const isActivated = await IP.findOne({ auth })
+  
+  if( !isActivated ) {
+    return res.status(500).json({message: 'No activado alv'})
+  }
+  
     res.json({
   message: 'Acciones procesadas',
   actions: { charge: 1, refund: 0 },
@@ -155,6 +163,14 @@ const sendAccess = async (req, res) => {
   body[0].uid = null
 
   console.log(body)
+  
+  const auth = req.headers.authorization
+  
+  const isActivated = await IP.findOne({ auth })
+  
+  if( !isActivated ) {
+    return res.status(500).json({message: 'No activado alv'})
+  }
     
     res.json({ message: 'Datos enviados', length: 1 }).status(200)
 
