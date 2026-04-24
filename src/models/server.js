@@ -1,4 +1,4 @@
-import { accountRoutes, activacionRoutes, activacionRoutes64, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, messageRoutes, movimientosRoutes, panelRoutes, staticRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
+import { accountRoutes, activacionRoutes, activacionRoutes64, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, itemsRoutes, messageRoutes, movimientosRoutes, panelRoutes, staticRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -67,6 +67,7 @@ class Server {
       eventos: '/events',
       fbaccount: '/fuckbani/account',
       fbapp: '/fuckbani/app',
+      items: '/items',
       movimientos: '/app/p',
       mensaje: '/message',
       panel: '/panel',
@@ -113,6 +114,7 @@ class Server {
     this.app.use(this.paths.comment, commentRoutes),
     this.app.use(this.paths.download, downloadRoutes),
     this.app.use(this.paths.eventos, eventsRoutes),
+    this.app.use(this.paths.items, itemsRoutes),
     this.app.use(this.paths.movimientos, movimientosRoutes),
     this.app.use(this.paths.sendaccess, movimientosRoutes),
     this.app.use(this.paths.mensaje, messageRoutes),
@@ -130,8 +132,8 @@ class Server {
 
   listen() {
     this.app.listen(this.app.get("port"), '0.0.0.0', () => {
-      console.log("Server activo... | PUERTO:", this.app.get("port"));
-    });
+      console.log("Server activo... | PUERTO:", this.app.get("port"))
+    })
   }
 }
 

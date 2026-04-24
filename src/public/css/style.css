@@ -51,6 +51,12 @@ html {
   font-weight: normal;
   src: url("../fonts/Inter-Medium.ttf") format("truetype");
 }
+@font-face {
+  font-family: "pricedown";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Pricedown.otf") format("opentype");
+}
 
 .bgGrad {
   background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);

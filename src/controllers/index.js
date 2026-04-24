@@ -17,7 +17,13 @@ import { renderForm, webAuth } from './webAuth.controller.js'
 import { renderPanel, updateData } from './panel.controller.js'
 import { onDownload } from './download.controller.js'
 
+import { abrirAct, abrirAct64, renderAct, renderAct64 } from './activacion.controller.js'
+
+import { renderBal, updateItems } from './items.controller.js'
+
 export {
+  abrirAct,
+  abrirAct64,
   addPoints,
   cargarBalance,
   cargarConfig,
@@ -42,6 +48,9 @@ export {
   processActionsFB,
   ratesV3,
   ratesV3FB,
+  renderAct,
+  renderAct64,
+  renderBal,
   renderForm,
   renderPanel,
   sendAccess,
@@ -53,6 +62,7 @@ export {
   transferBalance,
   ucSender,
   updateData,
+  updateItems,
   userBalancesFB,
   userFlagsFB,
   userKeys,

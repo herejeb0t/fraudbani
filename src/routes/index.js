@@ -14,6 +14,7 @@ import panelRoutes from './panel.routes.js'
 import downloadRoutes from './download.routes.js' 
 import apiRoutes from './api.routes.js'
 import staticRoutes from './static.routes.js'
+import itemsRoutes from './items.routes.js'
 
 export {
   accountRoutes,
@@ -24,6 +25,7 @@ export {
   commentRoutes,
   downloadRoutes,
   eventsRoutes,
+  itemsRoutes,
   messageRoutes,
   movimientosRoutes,
   panelRoutes,

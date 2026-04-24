@@ -77,8 +77,25 @@ const userBalances = async(req, res) => {
     return res.status(500).json({message: 'No activado alv'})
   }
   
-  res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
+  //console.log(decrypt('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE='))
   
+  //res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
+  /*const encBal = encrypt('{"balance":"10000","coins":"0","points":"200","points_tm":null}')
+  res.send(encBal)*/
+  
+  const balanceData = {
+      balance: String(isActivated.balance),   // 👈 como string
+      coins: String(isActivated.coins || 0),
+      points: String(isActivated.points || 0),
+      points_tm: null
+    }
+
+    const encrypted = encrypt(JSON.stringify(balanceData))
+    
+  console.log(`${JSON.stringify(balanceData)} | ${encrypted}`)
+  
+
+    res.send(encrypted)
 
   } catch (err) {
     console.error(err)
@@ -123,10 +140,16 @@ const processActions = async (req, res) => {
     return res.status(500).json({message: 'No activado alv'})
   }
   
+  let usrBal = '30000'
+  
+  if(isActivated.balance) usrBal = String(isActivated.balance)
+  
+  console.log(usrBal)
+  
     res.json({
   message: 'Acciones procesadas',
   actions: { charge: 1, refund: 0 },
-  balance: '30000'
+  balance: usrBal
 }).status(200)
 
   } catch (err) {

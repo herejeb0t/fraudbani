@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { abrirAct, renderAct } from '../controllers/activacion.controller.js'
+import { abrirAct, renderAct } from '../controllers/index.js'
 
 const router = Router()
 
