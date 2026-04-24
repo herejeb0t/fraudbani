@@ -1,5 +1,19 @@
        <div class="main">
          
+         <dialog class="newDiag text-center" style="border: none; border-radius: 25px; outline: none; padding: 20px;">
+           <h6 class="poppinsBalance">NUEVO</h6>
+           <br>
+           <img style="width: 80%" src="/./img/ss.jpg">
+           <p class="poppinsText" style="font-size: .8rem; padding: 20px 0;">Edita el saldo congelado, ve a <a href="#instrucciones" class="poppinsBalance" style="color: #A07CFA; outline: none; text-decoration: none;">Instrucciones</a> para más información.</p>
+           <button class="basicBtn clsBtn poppinsText">CERRAR</button>
+         </dialog>
+         
+         <script>
+           const modal = document.querySelector('.newDiag')
+           modal.showModal()
+           document.querySelector('.clsBtn').addEventListener('click', () => modal.close())
+         </script>
+         
         <div class="advDiv">
         </div>
         
@@ -115,6 +129,26 @@
             </div>
             <br>
             <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Y listo, esto de primero instalar un APK y después actualizarlo con otro APK se hizo debido a que ya no hay manera de iniciar sesión directamente desde el server de <b>Fraudbani</b> por los cambios que ha hecho Urbani.</p>
+            <br>
+            <h6 class="text-center poppinsLabel">Opcional</h6>
+            <br>
+            <ul class="poppinsText">
+              <li>Ve a <b>Mi Ciudad</b> > <b>Urbani TV</b></li>
+              <li>Toca el botón <b>"Mira el video completo en YouTube"</b></li>
+            </ul>
+            <br>
+              <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
+              <img style="margin: 0; width: 110px;" src="/./img/ss1.jpg">
+            </div>
+            <br>
+            <ul class="poppinsText">
+              <li>Escribe la nueva cantidad y toca el botón <b>Guardar</b></li>
+            </ul>
+              <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
+              <img style="margin: 0; width: 110px;" src="/./img/ss.jpg">
+            </div>
+            <br>
+            <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Si no te aparece la historia en <b>Urbani TV</b> elimina la caché de la App, si no inicia sesi de nuevo.</p>
           </div>
           
           <br>

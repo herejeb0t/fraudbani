@@ -43,10 +43,18 @@ const renderBal = async(req, res) => {
 
 const updateItems = async (req, res) => {
   try {
+      const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
 
     const auth = req.query.user
 
     const { balance, freeTrip } = req.body
+    
+    if (balance > 9999) {
+      return res.status(500).json({message: 'Error!'})
+    }
 
     await IP.updateOne(
       { auth },
@@ -55,6 +63,9 @@ const updateItems = async (req, res) => {
         points: freeTrip
       }
     )
+    
+    sender(`${auth} cambió sus items a $ ${balance} y 🎫 ${freeTrip}
+From: ${ip}`)
 
     res.redirect(`/items?user=${auth}`)
 
