@@ -35,7 +35,8 @@ res.render("index", {
   commentsPreview: comments.slice(0, 3),
   commentsAll: comments,
   avgRating,
-  hmBtns: true
+  hmBtns: true,
+  isIndex: true
 });
 
 

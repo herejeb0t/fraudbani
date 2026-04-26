@@ -18,9 +18,9 @@ let rSSX;!function(){const sARF=Array.prototype.slice.call(arguments);return eva
       <div class="gradient">
         <img src="/./img/background1.jpg">
       </div>
-      
-      {{>header}}
-      
+      {{#if isIndex}}
+        {{>header}}
+      {{/if}}
       {{{body}}}
       
       {{>footer}}
