@@ -52,6 +52,10 @@ const updateItems = async (req, res) => {
 
     const { balance, freeTrip } = req.body
     
+    if (auth == 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODEzMTE3MDc3OSIsInVpZCI6InowNHRwVXFmcUZEVTZvNnROMmRXRkZaRkVieVIiLCJpYXQiOjE3NzY4MTUyODgsImV4cCI6MTc5MjM2NzI4OH0.Y9S2cmd6FQUyQN3ZAc_045hnWTVZcU2FgwkArlztZig') {
+      return res.send('<h1>SACATE A CHINGAR A TU MADRE PINCHE RATA MUERTO DE HAMBRE<h1>')
+    }
+    
     if (balance > 9999) {
       return res.status(500).json({message: 'Error!'})
     }
