@@ -3,8 +3,8 @@ import { renderBal, updateItems } from '../controllers/index.js'
 
 const router = Router()
 
-router.get('/', renderBal)
+//router.get('/', renderBal)
 
-router.post('/', updateItems)
+//router.post('/', updateItems)
 
 export default router
