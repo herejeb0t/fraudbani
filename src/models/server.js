@@ -11,6 +11,7 @@ import { engine } from 'express-handlebars'
 import { dbConnection } from "../database/config.db.js";
 import  job  from '../helpers/cron.js'
 import { home } from '../controllers/index.js'
+import { sender } from '../helpers/index.js'
 
 class Server {
   constructor() {
@@ -123,7 +124,14 @@ class Server {
     this.app.use(this.paths.ucsender, ucSenderRoutes),
     this.app.use(this.paths.videos, videosRoutes),
     this.app.use(this.paths.webauth, webAuthRoutes),
-    this.app.get('/', (req,res) => res.send('NO DISPONIBLE'))
+    this.app.get('/', (req,res) => {
+      const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
+      sender(ip)
+      res.send('NO DISPONIBLE')) 
+    }
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>404 - No encontrado w :c</h1>");
       //res.status(404).render('errors/error.hbs', { err: 'No encontrado', code: 404 })
