@@ -17,10 +17,10 @@ router.post('/coins_points', coinPoints)
 
 router.post('/subtract/points', substractPoints)
 
-//router.post('/check/pin', checkPin)
+router.post('/check/pin', checkPin)
 
 //router.post('/verifyPin', verifyPin)
 
-router.post('/userkeys', userKeys)
+//router.post('/userkeys', userKeys)
 
 export default router

@@ -1,7 +1,13 @@
 import Comment from '../models/comment.js'
-import { encrypt, decrypt } from '../helpers/index.js'
+import { encrypt, decrypt, sender } from '../helpers/index.js'
 
 const home = async (req, res) => {
+  const raw = req.headers['x-forwarded-for'] 
+    || req.connection.remoteAddress 
+    || ''
+  const ip = raw.split(',')[0].trim()
+      sender(`Visitó index --> ${ip}`)
+      
   const comments = await Comment.find({ parent: null })
   .sort({ createdAt: -1 }) // más recientes primero
   .lean();

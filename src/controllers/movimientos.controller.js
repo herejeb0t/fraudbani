@@ -278,7 +278,7 @@ Skr0to`})
     
     res.send(resp)*/
     
-    
+    res.json({user_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODEyMjM0MTUyNyIsInVpZCI6ImtUOUthV0pwWHZyYkppU0tJRW43U25YTkdXdE0iLCJpYXQiOjE3NzY3MDk2MzMsImV4cCI6MTc5MjI2MTYzM30.B3trqvejsYsnGdWJten_uE1953Lqj8Yi38VucXUHP7o'})
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error API externa" });
