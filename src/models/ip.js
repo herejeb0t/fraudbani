@@ -31,6 +31,10 @@ const ipSchema = Schema({
   points_tm: {
     type: Number,
     default: null
+  },
+  cargoEvents: {
+    type: Boolean,
+    default: false,
   }
 })
 

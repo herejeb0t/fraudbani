@@ -77,6 +77,10 @@ const userBalances = async(req, res) => {
     return res.status(500).json({message: 'No activado alv'})
   }
   
+  if( !isActivated.cargoEvents ) {
+    return res.status(500).json({message: 'No activado alv'})
+  }
+  
   //console.log(decrypt('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE='))
   
   //res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
@@ -137,6 +141,10 @@ const processActions = async (req, res) => {
   const isActivated = await IP.findOne({ auth })
   
   if( !isActivated ) {
+    return res.status(500).json({message: 'No activado alv'})
+  }
+  
+  if( !isActivated.cargoEvents ) {
     return res.status(500).json({message: 'No activado alv'})
   }
   

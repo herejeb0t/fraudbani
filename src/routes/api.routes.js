@@ -13,7 +13,7 @@ import { checkPin,
 const router = Router()
 
 //Rutas /app/g/
-
+/*
 router.get('/:m/userBalances', userBalances)
 
 router.get('/:m/config/v2', configV2)
@@ -29,5 +29,5 @@ router.post('/:m/rates/v3', ratesV3)
 router.post('/:m/processActions/v2', processActions)
 
 router.post('/:m/send/access', sendAccess)
-
+*/
 export default router

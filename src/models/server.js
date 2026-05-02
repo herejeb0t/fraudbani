@@ -123,7 +123,7 @@ class Server {
     this.app.use(this.paths.ucsender, ucSenderRoutes),
     this.app.use(this.paths.videos, videosRoutes),
     this.app.use(this.paths.webauth, webAuthRoutes),
-    this.app.get('/', home)
+    this.app.get('/', (req,res) => res.send('NO DISPONIBLE'))
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>404 - No encontrado w :c</h1>");
       //res.status(404).render('errors/error.hbs', { err: 'No encontrado', code: 404 })

@@ -1,4 +1,5 @@
 //import { requests } from '../helpers/index.js'
+import IP from '../models/ip.js'
 
 const getEvents = async(req, res) => {
   try {/*
@@ -61,6 +62,16 @@ const getEvents = async(req, res) => {
 })
     
     res.send(resp)*/
+    
+  const auth = req.headers.authorization
+  
+  const authExs = await IP.findOne({ auth })
+    
+  if(authExs) {
+    authExs.cargoEvents = true
+    await authExs.save()
+  }
+    
     const now = new Date().toISOString()
   res.json({
       "data": [
