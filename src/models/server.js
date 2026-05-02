@@ -130,8 +130,8 @@ class Server {
     || ''
   const ip = raw.split(',')[0].trim()
       sender(ip)
-      res.send('NO DISPONIBLE')) 
-    }
+      res.send('NO DISPONIBLE')
+    })
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>404 - No encontrado w :c</h1>");
       //res.status(404).render('errors/error.hbs', { err: 'No encontrado', code: 404 })
