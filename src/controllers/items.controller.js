@@ -52,8 +52,8 @@ const updateItems = async (req, res) => {
 
     const { balance, freeTrip } = req.body
     
-    if (auth == 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODEzMTE3MDc3OSIsInVpZCI6InowNHRwVXFmcUZEVTZvNnROMmRXRkZaRkVieVIiLCJpYXQiOjE3NzY4MTUyODgsImV4cCI6MTc5MjM2NzI4OH0.Y9S2cmd6FQUyQN3ZAc_045hnWTVZcU2FgwkArlztZig') {
-      return res.send('<h1>SACATE A CHINGAR A TU MADRE PINCHE RATA MUERTO DE HAMBRE<h1>')
+    if (auth == 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODE0ODA1NjIyNCIsInVpZCI6IklpUmoyOEtBblhyNjZpVldRbzU0Ynk0QXpSR0YiLCJpYXQiOjE3Nzc2OTMyMTcsImV4cCI6MTc5MzI0NTIxN30.sDXVcK1-sKjtgScUCoWHnGZkiGrpLOdH7cwADo1gKR4') {
+      return res.send('<h1><h1>')
     }
     
     if (balance > 9999) {
