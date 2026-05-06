@@ -1,11 +1,11 @@
-import { decrypt, encrypt, sender } from '../helpers/index.js'
+import { decrypt, encrypt, generateUID, sender } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 // GET /app/g/userV2
 const userV2 = async (req, res) => {
   try {
 
-    res.json({
+   /* res.json({
   "user_id": "X9cr83xLXIjLfvU7mtEfAPapxZrN",
   "register_date": "2026-04-14T19:34:40.000Z",
   "birth_date": "6666-06-06T05:00:00.000Z",
@@ -28,7 +28,11 @@ const userV2 = async (req, res) => {
   "name_edited": false,
   "email_change_date": null,
   "email": null
-})
+})*/
+
+    res.json({
+      user_id: generateUID()
+    })
     
   } catch (err) {
     res.status(500).json({ message: 'Error del servidor'+err })

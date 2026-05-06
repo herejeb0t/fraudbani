@@ -8,6 +8,7 @@ import { checkPin,
   userBalances,
   userFlags,
   userKeys,
+  userV2,
   verifyPin } from '../controllers/static.controller.js'
 
 const router = Router()
@@ -21,6 +22,8 @@ router.get('/:m/config/v2', configV2)
 router.get('/:m/userFlags', userFlags)
 
 router.get('/:m/hour', getHour)
+
+router.get('/:m/userV2', userV2)
 
 router.post('/:m/rates/v3', ratesV3)
 
