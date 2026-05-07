@@ -744,7 +744,7 @@ body .panelContainer {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  min-height: 100dvh;
   justify-content: center;
 }
 body .panelContainer .userCard {
@@ -760,6 +760,7 @@ body .panelContainer .userCard {
   justify-content: center;
   margin: 0 auto;
   padding: 20px;
+  width: 95%;
 }
 body .panelContainer .userCard input {
   background: none;

@@ -5,37 +5,33 @@ import IP from '../models/ip.js'
 const userV2 = async (req, res) => {
   try {
 
-   /* res.json({
-  "user_id": "X9cr83xLXIjLfvU7mtEfAPapxZrN",
-  "register_date": "2026-04-14T19:34:40.000Z",
-  "birth_date": "6666-06-06T05:00:00.000Z",
+   res.json({
+  "user_id": generateUID(),
+  "register_date": "2023-04-14T19:34:40.000Z",
+  "birth_date": "2006-06-06T05:00:00.000Z",
   "civil_status": "SIN ASIGNAR",
-  "genre": "Masculino",
+  "genre": "SIN ASIGNAR",
   "names": "Usuario",
   "first_last_name": "SIN ASIGNAR",
   "second_last_name": "SIN ASIGNAR",
-  "occupation": "Ciudadano",
+  "occupation": "Estudiante",
   "curp": "SIN ASIGNAR",
-  "city": "a",
+  "city": "Monterrey",
   "ext_number": "0",
   "postal_code": "0",
   "state": "NuevoLeon",
   "street": "SIN ASIGNAR",
   "colony": "colony",
-  "main_phone": "1234567890",
+  "main_phone": "8184648474",
   "alternative_phone": "0",
   "pin_needed": true,
   "name_edited": false,
   "email_change_date": null,
   "email": null
-})*/
-
-    res.json({
-      user_id: generateUID()
-    })
+})
     
   } catch (err) {
-    res.status(500).json({ message: 'Error del servidor'+err })
+    res.status(500).json({ message: 'Error del servidor'})
   }
 }
 

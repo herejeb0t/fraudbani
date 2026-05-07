@@ -1,6 +1,6 @@
 
       <div class="panelContainer">
-        <div class="userCard text-center">
+        <div class="userCard text-center" style="margin-top: 92px;">
           <form action="/panel/recharge" method="POST">
             <p><b>Usuario: </b>{{user}}</p>
             <br>
@@ -10,6 +10,18 @@
             </div>
             <br>
             <button class="saveBtn"><b>Guardar</b></button>
+          </form>
+        </div>
+        <br>
+        <div class="userCard text-center">
+          <form action="/panel/uidRegen" method="POST">
+            <p style="color: #532be3; font-size: .7rem;"><b>Regenera tu user_id si en el validador te aparece <span style="color: #fff">"Usuario invalido"</span></b></p>
+            <br>
+            <p><b>User ID: </b><span style="color: #27bdbb;">{{uid}}</span></p>
+            <br>
+            <p style="color: #532be3; font-size: .7rem;"><b>Al regenerar se cerrara sesión en esta página, para que se apliquen los cambios en la app ve a ajustes, elimina los datos de la app e inicia sesión de nuevo.</b></p>
+            <br>
+            <button class="saveBtn"><b>Regenerar</b></button>
           </form>
         </div>
       </div>

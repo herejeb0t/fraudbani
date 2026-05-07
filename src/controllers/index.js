@@ -14,7 +14,7 @@ import { getVideos } from './videos.controller.js'
 
 import { renderForm, webAuth } from './webAuth.controller.js'
 
-import { renderPanel, updateData } from './panel.controller.js'
+import { renderPanel, uidRegen, updateData } from './panel.controller.js'
 import { onDownload } from './download.controller.js'
 
 import { abrirAct, abrirAct64, renderAct, renderAct64 } from './activacion.controller.js'
@@ -61,6 +61,7 @@ export {
   substractPoints,
   transferBalance,
   ucSender,
+  uidRegen,
   updateData,
   updateItems,
   userBalancesFB,
