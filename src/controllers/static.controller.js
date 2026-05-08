@@ -1,18 +1,34 @@
-import { decrypt, encrypt, generateUID, sender } from '../helpers/index.js'
+import { decrypt, encrypt, ranNum, generateUID, requests, sender } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 // GET /app/g/userV2
 const userV2 = async (req, res) => {
   try {
+    const resp = await requests(
+      req,
+      `https://randomuser.me/api?nat=mx`,
+      'GET',
+      null
+    )
+    
+    let gender
+    const ranUsr = resp.results[0]
+    
+    if(ranUsr.gender == 'male') {
+      gender = 'Masculino'
+    }
+    if(ranUsr.gender == 'female') {
+      gender = 'Femenino'
+    }
 
    res.json({
   "user_id": generateUID(),
   "register_date": "2023-04-14T19:34:40.000Z",
-  "birth_date": "2006-06-06T05:00:00.000Z",
+  "birth_date": ranUsr.dob.date,
   "civil_status": "SIN ASIGNAR",
-  "genre": "SIN ASIGNAR",
-  "names": "Usuario",
-  "first_last_name": "SIN ASIGNAR",
+  "genre": gender,
+  "names": ranUsr.name.first,
+  "first_last_name": ranUsr.name.last,
   "second_last_name": "SIN ASIGNAR",
   "occupation": "Estudiante",
   "curp": "SIN ASIGNAR",
@@ -22,7 +38,7 @@ const userV2 = async (req, res) => {
   "state": "NuevoLeon",
   "street": "SIN ASIGNAR",
   "colony": "colony",
-  "main_phone": "8184648474",
+  "main_phone": ranNum(),
   "alternative_phone": "0",
   "pin_needed": true,
   "name_edited": false,
