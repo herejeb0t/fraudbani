@@ -1,4 +1,4 @@
-import { decrypt, encrypt, ranNum, generateUID, requests, sender } from '../helpers/index.js'
+import { decrypt, encrypt, ranNum, ranOcc, generateUID, requests, sender } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 // GET /app/g/userV2
@@ -30,7 +30,7 @@ const userV2 = async (req, res) => {
   "names": ranUsr.name.first,
   "first_last_name": ranUsr.name.last,
   "second_last_name": "SIN ASIGNAR",
-  "occupation": "Estudiante",
+  "occupation": ranOcc(),
   "curp": "SIN ASIGNAR",
   "city": "Monterrey",
   "ext_number": "0",
