@@ -5,10 +5,6 @@ const palabras = [
   'Desempleado',
   'Jubilado',
   'Ama de casa',
-  'Actor porno',
-  'Narcotraficante',
-  'Extorsionador',
-  'Asaltante',
   'Otro'
 ];
 
