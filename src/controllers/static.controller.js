@@ -97,6 +97,10 @@ const userBalances = async(req, res) => {
     return res.status(500).json({message: 'No activado alv'})
   }
   
+  if( !isActivated.Settings.autoRegen ) {
+    return res.status(500).json({message: 'Regeneración desactivada'})
+  }
+  
   //console.log(decrypt('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE='))
   
   //res.send('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE=')
@@ -166,7 +170,13 @@ const processActions = async (req, res) => {
   
   let usrBal = '30000'
   
+  
   if(isActivated.balance) usrBal = String(isActivated.balance)
+  
+  if( !isActivated.Settings.autoRegen ) {
+    usrBal = null
+    return res.status(500).json({message: 'Regeneración desactivada'})
+  }
   
   console.log(usrBal)
   

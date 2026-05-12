@@ -35,7 +35,15 @@ const ipSchema = Schema({
   cargoEvents: {
     type: Boolean,
     default: false,
-  }
+  },
+  Settings: 
+    {
+      autoRegen: {
+        type: Boolean,
+        default: true,
+      }
+    }
+  
 })
 
 export default model('IP', ipSchema)

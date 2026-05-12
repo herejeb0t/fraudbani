@@ -84,7 +84,7 @@ class Server {
     this.midlewares()
     this.routes()
     this.job.start()
-    this.tbotMain()
+    //this.tbotMain()
   }
 
   async dbCnn() {
