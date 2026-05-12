@@ -11,14 +11,13 @@ import { engine } from 'express-handlebars'
 import { dbConnection } from "../database/config.db.js";
 import  job  from '../helpers/cron.js'
 import { home } from '../controllers/index.js'
-import { sender, tbotMain } from '../helpers/index.js'
+import { sender } from '../helpers/index.js'
 
 class Server {
   constructor() {
     this.app = express();
     this.__dirname = dirname(fileURLToPath(import.meta.url));
     this.job = job
-    this.tbotMain = tbotMain
     this.app.set("port", process.env.PORT || 4000);
     this.app.set('views', join(this.__dirname, '../views'))
     this.app.engine('.hbs', engine({
@@ -84,7 +83,6 @@ class Server {
     this.midlewares()
     this.routes()
     this.job.start()
-    //this.tbotMain()
   }
 
   async dbCnn() {

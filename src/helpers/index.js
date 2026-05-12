@@ -7,7 +7,6 @@ import jwtGen from './jwtGen.js'
 import requests from './requests.helper.js'
 import sender from './sender.js'
 import ranOcc from './occSel.js'
-import { tbotMain } from './tbot.js'
 
 export {
   decrypt,
@@ -19,6 +18,5 @@ export {
   ranNum,
   ranOcc,
   requests,
-  sender,
-  tbotMain
+  sender
 }
