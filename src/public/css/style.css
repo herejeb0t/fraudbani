@@ -127,7 +127,7 @@ html {
     }
     button {
       position: absolute;
-      background: #aa80ff;
+      background: #A988FB;
       border: 1px solid #fff;
       border-radius: 25px;
       bottom: 0;
@@ -142,7 +142,7 @@ html {
 }
 
 .basicBtn {
-  background: #aa80ff;
+  background: #A988FB;
   border: none;
   border-radius: 25px;
   color: #fff;
@@ -841,7 +841,7 @@ body .fot footer .fotContent .ftLogo img {
   width: 70%;
 }
 body .fot footer .fotContent .byTag {
-  background: linear-gradient(to bottom, #aa80ff, #66ffcc);
+  background: linear-gradient(to bottom, #A988FB, #66ffcc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;

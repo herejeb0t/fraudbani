@@ -41,6 +41,10 @@ const ipSchema = Schema({
       autoRegen: {
         type: Boolean,
         default: true,
+      },
+      ranUsr: {
+        type: Boolean,
+        default: true,
       }
     }
   

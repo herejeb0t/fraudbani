@@ -28,43 +28,61 @@ const renderBal = async(req, res) => {
   
   let balance = 300
   let freeTrip = 0
+  let isChecked
+  let isRanUsr
   
   if (authExs.balance) balance = authExs.balance / 100
   
   if (authExs.points) freeTrip = authExs.points
   
-  res.render('items.hbs', { form: true, balance, freeTrip, auth })
+  if (authExs.Settings.autoRegen) isChecked = 'checked'
+  
+  if (authExs.Settings.ranUsr) isRanUsr = 'checked'
+  
+  res.render('items.hbs', { form: true, balance, freeTrip, auth, isChecked, isRanUsr })
 
 } catch(err) {
-  console.log(err)
+  res.json({ message: err })
 }
 }
 
 
 const updateItems = async (req, res) => {
   try {
-      const raw = req.headers['x-forwarded-for'] 
+    const raw = req.headers['x-forwarded-for'] 
     || req.connection.remoteAddress 
     || ''
-  const ip = raw.split(',')[0].trim()
+    const ip = raw.split(',')[0].trim()
 
     const auth = req.query.user
 
-    const { balance, freeTrip } = req.body
+    const { balance, freeTrip, atRg, raUs } = req.body
     
-    if (auth == 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWluX3Bob25lIjoiODE0ODA1NjIyNCIsInVpZCI6IklpUmoyOEtBblhyNjZpVldRbzU0Ynk0QXpSR0YiLCJpYXQiOjE3Nzc2OTMyMTcsImV4cCI6MTc5MzI0NTIxN30.sDXVcK1-sKjtgScUCoWHnGZkiGrpLOdH7cwADo1gKR4') {
-      return res.send('<h1><h1>')
+    let autoRegen
+    
+    let ranUsr
+    
+    if (!auth) {
+      return res.json({message: 'Falta usuario!'})
     }
     
     if (balance > 9999) {
       return res.status(500).json({message: 'Error!'})
     }
+    
+   atRg ? autoRegen = true : autoRegen = false
+   
+   raUs ? ranUsr = true : ranUsr = false
 
     await IP.updateOne(
       { auth },
       {
         balance: balance * 100,
-        points: freeTrip
+        points: freeTrip,
+        Settings: {
+          autoRegen,
+          ranUsr
+        }
       }
     )
     

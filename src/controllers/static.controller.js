@@ -4,6 +4,18 @@ import IP from '../models/ip.js'
 // GET /app/g/userV2
 const userV2 = async (req, res) => {
   try {
+    const auth = req.headers.authorization
+    
+    const isActivated = await IP.findOne({ auth })
+  
+    if( !isActivated ) {
+      return res.status(500).json({message: 'No activado alv'})
+    }
+    
+    if(!isActivated.Settings.ranUsr) {
+      return res.status(500).json({message: 'ranUsr desactivado...'})
+    }
+    
     const resp = await requests(
       req,
       `https://randomuser.me/api?nat=mx`,
@@ -22,28 +34,28 @@ const userV2 = async (req, res) => {
     }
 
    res.json({
-  "user_id": generateUID(),
-  "register_date": "2023-04-14T19:34:40.000Z",
-  "birth_date": ranUsr.dob.date,
-  "civil_status": "SIN ASIGNAR",
-  "genre": gender,
-  "names": ranUsr.name.first,
-  "first_last_name": ranUsr.name.last,
-  "second_last_name": "SIN ASIGNAR",
-  "occupation": ranOcc(),
-  "curp": "SIN ASIGNAR",
-  "city": "Monterrey",
-  "ext_number": "0",
-  "postal_code": "0",
-  "state": "NuevoLeon",
-  "street": "SIN ASIGNAR",
-  "colony": "colony",
-  "main_phone": ranNum(),
-  "alternative_phone": "0",
-  "pin_needed": true,
-  "name_edited": false,
-  "email_change_date": null,
-  "email": null
+      "user_id": generateUID(),
+      "register_date": "2023-04-14T19:34:40.000Z",
+      "birth_date": ranUsr.dob.date,
+      "civil_status": "SIN ASIGNAR",
+      "genre": gender,
+      "names": ranUsr.name.first,
+      "first_last_name": ranUsr.name.last,
+      "second_last_name": "SIN ASIGNAR",
+      "occupation": ranOcc(),
+      "curp": "SIN ASIGNAR",
+      "city": "Monterrey",
+      "ext_number": "0",
+      "postal_code": "0",
+      "state": "NuevoLeon",
+      "street": "SIN ASIGNAR",
+      "colony": "colony",
+      "main_phone": ranNum(),
+      "alternative_phone": "0",
+      "pin_needed": true,
+      "name_edited": false,
+      "email_change_date": null,
+      "email": null
 })
     
   } catch (err) {
