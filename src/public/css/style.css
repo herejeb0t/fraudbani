@@ -339,7 +339,7 @@ body .main {
   align-items: center;
   display: none;
   flex-direction: column;
-  min-height: 100dvh;
+  min-height: 100vh;
   z-index: 3;
 }
 body .main .advDiv .adv {
@@ -851,7 +851,7 @@ body .fot footer .fotContent .byTag {
   padding: 0 4px;
 }
 
-@media (width <= 768px) {
+@media screen and (max-width: 550px) {
   body header {
     display: block;
   }

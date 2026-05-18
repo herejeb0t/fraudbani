@@ -6,4 +6,10 @@ const commentLimiter = rateLimit({
   message: 'Skc alv! .l.'
 })
 
-export default commentLimiter
+const userV2Limiter = rateLimit({
+  windowMs: 10 * 1000,
+  max: 1,
+  message: 'Skc alv! .l.'
+})
+
+export { commentLimiter, userV2Limiter }

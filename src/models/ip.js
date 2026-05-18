@@ -45,6 +45,14 @@ const ipSchema = Schema({
       ranUsr: {
         type: Boolean,
         default: true,
+      },
+      male: {
+        type: Boolean,
+        default: false,
+      },
+      female: {
+        type: Boolean,
+        default: false,
       }
     }
   

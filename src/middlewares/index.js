@@ -1,6 +1,6 @@
 import auth from './auth.js'
 import validateToUpload from './file.validation.js'
-import commentLimiter from './antiSpam.js'
+import  { commentLimiter, userV2Limiter } from './antiSpam.js'
 import fieldVal from './usr.validation.js'
 import jwtVal from './jwtValidation.js'
 
@@ -9,5 +9,6 @@ export {
   commentLimiter,
   fieldVal,
   jwtVal,
+  userV2Limiter,
   validateToUpload
 }

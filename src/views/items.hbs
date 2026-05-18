@@ -1,5 +1,5 @@
 <div class="main" style="display:align-items: center; flex; flex-direction: column; justify-content: center;">
-  <div class="activadorDiv bg-body-tertiary" style="align-items: center; border: none; border-radius: 25px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; padding: 20px; width: 90%;">
+  <div class="activadorDiv bg-body-tertiary" style="align-items: center; border: none; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; margin: 100px 0; overflow: hidden; justify-content: center; padding: 20px; width: 90%;">
     <h6 class="poppinsBalance">Items</h6>
     {{#if advIcon}}
     <br>
@@ -13,7 +13,10 @@
     {{/if}}
     {{#if form}}
     <style>
-      .switch{
+    .hidden {
+      display: none !important;
+    }
+.switch{
   position: relative;
   display: inline-block;
   margin-top: 15px;
@@ -54,17 +57,68 @@ input:checked + .slider{
 input:checked + .slider::before{
   transform: translateX(26px);
 }
+      .switchsm{
+  position: relative;
+  display: inline-block;
+  margin-top: 7.5px;
+  width: 30px;
+  height: 17px;
+}
+
+.switchsm input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slidersm{
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 17px;
+  transition: .3s;
+}
+
+.slidersm::before{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  left: 2px;
+  top: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: .3s;
+}
+
+input:checked + .slidersm{
+  background: #A988FB;
+}
+
+input:checked + .slidersm::before{
+  transform: translateX(13px);
+}
+.userType {
+  display: flex;
+  margin: 20px 0;
+}
+.sx {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
     </style>
       <form action="/items?user={{auth}}" method="POST" class="itmForm" style="text-align: center; width: 100%">
         <div style="padding: 20px;">
           <p class="poppinsLabel">Balance</p>
         </div>
-        <input name="balance" class="balInpt" type="text" inputmode="numeric" style="background: none; border: none; border-bottom: 2px solid #000; color: rgb(114, 204, 114); font-family: pricedown; font-size: 1.5rem; outline: none; text-align: center; width: 80%" maxlength="3" value="{{balance}}">
+        <input name="balance" class="balInpt" type="text" inputmode="numeric" style="background: none; border: none; border-bottom: 2px solid #000; color: rgb(114, 204, 114); font-family: pricedown; font-size: 1.5rem; outline: none; text-align: center; width: 20%" maxlength="3" value="{{balance}}">
         <div style="padding: 20px;">
           <p class="poppinsLabel">Viajes Gratis</p>
         </div>
-        <input name="freeTrip" class="freeTInpt" type="text" inputmode="numeric" style="background: none; border: none; border-bottom: 2px solid #000; color: rgb(93, 182, 229); font-family: pricedown; font-size: 1.5rem; outline: none; text-align: center; width: 80%" maxlength="2" value="{{freeTrip}}">
-        <br>
+        <input name="freeTrip" class="freeTInpt" type="text" inputmode="numeric" style="background: none; border: none; border-bottom: 2px solid #000; color: rgb(93, 182, 229); font-family: pricedown; font-size: 1.5rem; margin-bottom: 30px; outline: none; text-align: center; width: 20%" maxlength="2" value="{{freeTrip}}">
         <label class="poppinsLabel" style="margin-top: 20px; width: 100%;">Regenerar balance</label>
         <label class="switch">
           <input type="checkbox" name="atRg" {{isChecked}}>
@@ -72,9 +126,27 @@ input:checked + .slider::before{
         </label>
         <label class="poppinsLabel" style="margin-top: 20px; width: 100%;">Usuario aleatorio</label>
         <label class="switch">
-          <input type="checkbox" name="raUs" {{isRanUsr}}>
+          <input type="checkbox" id="raUs" name="raUs" {{isRanUsr}}>
           <span class="slider"></span>
         </label>
+        <div class="userType">
+          <div class="hoDiv sx">
+            <img src="/./img/avatarH.png" style="border-radius: 50%; width: 40px;">
+            <label class="poppinsLabel" style="font-size: .7rem;">Masculino</label>
+            <label class="switchsm">
+              <input type="checkbox" name="ho" {{hombre}}>
+              <span class="slidersm"></span>
+            </label>
+          </div>
+          <div class="muDiv sx">
+            <img src="/./img/avatarM.png" style="border-radius: 50%; width: 40px;">
+            <label class="poppinsLabel" style="font-size: .7rem;">Femenino</label>
+            <label class="switchsm">
+              <input type="checkbox" name="mu" {{mujer}}>
+              <span class="slidersm"></span>
+            </label>
+          </div>
+        </div>
         <button style="margin-top: 20px;" class="poppinsText saveBtn basicBtn">Guardar</button>
       </form>
     {{/if}}
@@ -82,8 +154,7 @@ input:checked + .slider::before{
 </div>
 
 <script>
-  
-  document.querySelector('header').style = 'display: none;'
+  document.addEventListener('DOMContentLoaded', () => {
   
   const svBtn = document.querySelector('.saveBtn')
     
@@ -107,4 +178,14 @@ input:checked + .slider::before{
     if(validacion()) document.querySelector('.itmForm').submit()
   })
   
+  const raUschk = document.querySelector('#raUs')
+  const usTy = document.querySelector('.userType')
+  
+  raUschk.checked? usTy.classList.remove('hidden'): usTy.classList.add('hidden')
+  
+  raUschk.addEventListener('change', function() {
+    this.checked? usTy.classList.remove('hidden'): usTy.classList.add('hidden')
+  })
+  
+})
 </script>

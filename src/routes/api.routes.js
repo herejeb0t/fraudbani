@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { userV2Limiter } from '../middlewares/index.js'
 import { checkPin,
   configV2,
   getHour,
@@ -23,7 +24,7 @@ router.get('/:m/userFlags', userFlags)
 
 router.get('/:m/hour', getHour)
 
-router.get('/:m/userV2', userV2)
+router.get('/:m/userV2', userV2Limiter, userV2)
 
 router.post('/:m/rates/v3', ratesV3)
 

@@ -6,6 +6,8 @@ const userV2 = async (req, res) => {
   try {
     const auth = req.headers.authorization
     
+    let query
+    
     const isActivated = await IP.findOne({ auth })
   
     if( !isActivated ) {
@@ -16,9 +18,17 @@ const userV2 = async (req, res) => {
       return res.status(500).json({message: 'ranUsr desactivado...'})
     }
     
+    if(!isActivated.Settings.male && !isActivated.Settings.female || isActivated.Settings.male && isActivated.Settings.female) {
+      query = false
+    } else if(isActivated.Settings.male) {
+      query = `&gender=male`
+    } else {
+      query = '&gender=female'
+    }
+    
     const resp = await requests(
       req,
-      `https://randomuser.me/api?nat=mx`,
+      `https://randomuser.me/api?nat=mx${ query || '' }`,
       'GET',
       null
     )

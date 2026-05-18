@@ -3,9 +3,9 @@ import { checkPin, configV2, getHour, processActions, ratesV3, sendAccess, userB
 
 const router = Router()
 
-router.post('/:param/:p/check/pin', checkPin)
+//router.post('/:param/:p/check/pin', checkPin)
 
-router.post('/:param/:p/verifyPin', verifyPin)
+//router.post('/:param/:p/verifyPin', verifyPin)
 
 router.get('/:param/:g/userBalances',  userBalances)
 

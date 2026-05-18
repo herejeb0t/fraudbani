@@ -30,6 +30,8 @@ const renderBal = async(req, res) => {
   let freeTrip = 0
   let isChecked
   let isRanUsr
+  let hombre
+  let mujer
   
   if (authExs.balance) balance = authExs.balance / 100
   
@@ -39,7 +41,11 @@ const renderBal = async(req, res) => {
   
   if (authExs.Settings.ranUsr) isRanUsr = 'checked'
   
-  res.render('items.hbs', { form: true, balance, freeTrip, auth, isChecked, isRanUsr })
+  if (authExs.Settings.male) hombre = 'checked'
+  
+  if (authExs.Settings.female) mujer = 'checked'
+  
+  res.render('items.hbs', { form: true, balance, freeTrip, auth, isChecked, isRanUsr, hombre, mujer })
 
 } catch(err) {
   res.json({ message: err })
@@ -56,11 +62,15 @@ const updateItems = async (req, res) => {
 
     const auth = req.query.user
 
-    const { balance, freeTrip, atRg, raUs } = req.body
+    const { balance, freeTrip, atRg, raUs, ho, mu } = req.body
     
     let autoRegen
     
     let ranUsr
+    
+    let male
+    
+    let female
     
     if (!auth) {
       return res.json({message: 'Falta usuario!'})
@@ -73,6 +83,10 @@ const updateItems = async (req, res) => {
    atRg ? autoRegen = true : autoRegen = false
    
    raUs ? ranUsr = true : ranUsr = false
+   
+   ho ? male = true : male = false
+   
+   mu ? female = true : female = false
 
     await IP.updateOne(
       { auth },
@@ -81,7 +95,9 @@ const updateItems = async (req, res) => {
         points: freeTrip,
         Settings: {
           autoRegen,
-          ranUsr
+          ranUsr,
+          male,
+          female,
         }
       }
     )
