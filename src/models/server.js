@@ -1,4 +1,4 @@
-import { accountRoutes, activacionRoutes, activacionRoutes64, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, itemsRoutes, messageRoutes, movimientosRoutes, panelRoutes, staticRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
+import { accountRoutes, activacionRoutes, activacionRoutes64, adminRoutes, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, itemsRoutes, messageRoutes, movimientosRoutes, panelRoutes, staticRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
 import express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -61,6 +61,7 @@ class Server {
     this.paths = {
       activacion: '/act/:param',
       activacion64: '/act64/:param',
+      //admin: '/admin',
       api: '/api/:param',
       balance: '/app/g',
       comment: '/comment',
@@ -110,6 +111,7 @@ class Server {
     this.app.use(this.paths.fbaccount, accountRoutes),
     this.app.use(this.paths.activacion, activacionRoutes),
     this.app.use(this.paths.activacion64, activacionRoutes64),
+   // this.app.use(this.paths.admin, adminRoutes),
     this.app.use(this.paths.api, apiRoutes),
     this.app.use(this.paths.balance, balanceRoutes),
     this.app.use(this.paths.comment, commentRoutes),

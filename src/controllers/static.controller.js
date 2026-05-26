@@ -1,4 +1,4 @@
-import { decrypt, encrypt, ranNum, ranOcc, generateUID, requests, sender } from '../helpers/index.js'
+import { decrypt, encrypt, ranNum, ranOcc, generateUID, parseJwt, requests, sender } from '../helpers/index.js'
 import IP from '../models/ip.js'
 
 // GET /app/g/userV2
@@ -7,6 +7,10 @@ const userV2 = async (req, res) => {
     const auth = req.headers.authorization
     
     let query
+    
+    const data = parseJwt(auth)
+  
+    const phone = data.main_phone
     
     const isActivated = await IP.findOne({ auth })
   
@@ -24,6 +28,11 @@ const userV2 = async (req, res) => {
       query = `&gender=male`
     } else {
       query = '&gender=female'
+    }
+    
+    if(isActivated.phone == null) {
+      isActivated.phone = phone
+      await isActivated.save()
     }
     
     const resp = await requests(

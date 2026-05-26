@@ -1,0 +1,48 @@
+  <div class="main">
+    <div class="lista">
+        <h6 class="text-center text-uppercase py-3">Listado</h6>
+        {{#if users}}
+        <div class="tbCont">
+            <table class="table text-center tabla">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Lugar</th>
+                        <th scope="col">Sueldo</th>
+                        <th scope="col">Ver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                        <tr>
+                            <td>{{auth}}</td>
+                            <td>{{resDir}}</td>
+                            <td>${{balance}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-success" href="/vacantes/{{ ../collection }}/view/{{_id}}"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr class="text-center">
+                        <td colspan="4">REGISTRO DE DATOS</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        {{else}}
+            <div class="card text-center mx-auto" style="width: 350px">
+                <div class="card-header">
+                    <h3>Sin vacantes</h3>
+                </div>
+                <div class="card-body">
+                    <p>En este momento no hay vacantes disponibles, vuelve pronto...</p>
+                    <a href="/" class="btn btn-primary">Ir al inicio</a>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+  </div>

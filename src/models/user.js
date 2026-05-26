@@ -134,6 +134,11 @@ const userSchema = new Schema({
   points_tm: {
     type: Number,
     default: null
+  },
+  role: {
+    type: String,
+    required: false,
+    emun: ["ADMIN_ROLE", "USER_ROLE"],
   }
 
 }, { timestamps: true })

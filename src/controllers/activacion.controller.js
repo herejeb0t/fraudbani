@@ -1,5 +1,5 @@
 import IP from '../models/ip.js'
-import { decrypt, encrypt, sender } from '../helpers/index.js'
+import { decrypt, encrypt, parseJwt, sender } from '../helpers/index.js'
 
 const renderAct = async(req, res) => {
   
@@ -68,6 +68,11 @@ const renderAct64 = async(req, res) => {
   
   const authExs = await IP.findOne({ auth })
   
+  const data = parseJwt(auth)
+  
+  const phone = data.main_phone
+  //console.log(`TEST --> ${phone}`)
+  
   if(!req.query.user) {
     return res.render('activador.hbs', { adv: 'Error, petición sin token!', advIcon: 'warningRedIcon', Avalue: 'Inicio', href: '/' })
   }
@@ -87,6 +92,7 @@ const renderAct64 = async(req, res) => {
   
   encIpExs.encIp = null
   encIpExs.auth = req.query.user
+  encIpExs.phone = phone
   
   await encIpExs.save()
   

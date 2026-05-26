@@ -21,6 +21,8 @@ import { abrirAct, abrirAct64, renderAct, renderAct64 } from './activacion.contr
 
 import { renderBal, updateItems } from './items.controller.js'
 
+import { getUsers } from './admin.controller.js'
+
 export {
   abrirAct,
   abrirAct64,
@@ -38,6 +40,7 @@ export {
   getEvents,
   getHour,
   getUCinfo,
+  getUsers,
   getUserId,
   getReports,
   getVideos,

@@ -15,11 +15,13 @@ import downloadRoutes from './download.routes.js'
 import apiRoutes from './api.routes.js'
 import staticRoutes from './static.routes.js'
 import itemsRoutes from './items.routes.js'
+import adminRoutes from './admin.routes.js'
 
 export {
   accountRoutes,
   activacionRoutes,
   activacionRoutes64,
+  adminRoutes,
   apiRoutes,
   balanceRoutes,
   commentRoutes,

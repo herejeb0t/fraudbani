@@ -13,6 +13,12 @@ const ipSchema = Schema({
     required: false,
     unique: false,
   },
+  phone: {
+    type: String,
+    default: null,
+    required: false,
+    unique: false,
+  },
   balance: {
     type: Number,
     default: 30000
