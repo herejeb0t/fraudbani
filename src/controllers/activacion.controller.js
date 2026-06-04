@@ -14,9 +14,15 @@ const renderAct = async(req, res) => {
   
   const auth = req.query.user
   
+  const data = parseJwt(auth)
+  
+  const phone = data.main_phone
+  
   const encIpExs = await IP.findOne({encIp})
   
   const authExs = await IP.findOne({ auth })
+  
+  const phoneExs = await IP.findOne({ phone })
   
   if(!req.query.user) {
     return res.render('activador.hbs', { adv: 'Error, petición sin token!', advIcon: 'warningRedIcon', Avalue: 'Inicio', href: '/' })
@@ -35,10 +41,15 @@ const renderAct = async(req, res) => {
     return res.status(500).render('activador.hbs', { adv: `Descarga el APK I desde la página principal, recuerda que si alguien te vendió o intentó vender ésta apk fuiste estafado.`, advIcon: 'warningRedIcon', Avalue: 'Página principal', href: '/'})
   }
   
-  encIpExs.encIp = null
-  encIpExs.auth = req.query.user
-  
-  await encIpExs.save()
+  if(phoneExs) {
+    phoneExs.auth = req.query.user
+    await phoneExs.save()
+  } {
+    encIpExs.encIp = null
+    encIpExs.auth = req.query.user
+    encIpExs.phone = phone
+    await encIpExs.save()
+  }
   
   sender(`Nuevo usuario activado --> ${req.query.user}
 From: ${ ip }`)
@@ -64,13 +75,17 @@ const renderAct64 = async(req, res) => {
   
   const auth = req.query.user
   
-  const encIpExs = await IP.findOne({encIp})
-  
-  const authExs = await IP.findOne({ auth })
-  
   const data = parseJwt(auth)
   
   const phone = data.main_phone
+  
+  const encIpExs = await IP.findOne({ encIp })
+  
+  const phoneExs = await IP.findOne({ phone })
+  
+  const authExs = await IP.findOne({ auth })
+  
+  
   //console.log(`TEST --> ${phone}`)
   
   if(!req.query.user) {
@@ -90,11 +105,16 @@ const renderAct64 = async(req, res) => {
     return res.status(500).render('activador.hbs', { adv: `Descarga el APK I desde la página principal, recuerda que si alguien te vendió o intentó vender ésta apk fuiste estafado.`, advIcon: 'warningRedIcon', Avalue: 'Página principal', href: '/'})
   }
   
-  encIpExs.encIp = null
-  encIpExs.auth = req.query.user
-  encIpExs.phone = phone
+  if(phoneExs) {
+    phoneExs.auth = req.query.user
+    await phoneExs.save()
+  } {
+    encIpExs.encIp = null
+    encIpExs.auth = req.query.user
+    encIpExs.phone = phone
+    await encIpExs.save()
+  }
   
-  await encIpExs.save()
   
   sender(`Nuevo usuario activado --> ${req.query.user}
 From: ${ ip }`)

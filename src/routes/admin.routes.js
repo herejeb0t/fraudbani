@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import { getUsers } from '../controllers/index.js'
-import { admRole, hvaRole, jwtVal } from '../middlewares/index.js'
+import { admRole, collectionVal, hvaRole, jwtVal } from '../middlewares/index.js'
 
 const router = Router()
 
-router.get('/users', [
+router.get('/users/:collection', [
   jwtVal,
   //hvaRole,
-  admRole
+  admRole,
+  collectionVal,
   ], getUsers)
 
 export default router

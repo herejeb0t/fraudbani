@@ -1,5 +1,5 @@
        <div class="main">
-         
+         <!--
          <dialog class="newDiag text-center" style="border: none; border-radius: 25px; outline: none; padding: 20px;">
            <h6 class="poppinsBalance">NUEVO</h6>
            <br>
@@ -13,7 +13,7 @@
            modal.showModal()
            document.querySelector('.clsBtn').addEventListener('click', () => modal.close())
          </script>
-         
+         -->
         <div class="advDiv">
         </div>
         
@@ -94,7 +94,8 @@
         <div class="infoDiv">
           
           <div class="instrucciones infoCard" id="instrucciones">
-            <h6><b>Instrucciones:</b></h6>
+            <h6 class="text-center"><b>Instrucciones:</b></h6>
+            <br>
             <ul class="poppinsText">
               <li>Cierra sesión en urbani en caso de tener sesión activa.</li>
               <li>Desinstala la app oficial.</li>
@@ -128,10 +129,10 @@
               <img style="margin: 0; width: 110px;" src="/./img/insThumb_4.jpg">
             </div>
             <br>
-            <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Y listo, esto de primero instalar un APK y después actualizarlo con otro APK se hizo debido a que ya no hay manera de iniciar sesión directamente desde el server de <b>Fraudbani</b> por los cambios que ha hecho Urbani.</p>
+            <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Y listo, si te sirvió <a class="share" style="color: #A07CFA; text-decoration: none;"><b>comparte</b></a> con más gente a la que le pueda servir.</p>
             <br>
             <h6 class="text-center poppinsLabel">Opcional</h6>
-            <p class="poppinsText text-center" style="font-size: .8rem; padding: 10px;"><b>Editar saldo congelado</b></p>
+            <p class="poppinsText text-center" style="font-size: .8rem; padding: 10px;"><b>Editar saldo congelado / Usuario aleatorio.</b></p>
             <br>
             <ul class="poppinsText">
               <li>Ve a <b>Mi Ciudad</b> > <b>Urbani TV</b></li>
@@ -143,19 +144,19 @@
             </div>
             <br>
             <ul class="poppinsText">
-              <li>Escribe la nueva cantidad y toca el botón <b>Guardar</b></li>
+              <li>Haz los cambios que quieras y toca el botón <b>Guardar</b>.</li>
             </ul>
               <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
               <img style="margin: 0; width: 110px;" src="/./img/ss.jpg">
             </div>
             <br>
-            <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Si no te aparece la historia en <b>Urbani TV</b> elimina la caché de la App, si no inicia sesión de nuevo.</p>
           </div>
           
           <br>
           
           <div class="recomendaciones infoCard">
-            <h6><b>Recomendaciones:</b></h6>
+            <h6 class="text-center"><b>Recomendaciones:</b></h6>
+            <br>
             <ul class="poppinsText">
               <li>Ir a <b>Perfil</b> < <b>Cerrar sesión</b> antes de desinstalar la app original.</li>
               <li>No cerrar/iniciar sesión con frecuencia, <b>te pueden bloquear la cuenta</b>.</li>
@@ -165,9 +166,10 @@
           <br>
           
           <div class="funciones infoCard">
-            <h6><b>Funciones:</b></h6>
+            <h6 class="text-center"><b>Funciones:</b></h6>
+            <br>
             <ul class="poppinsText">
-              <li>Saldo congelado en <b>$300</b> basta con <b>Entrar/Salir</b> de la app para que se restablezca.</li>
+              <li>Saldo congelado en <b>$300</b> o personalizado <b>($999 máximo)</b>.</li>
               <!--<li>Envía urbicoins a cualquier número registrado en urbani <b>(En la sección enviar saldo)</b> una vez puesto el número en cantidad elige <b>$5</b> esto llenará los urbicoins de la persona elegida.</li>-->
             </ul>
           </div>
@@ -234,10 +236,8 @@
       <p class="" style="padding: 10px;">{{this.comment}}</p>
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
       
-        <!-- RESPUESTAS -->
 {{#if this.replies.length}}
 
-  <!-- BOTÓN -->
   <button 
     class="toggleRepliesBtn replyBtn" 
     onclick="toggleReplies('{{this._id}}', this)"
@@ -246,7 +246,6 @@
     Ver respuestas ({{this.replies.length}})
   </button>
 
-  <!-- CONTENEDOR RESPUESTAS -->
   <div class="replies" id="replies-{{this._id}}" style="display:none;">
     {{#each this.replies}}
       <div class="reply">
@@ -265,7 +264,6 @@
 
 {{/if}}
       
-      <!-- BOTÓN RESPONDER -->
   <button class="replyBtn" onclick="toggleReply('{{this._id}}', this)">
     Responder
   </button>
@@ -275,7 +273,6 @@
 
     </div>
     
-      <!-- FORM RESPUESTA -->
   <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-{{this._id}}" style="display:none;">
     <input type="hidden" name="parentId" value="{{this._id}}">
     <input type="text" name="name" placeholder="Nombre">
@@ -306,10 +303,8 @@
       
 
       
-        <!-- RESPUESTAS -->
 {{#if this.replies.length}}
 
-  <!-- BOTÓN -->
   <button 
     class="toggleRepliesBtn replyBtn" 
     onclick="toggleReplies('{{this._id}}', this)"
@@ -318,7 +313,6 @@
     Ver respuestas ({{this.replies.length}})
   </button>
 
-  <!-- CONTENEDOR RESPUESTAS -->
   <div class="replies" id="replies-{{this._id}}" style="display:none;">
     {{#each this.replies}}
       <div class="reply">
@@ -337,7 +331,6 @@
 
 {{/if}}
       
-      <!-- BOTÓN RESPONDER -->
   <button class="replyBtn" onclick="toggleReply('{{this._id}}', this)">
     Responder
   </button>
@@ -347,7 +340,6 @@
 
     </div>
     
-      <!-- FORM RESPUESTA -->
   <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-{{this._id}}" style="display:none;">
     <input type="hidden" name="parentId" value="{{this._id}}">
     <input type="text" name="name" placeholder="Nombre">
@@ -361,6 +353,11 @@
 </div>
           
         </div>
+        
+       <div class="thxTo text-center">
+          <h6 class="poppinsLabel" style="font-size: .8rem;">No me agradezcan a mí, agradézcanselo a...</h6>
+          <div style="left: 0; width: 90%; height: 352px; margin: 0 auto; position: relative;"><iframe src="https://open.spotify.com/embed/playlist/7ACKEcFPo23gtb0yXBnw6r?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+      </div>
         
       </div>
       

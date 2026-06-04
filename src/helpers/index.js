@@ -8,6 +8,7 @@ import requests from './requests.helper.js'
 import sender from './sender.js'
 import ranOcc from './occSel.js'
 import parseJwt from './tkndec.js'
+import modelSelect from './modelSelect.js'
 
 export {
   decrypt,
@@ -16,6 +17,7 @@ export {
   jwtGen,
   generateUID,
   getUrbiCoins,
+  modelSelect,
   parseJwt,
   ranNum,
   ranOcc,

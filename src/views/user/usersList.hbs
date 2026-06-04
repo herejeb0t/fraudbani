@@ -1,26 +1,38 @@
   <div class="main">
-    <div class="lista">
+    <div class="lista" style="margin-top: 80px;">
         <h6 class="text-center text-uppercase py-3">Listado</h6>
         {{#if users}}
-        <div class="tbCont">
-            <table class="table text-center tabla">
+        <div class="tbCont" style="width: 100%">
+          <p><b>Total: </b>{{total}}</p>
+            <table class="table text-center tabla" style="font-size: .7rem; width: 90%;">
                 <thead>
                     <tr>
+                      {{#if showNameColumn}}
                         <th scope="col">Nombre</th>
-                        <th scope="col">Lugar</th>
-                        <th scope="col">Sueldo</th>
+                      {{/if}}
+                        <th scope="col">Número</th>
+                       <!-- <th scope="col">Lugar</th>-->
+                        <th scope="col">Balance</th>
                         <th scope="col">Ver</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each users}}
                         <tr>
-                            <td>{{auth}}</td>
-                            <td>{{resDir}}</td>
-                            <td>${{balance}}</td>
+                          {{#if names}}
+                            <td>{{names}}</td>
+                          {{/if}}
+                          {{#if phone}}
+                            <td>{{phone}}</td>
+                          {{/if}}
+                          {{#if main_phone}}
+                            <td>{{main_phone}}</td>
+                          {{/if}}
+                         <!--   <td>{{resDir}}</td>-->
+                            <td>${{balancePesos}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-success" href="/vacantes/{{ ../collection }}/view/{{_id}}"><i class="bi bi-eye"></i></a>
+                                    <a class="btn btn-success disabled" href="/vacantes/{{ ../collection }}/view/{{_id}}"><i class="bi bi-eye"></i></a>
                                 </div>
                             </td>
                         </tr>

