@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const subir = document.querySelector('.subir');
 const share = document.querySelector('.share');
+
+if(subir && share) {
   window.addEventListener('scroll', function () {
   if (window.scrollY > 1000) {
     subir.style = 'display: block;'
@@ -40,7 +42,7 @@ const sharePage = () => {
     alert('Tu navegador no soporta compartir')
   }
 }
-  
+}
   const stars = document.querySelectorAll('#rating i')
   const ratingInput = document.getElementById('rating-value')
   let selectedRating = 0

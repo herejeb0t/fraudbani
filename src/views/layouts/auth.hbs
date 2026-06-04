@@ -84,15 +84,13 @@
         addAlert(data.message, 'danger')
       }
     })
-    .catch(() => mostrarError('Error de conexión'))
+    .catch((err) => addAlert(err, 'danger'))
   }
     })
   }
-          
-          document.querySelector('header').style = 'display: none;'
-          document.querySelector('.share').style = 'display: none;'
+
           
           
-          //document.querySelector('.subir').style = 'display: none'
+          
           
       </script>

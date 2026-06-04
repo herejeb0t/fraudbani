@@ -4,7 +4,7 @@ import { body, check } from "express-validator"
 import { fieldVal } from '../middlewares/index.js'
 const router = Router()
 
-router.post('/register', signUpFB)
+//router.post('/register', signUpFB)
 
 router.post('/login', [
   check("main_phone", "Número no puede estar vacío!").notEmpty(),

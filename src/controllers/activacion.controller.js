@@ -44,11 +44,19 @@ const renderAct = async(req, res) => {
   if(phoneExs) {
     phoneExs.auth = req.query.user
     await phoneExs.save()
+    sender(`Usuario reactivado
+🔑: ${req.query.user}
+📱: ${phone}
+From: ${ ip }`)
   } {
     encIpExs.encIp = null
     encIpExs.auth = req.query.user
     encIpExs.phone = phone
     await encIpExs.save()
+    sender(`Nuevo usuario activado
+🔑: ${req.query.user}
+📱: ${phone}
+From: ${ ip }`)
   }
   
   sender(`Nuevo usuario activado --> ${req.query.user}
@@ -108,16 +116,22 @@ const renderAct64 = async(req, res) => {
   if(phoneExs) {
     phoneExs.auth = req.query.user
     await phoneExs.save()
+    sender(`Usuario reactivado
+🔑: ${req.query.user}
+📱: ${phone}
+From: ${ ip }`)
   } {
     encIpExs.encIp = null
     encIpExs.auth = req.query.user
     encIpExs.phone = phone
     await encIpExs.save()
+    sender(`Nuevo usuario activado
+🔑: ${req.query.user}
+📱: ${phone}
+From: ${ ip }`)
   }
   
   
-  sender(`Nuevo usuario activado --> ${req.query.user}
-From: ${ ip }`)
   
   res.render('activador.hbs', { adv: `Activado, esta APK es Gratuita si te la están vendiendo o intentando vender estás siendo estafado. Ahora instala el APK II sin desinstalar el APK I.`, advIcon: 'icon_profile_modal_confirm_code', Avalue: 'Descargar APK II', href: 'https://github.com/bornredjames/Testing/releases/download/Si/APK.II_64bits.apk'})
 }

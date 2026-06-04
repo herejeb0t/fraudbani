@@ -1,8 +1,9 @@
 import IP from '../models/ip.js'
-import { decrypt, encrypt, sender } from '../helpers/index.js'
+import { decrypt, encrypt, sender, parseJwt } from '../helpers/index.js'
 
 const renderBal = async(req, res) => {
   try {
+    
   
   const raw = req.headers['x-forwarded-for'] 
     || req.connection.remoteAddress 
@@ -14,6 +15,11 @@ const renderBal = async(req, res) => {
   const encIp = encrypt(ip)
   
   const auth = req.query.user
+    const data = parseJwt(auth)
+  
+  const phone = data.main_phone
+  
+  console.log(`El numero imbeciiil!! --> ${phone}`)
   
   const authExs = await IP.findOne({ auth })
   
