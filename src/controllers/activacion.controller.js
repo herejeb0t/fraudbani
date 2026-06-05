@@ -59,9 +59,6 @@ From: ${ ip }`)
 From: ${ ip }`)
   }
   
-  sender(`Nuevo usuario activado --> ${req.query.user}
-From: ${ ip }`)
-  
   res.render('activador.hbs', { adv: `Activado, esta APK es Gratuita si te la están vendiendo o intentando vender estás siendo estafado. Ahora instala el APK II sin desinstalar el APK I.`, advIcon: 'icon_profile_modal_confirm_code', Avalue: 'Descargar APK II', href: 'https://github.com/bornredjames/Testing/releases/download/Si/APK.II_32bits.apk'})
 }
 
