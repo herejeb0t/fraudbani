@@ -234,6 +234,9 @@
         </strong>
         <small>{{timeAgo this.createdAt}}</small>
       <p class="" style="padding: 10px;">{{this.comment}}</p>
+      {{#if this.img}}
+          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
+      {{/if}}
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
       
 {{#if this.replies.length}}
@@ -299,6 +302,9 @@
       </strong>
       <small>{{timeAgo this.createdAt}}</small>
       <p style="padding: 10px;">{{this.comment}}</p>
+      {{#if this.img}}
+          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
+      {{/if}}
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
       
 
