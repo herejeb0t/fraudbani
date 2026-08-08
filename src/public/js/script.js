@@ -8,14 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-<<<<<<< HEAD
   const subir = document.querySelector('.subir');
   const shareBtns = document.querySelectorAll('.share');
 
   const sharePage = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'Fraudbani',
+        title: '',
         text: 'Chécalo 👀',
         url: window.location.href
       })
@@ -30,20 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
       share.addEventListener('click', () => {
         sharePage()
       })
-=======
-const subir = document.querySelector('.subir');
-const shareBtns = document.querySelectorAll('.share');
-
-const sharePage = () => {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Fraudbani',
-      text: 'Chécalo 👀',
-      url: window.location.href
->>>>>>> cf583bd51630a0cb599655a4854864636e253796
     })
   }
-<<<<<<< HEAD
 
   if (subir) {
     window.addEventListener('scroll', function () {
@@ -58,34 +45,6 @@ const sharePage = () => {
       window.scrollTo(0, 0)
     })
   }
-=======
-}
-
-if(shareBtns[0]) {
-  shareBtns.forEach((share) => {
-  share.addEventListener('click', () => { 
-    sharePage()
-    //location.href = './iframe.html'
-  })
-  })
-}
-  
-if(subir) {
-  window.addEventListener('scroll', function () {
-  if (window.scrollY > 1000) {
-    subir.style = 'display: block;'
-  } else {
-    subir.style = 'display: none;'
-  }
-  })
-  
-  subir.addEventListener('click', () => { 
-    window.scrollTo(0,0)
-    //location.href = './iframe.html'
-  })
-}
-
->>>>>>> cf583bd51630a0cb599655a4854864636e253796
 
   const stars = document.querySelectorAll('#rating i')
   const ratingInput = document.getElementById('rating-value')
@@ -231,7 +190,6 @@ if(subir) {
   });
 
   document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
-<<<<<<< HEAD
 })
 
 // ── Fuera del DOMContentLoaded: estado y lógica de comentarios ──
@@ -323,7 +281,3 @@ async function loadComments(page = 1) {
     console.error(err)
   }
 }
-=======
-  
-})
->>>>>>> cf583bd51630a0cb599655a4854864636e253796

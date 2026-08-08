@@ -279,32 +279,10 @@
     
     <br>
   {{/each}}
-
     <a id="showAllBtn" class="sendCommentBtn poppinsLabel" style="display: block; border: none; background: none; color: #a07cfa; text-align: center; text-decoration: none;">Mostrar todos los comentarios</a>
-<<<<<<< HEAD
-=======
-  {{/if}}
-</div>
-<div class="allComments" id="allComments" style="display:none">
-  {{#each commentsAll}}
-    <div class="comment" style="padding: 15px;">
-      <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
-      <strong style="padding: 15px;">
-        {{this.name}}
-        {{{devBadge this.itsAFraudbaniDev}}}
-      </strong>
-      <small>{{timeAgo this.createdAt}}</small>
-      <p style="padding: 10px;">{{this.comment}}</p>
-      {{#if this.img}}
-          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
-      {{/if}}
-      <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
-      
->>>>>>> cf583bd51630a0cb599655a4854864636e253796
 
 </div>
-          
-        </div>
+                  
 
          <div class="allComments" id="allComments" style="display:none">
   <div class="commentsContainer" id="commentsContainer" style="padding: 20px;"></div>
