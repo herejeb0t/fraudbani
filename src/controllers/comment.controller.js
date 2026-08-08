@@ -1,4 +1,4 @@
-import Comment from '../models/comment.js'
+import { Comment } from '../models/index.js'
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import fs from 'fs/promises'
@@ -67,143 +67,40 @@ const cleanComment = sanitize(req.body.comment, {
     res.status(400).json({ error });
   }
 }
-/*
-const updateImage = async(req, res) => {
-  const { collection, id } = req.params
 
-  let model;
+const getComments = async (req, res) => {
+  const page = Math.max(1, parseInt(req.query.page) || 1)
+  const limit = 10
+  const skip = (page - 1) * limit
 
-  switch ( collection ) {
-    case 'usuarios':
-      model = await Usuario.findById(id)
-      if ( !model ) {
-        return res.status(400).json({
-          msg: `No existe un usuario con id: ${ id }`
-        })
-      }
-      
-      break;
+  const [comments, total] = await Promise.all([
+    Comment.find({ parent: null })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean(),
+    Comment.countDocuments({ parent: null })
+  ])
 
-      case 'productos':
-        model = await Product.findById(id)
-        if ( !model ) {
-          return res.status(400).json({
-            msg: `No existe un producto con id: ${ id }`
-          })
-        }
-        
-        break;
-  
-    default:
-      res.status(500).json({ msg: 'No validado!' })
-  }
+  const commentIds = comments.map(c => c._id)
+  const replies = await Comment.find({ parent: { $in: commentIds } }).lean()
 
-  //Eliminar imágenes previas
-  if ( model.img ) {
-    const imgPath = join( __dirname, '../uploads', collection, model.img )
-    if ( fs.existsSync( imgPath ) ) {
-      fs.unlinkSync( imgPath )
-    }
-  }
+  const repliesMap = {}
+  replies.forEach(r => {
+    if (!repliesMap[r.parent]) repliesMap[r.parent] = []
+    repliesMap[r.parent].push(r)
+  })
+  comments.forEach(c => { c.replies = repliesMap[c._id] || [] })
 
-  const nombre = await fileUpload(req.files, undefined, collection );
-  model.img = nombre
-
-  await model.save()
-
-  res.json({ model })
+  res.json({
+    comments,
+    page,
+    totalPages: Math.ceil(total / limit)
+  })
 }
 
-const updateImageCloudinary = async(req, res) => {
-  const { collection, id } = req.params
-
-  let model;
-
-  switch ( collection ) {
-    case 'usuarios':
-      model = await Usuario.findById(id)
-      if ( !model ) {
-        return res.status(400).json({
-          msg: `No existe un usuario con id: ${ id }`
-        })
-      }
-      
-      break;
-
-      case 'productos':
-        model = await Product.findById(id)
-        if ( !model ) {
-          return res.status(400).json({
-            msg: `No existe un producto con id: ${ id }`
-          })
-        }
-        
-        break;
-  
-    default:
-      res.status(500).json({ msg: 'No validado!' })
-  }
-
-  //Eliminar imágenes previas
-  if ( model.img ) {
-    const nombreArr = model.img.split('/')
-  }
-
-  const { tempFilePath } = req.files.file
-  const { secure_url } = await cloudinaryv2.uploader.upload( tempFilePath )
-
-  model.img = secure_url
-  await model.save()
-
-  res.json({ model })
-
-}
-
-const showImage = async(req, res) => {
-  const { collection, id } = req.params
-
-  let model;
-
-  switch ( collection ) {
-    case 'usuarios':
-      model = await Usuario.findById(id)
-      if ( !model ) {
-        return res.status(400).json({
-          msg: `No existe un usuario con id: ${ id }`
-        })
-      }
-      
-      break;
-
-      case 'productos':
-        model = await Product.findById(id)
-        if ( !model ) {
-          return res.status(400).json({
-            msg: `No existe un producto con id: ${ id }`
-          })
-        }
-        
-        break;
-  
-    default:
-      res.status(500).json({ msg: 'No validado!' })
-  }
-
-  //Eliminar imágenes previas
-  if ( model.img ) {
-    const imgPath = join( __dirname, '../uploads', collection, model.img )
-    if ( fs.existsSync( imgPath ) ) {
-      return res.sendFile( imgPath )
-    }
-  }
-
-  res.sendFile( join( __dirname, '../assets/noImage.jpg' ) )
-}
-*/
 export {
+  getComments,
   loadFile,
-  /*updateImage,
-  updateImageCloudinary,
-  showImage*/
 }
 

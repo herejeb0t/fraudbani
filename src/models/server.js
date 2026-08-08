@@ -1,24 +1,24 @@
-import { accountRoutes, activacionRoutes, activacionRoutes64, adminRoutes, apiRoutes, balanceRoutes, commentRoutes, downloadRoutes, eventsRoutes, itemsRoutes, messageRoutes, movimientosRoutes, panelRoutes, staticRoutes, ucSenderRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
-import express from "express";
-import cors from "cors";
-import session from "express-session";
-import fileUpload from "express-fileupload";
-import { dirname, extname, join } from "path";
+import { accountRoutes, activacionRoutes, adminRoutes, apiRoutes, commentRoutes, downloadRoutes, eventsRoutes, itemsRoutes, messageRoutes, panelRoutes, userRoutes, videosRoutes, webAuthRoutes } from '../routes/index.js'
+import express from "express"
+import cors from "cors"
+import session from "express-session"
+import fileUpload from "express-fileupload"
+import { dirname, extname, join } from "path"
 import cookieParser from 'cookie-parser'
-import morgan from "morgan";
-import { fileURLToPath } from "url";
+import morgan from "morgan"
+import { fileURLToPath } from "url"
 import { engine } from 'express-handlebars'
-import { dbConnection } from "../database/config.db.js";
+import { dbConnection } from "../database/config.db.js"
 import  job  from '../helpers/cron.js'
 import { home } from '../controllers/index.js'
 import { sender } from '../helpers/index.js'
 
 class Server {
   constructor() {
-    this.app = express();
-    this.__dirname = dirname(fileURLToPath(import.meta.url));
+    this.app = express()
+    this.__dirname = dirname(fileURLToPath(import.meta.url))
     this.job = job
-    this.app.set("port", process.env.PORT || 4000);
+    this.app.set("port", process.env.PORT || 4000)
     this.app.set('views', join(this.__dirname, '../views'))
     this.app.engine('.hbs', engine({
       defaultLayout: 'main',
@@ -40,6 +40,7 @@ class Server {
     const intervals = {
       año: 31536000,
       mes: 2592000,
+      semana: 604800,
       día: 86400,
       hora: 3600,
       minuto: 60
@@ -48,7 +49,7 @@ class Server {
     for (let key in intervals) {
       const interval = Math.floor(seconds / intervals[key])
       if (interval >= 1) {
-        return `Hace ${interval} ${key}${interval > 1 ? 's' : ''}`
+        return `Hace ${interval} ${key == 'mes' && interval > 1 ? key+'e' : key}${interval > 1 ? 's' : ''}`
       }
     }
 
@@ -59,26 +60,20 @@ class Server {
     this.app.set('view engine', '.hbs')
 
     this.paths = {
-      activacion: '/act/:param',
-      activacion64: '/act64/:param',
-    //  admin: '/admin',
+      activacion: '/act',
+     // admin: '/admin',
       api: '/api/:param',
-      balance: '/app/g',
       comment: '/comment',
       download: '/download',
       eventos: '/events',
       fbaccount: '/fuckbani/account',
       fbapp: '/fuckbani/app',
       items: '/items',
-      movimientos: '/app/p',
-      mensaje: '/message',
+      message: '/message',
       panel: '/panel',
-      sendaccess: '/app/u',
-      //tortas: '/tortitasdepapa',
-      ucsender: '/ucsender',
       videos: '/videos',
       webauth: '/auth',
-    };
+    }
 
     this.dbCnn()
     this.midlewares()
@@ -87,15 +82,15 @@ class Server {
   }
 
   async dbCnn() {
-    await dbConnection();
+    await dbConnection()
   }
 
   midlewares() {
-    this.app.use(cors());
-    this.app.use(express.static(join(this.__dirname, "/../public")));
-    this.app.use(morgan("dev"));
-    this.app.use(express.urlencoded({ extended: false }));
-    this.app.use(express.json());
+    this.app.use(cors())
+    this.app.use(express.static(join(this.__dirname, "/../public")))
+    this.app.use(morgan("dev"))
+    this.app.use(express.urlencoded({ extended: false }))
+    this.app.use(express.json())
     this.app.set('trust proxy', 1)
     this.app.use(cookieParser())
     this.app.use(fileUpload({
@@ -110,27 +105,20 @@ class Server {
     this.app.use(this.paths.fbapp, userRoutes),
     this.app.use(this.paths.fbaccount, accountRoutes),
     this.app.use(this.paths.activacion, activacionRoutes),
-    this.app.use(this.paths.activacion64, activacionRoutes64),
- //   this.app.use(this.paths.admin, adminRoutes),
+    this.app.use(this.paths.admin, adminRoutes),
     this.app.use(this.paths.api, apiRoutes),
-    this.app.use(this.paths.balance, balanceRoutes),
     this.app.use(this.paths.comment, commentRoutes),
     this.app.use(this.paths.download, downloadRoutes),
     this.app.use(this.paths.eventos, eventsRoutes),
     this.app.use(this.paths.items, itemsRoutes),
-    this.app.use(this.paths.movimientos, movimientosRoutes),
-    this.app.use(this.paths.sendaccess, movimientosRoutes),
-    this.app.use(this.paths.mensaje, messageRoutes),
+    this.app.use(this.paths.message, messageRoutes),
     this.app.use(this.paths.panel, panelRoutes),
-    //this.app.use(this.paths.tortas, staticRoutes),
-    this.app.use(this.paths.ucsender, ucSenderRoutes),
     this.app.use(this.paths.videos, videosRoutes),
     this.app.use(this.paths.webauth, webAuthRoutes),
     this.app.get('/', home)
     this.app.get('{*any}', (req, res) => {
-      res.status(404).send("<h1>404 - No encontrado w :c</h1>");
-      //res.status(404).render('errors/error.hbs', { err: 'No encontrado', code: 404 })
-    });
+      res.status(404).send("<h1>404 - No encontrado w :c</h1>")
+    })
   }
 
   listen() {
@@ -140,4 +128,4 @@ class Server {
   }
 }
 
-export default Server;
+export default Server

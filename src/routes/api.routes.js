@@ -30,6 +30,12 @@ router.post('/:m/rates/v3', ratesV3)
 
 //Rutas /app/p/
 
+//router.post('/:p/check/pin', checkPin)
+
+//router.post('/:p/verifyPin', verifyPin)
+
+router.post('/:p/userkeys', userKeys)
+
 router.post('/:m/processActions/v2', processActions)
 
 router.post('/:m/send/access', sendAccess)

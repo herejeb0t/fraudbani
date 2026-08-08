@@ -1,51 +1,42 @@
-import Comment from '../models/comment.js'
+import { Comment } from '../models/index.js'
 import { encrypt, decrypt, sender } from '../helpers/index.js'
 
 const home = async (req, res) => {
-  const raw = req.headers['x-forwarded-for'] 
-    || req.connection.remoteAddress 
-    || ''
+  const raw = req.headers['x-forwarded-for'] || req.connection.remoteAddress || ''
   const ip = raw.split(',')[0].trim()
-      sender(`Visitó index --> ${ip}`)
-      
-  const comments = await Comment.find({ parent: null })
-  .sort({ createdAt: -1 }) // más recientes primero
-  .lean();
-  
-  const commentIds = comments.map(c => c._id)
+  sender(`Visitó index --> ${ip}`)
 
-  const replies = await Comment.find({
-  parent: { $in: commentIds }
-}).lean()
+  // Solo trae 3 para el preview, con sus replies
+  const commentsPreview = await Comment.find({ parent: null })
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .lean()
 
-// agrupar respuestas
-const repliesMap = {}
+  const previewIds = commentsPreview.map(c => c._id)
+  const previewReplies = await Comment.find({ parent: { $in: previewIds } }).lean()
 
-replies.forEach(r => {
-  if (!repliesMap[r.parent]) repliesMap[r.parent] = []
-  repliesMap[r.parent].push(r)
-})
+  const repliesMap = {}
+  previewReplies.forEach(r => {
+    if (!repliesMap[r.parent]) repliesMap[r.parent] = []
+    repliesMap[r.parent].push(r)
+  })
+  commentsPreview.forEach(c => { c.replies = repliesMap[c._id] || [] })
 
-// insertar respuestas en cada comentario
-comments.forEach(c => {
-  c.replies = repliesMap[c._id] || []
-})
-  
-  const rawAvg =
-  comments.reduce((sum, c) => sum + (c.rating || 0), 0) /
-  (comments.length || 1)
+  // Solo para el avg, no necesitas traer los documentos completos
+  const [avgResult] = await Comment.aggregate([
+    { $match: { parent: null } },
+    { $group: { _id: null, avg: { $avg: '$rating' } } }
+  ])
+  const avgRating = Number((avgResult?.avg || 0).toFixed(1))
 
-const avgRating = Number(rawAvg.toFixed(1));
-//console.log(encrypt(''))
-res.render("index", {
-  commentsPreview: comments.slice(0, 3),
-  commentsAll: comments,
-  avgRating,
-  hmBtns: true,
-  isIndex: true
-});
-
-
+  res.render("index", {
+    commentsPreview,
+    hasMore: true, // bandera para saber si hay más
+    avgRating,
+    shrBtn: true,
+    upBtn: true,
+    isIndex: true
+  })
 }
 
 export default home

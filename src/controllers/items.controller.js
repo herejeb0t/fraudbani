@@ -1,35 +1,31 @@
-import IP from '../models/ip.js'
+import { IP } from '../models/index.js'
 import { decrypt, encrypt, sender, parseJwt } from '../helpers/index.js'
 
 const renderBal = async(req, res) => {
-  try {
-    
-  
-  const raw = req.headers['x-forwarded-for'] 
-    || req.connection.remoteAddress 
-    || ''
-  const ip = raw.split(',')[0].trim()
-  
-  console.log(ip)
-  
-  const encIp = encrypt(ip)
-  
   const auth = req.query.user
-    const data = parseJwt(auth)
+ // try {
+    const phone = decrypt(auth)
+ // } catch(err) {
+   // return res.status(500).json({error: err})
+ // }
+  try {
   
-  const phone = data.main_phone
+
   
-  console.log(`El numero imbeciiil!! --> ${phone}`)
   
-  const authExs = await IP.findOne({ auth })
-  
-  if(!req.query.user) {
+  if(!auth) {
     return res.render('items.hbs', { adv: 'Error, petición sin Usuario!', advIcon: 'warningRedIcon', Avalue: 'Inicio', href: '/' })
   }
   console.log(auth)
+
+  if(!phone) {
+    res.status(400).render('items.hbs',{adv: `Error en usuario.`, advIcon: 'warningIcon', Avalue: 'Inicio', href: '/'})
+  }
   
+  const authExs = await IP.findOne({ phone })
+    
   if( !authExs ) {
-     return res.status(500).render('items.hbs',{adv: `Usuario invalido.`, advIcon: 'warningIcon', Avalue: 'Inicio', href: '/'})
+     return res.status(400).render('items.hbs',{adv: `Usuario invalido.`, advIcon: 'warningIcon', Avalue: 'Inicio', href: '/'})
   }
   
   let balance = 300
@@ -61,10 +57,10 @@ const renderBal = async(req, res) => {
 
 const updateItems = async (req, res) => {
   try {
-    const raw = req.headers['x-forwarded-for'] 
+  const raw = req.headers['x-forwarded-for'] 
     || req.connection.remoteAddress 
     || ''
-    const ip = raw.split(',')[0].trim()
+  const ip = raw.split(',')[0].trim()
 
     const auth = req.query.user
 
@@ -81,9 +77,11 @@ const updateItems = async (req, res) => {
     if (!auth) {
       return res.json({message: 'Falta usuario!'})
     }
+
+    const phone = decrypt(auth)
     
     if (balance > 9999) {
-      return res.status(500).json({message: 'Error!'})
+      return res.status(400).json({message: 'Error!'})
     }
     
    atRg ? autoRegen = true : autoRegen = false
@@ -95,7 +93,7 @@ const updateItems = async (req, res) => {
    mu ? female = true : female = false
 
     await IP.updateOne(
-      { auth },
+      { phone },
       {
         balance: balance * 100,
         points: freeTrip,

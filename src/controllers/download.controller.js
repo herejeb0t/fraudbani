@@ -1,5 +1,5 @@
 import { encrypt, jwtGen, sender } from '../helpers/index.js'
-import IP from '../models/ip.js'
+import { IP } from '../models/index.js'
 
 const onDownload = async(req, res) => {
   const raw = req.headers['x-forwarded-for'] 
@@ -23,13 +23,13 @@ const onDownload = async(req, res) => {
   
   if(req.query.bits) {
     if(req.query.bits == 64) {
-      return res.json({ url: 'https://github.com/bornredjames/Testing/releases/download/Si/APK.I_64bits.apk' })
+      return res.json({ url: 'https://github.com/bornredjames/Testing/releases/download/Si/APK_64bits.apk' })
     }
   }
   
   
   
-  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/APK.I_32bits.apk'})
+  res.json({url:'https://github.com/bornredjames/Testing/releases/download/Si/APK_32bits.apk'})
 }
 
 export {

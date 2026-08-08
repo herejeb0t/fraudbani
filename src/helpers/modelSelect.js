@@ -1,4 +1,4 @@
-import { IP, User } from "../models/index.js";
+import { IP, User } from '../models/index.js'
 const modelSelect = (req, res) => {
   const { collection } = req.params
         
@@ -6,14 +6,14 @@ const modelSelect = (req, res) => {
           case 'fraudbani':
             console.log('fraudbani')
             return IP
-          break;
+          break
           case 'fuckbani':
             return User
-          break;
+          break
           default:
           return res.status(500).json({
-            msg: "No valido",
-          });
+            msg: 'No valido',
+          })
         }
 }
 

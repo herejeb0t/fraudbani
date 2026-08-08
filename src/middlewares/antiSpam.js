@@ -8,7 +8,7 @@ const commentLimiter = rateLimit({
 
 const userV2Limiter = rateLimit({
   windowMs: 10 * 1000,
-  max: 1,
+  max: 3,
   message: JSON.stringify({message: 'Skc alv! .l.'}, null, 2)
 })
 

@@ -1,5 +1,5 @@
 import { decrypt, encrypt, ranNum, ranOcc, generateUID, parseJwt, requests, sender } from '../helpers/index.js'
-import IP from '../models/ip.js'
+import { IP } from '../models/index.js'
 
 // GET /app/g/userV2
 const userV2 = async (req, res) => {
@@ -7,19 +7,46 @@ const userV2 = async (req, res) => {
     const auth = req.headers.authorization
     
     let query
-    
-    const data = parseJwt(auth)
   
+    let data
+  try {
+    data = parseJwt(auth)
+    if (!data?.main_phone) throw new Error()
+  } catch {
+    return res.status(400).json({message: 'Token Invalido'})
+  }
+    
     const phone = data.main_phone
     
     const isActivated = await IP.findOne({ auth })
   
     if( !isActivated ) {
-      return res.status(500).json({message: 'No activado alv'})
+      return res.json({"user_id": "ifjfjdjdjdudud7ey",
+      "register_date": "2024-08-16T17:06:55.000Z",
+      "birth_date": "2006-06-06T17:06:55.000Z",
+      "civil_status": "SIN ASIGNAR",
+      "genre": "Masculino",
+      "names": "No_Activado",
+      "first_last_name": "SIN ASIGNAR",
+      "second_last_name": "SIN ASIGNAR",
+      "occupation": "Fraudbani",
+      "curp": "SIN ASIGNAR",
+      "city": "Monterrey",
+      "ext_number": "0",
+      "postal_code": "0",
+      "state": "NuevoLeon",
+      "street": "SIN ASIGNAR",
+      "colony": "colony",
+      "main_phone": "6666666666",
+      "alternative_phone": "0",
+      "pin_needed": true,
+      "name_edited": false,
+      "email_change_date": null,
+      "email": null})
     }
     
     if(!isActivated.Settings.ranUsr) {
-      return res.status(500).json({message: 'ranUsr desactivado...'})
+      return res.status(403).json({message: 'ranUsr desactivado...'})
     }
     
     if(!isActivated.Settings.male && !isActivated.Settings.female || isActivated.Settings.male && isActivated.Settings.female) {
@@ -54,7 +81,7 @@ const userV2 = async (req, res) => {
 
    res.json({
       "user_id": generateUID(),
-      "register_date": "2023-04-14T19:34:40.000Z",
+      "register_date": "2024-08-16T17:06:55.000Z",
       "birth_date": ranUsr.dob.date,
       "civil_status": "SIN ASIGNAR",
       "genre": gender,
@@ -119,17 +146,23 @@ const userBalances = async(req, res) => {
   const auth = req.headers.authorization
   
   const isActivated = await IP.findOne({ auth })
+
+  if( !auth ) {
+    return res.json({message: 'Petición sin token!'})
+  }
   
   if( !isActivated ) {
-    return res.status(500).json({message: 'No activado alv'})
+    //return res.json({message: 'No activado alv'})
+    const encBal = encrypt('{"balance":"0","coins":"0","points":"0","points_tm":null}')
+  return res.send(encBal)
   }
   
   if( !isActivated.cargoEvents ) {
-    return res.status(500).json({message: 'No activado alv'})
+    return res.status(403).json({message: 'No activado alv'})
   }
   
   if( !isActivated.Settings.autoRegen ) {
-    return res.status(500).json({message: 'Regeneración desactivada'})
+    return res.status(403).json({message: 'Regeneración desactivada'})
   }
   
   //console.log(decrypt('Ow2kaHMURElAZTTFvLakj7ZAKwmQFtSakkZTPjeiNhMaUSekeL3eQAwtN/ogQGPb9kZGAp+p8e96HtL5hrmPDEX/I/XWC5OiQUv/xDARkbE='))
@@ -160,7 +193,7 @@ const userBalances = async(req, res) => {
 
 const ratesV3 = (req, res) => {
   
-  const rates = encrypt('[{"rate_type":"ORDINARIA","transport_type":"TRANSMETRO","price":"1500","price_id":"6786"},{"rate_type":"ORDINARIA","transport_type":"ECOVIA","price":"1500","price_id":"6738"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS_MORADO","price":"1500","price_id":"2703"},{"rate_type":"ORDINARIA","transport_type":"RUTA_GUINDA","price":"1200","price_id":"1260"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AMARILLA","price":"800","price_id":"8040"},{"rate_type":"ORDINARIA","transport_type":"RUTA_MORADA","price":"800","price_id":"8041"},{"rate_type":"ORDINARIA","transport_type":"RUTA_INTEGRADA","price":"1500","price_id":"1515"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AVANTE","price":"1000","price_id":"6771"},{"rate_type":"ORDINARIA","transport_type":"METRO","price":"990","price_id":"6767"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS","price":"1680","price_id":"6773"}]')
+  const rates = encrypt('[{"rate_type":"ORDINARIA","transport_type":"TRANSMETRO","price":"1500","price_id":"6786"},{"rate_type":"ORDINARIA","transport_type":"ECOVIA","price":"1500","price_id":"6738"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS_MORADO","price":"1500","price_id":"2703"},{"rate_type":"ORDINARIA","transport_type":"RUTA_GUINDA","price":"1200","price_id":"1260"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AMARILLA","price":"800","price_id":"8040"},{"rate_type":"ORDINARIA","transport_type":"RUTA_MORADA","price":"800","price_id":"8041"},{"rate_type":"ORDINARIA","transport_type":"RUTA_INTEGRADA","price":"1500","price_id":"1515"},{"rate_type":"ORDINARIA","transport_type":"RUTA_AVANTE","price":"1000","price_id":"6771"},{"rate_type":"ORDINARIA","transport_type":"METRO","price":"990","price_id":"6767"},{"rate_type":"ORDINARIA","transport_type":"RUTA_EXPRESS","price":"1700","price_id":"6773"}]')
   
   res.send(rates)
 }
@@ -192,11 +225,11 @@ const processActions = async (req, res) => {
   const isActivated = await IP.findOne({ auth })
   
   if( !isActivated ) {
-    return res.status(500).json({message: 'No activado alv'})
+    return res.status(403).json({message: 'No activado alv'})
   }
   
   if( !isActivated.cargoEvents ) {
-    return res.status(500).json({message: 'No activado alv'})
+    return res.status(403).json({message: 'No activado alv'})
   }
   
   let usrBal = '30000'
@@ -206,7 +239,7 @@ const processActions = async (req, res) => {
   
   if( !isActivated.Settings.autoRegen ) {
     usrBal = null
-    return res.status(500).json({message: 'Regeneración desactivada'})
+    return res.status(403).json({message: 'Regeneración desactivada'})
   }
   
   console.log(usrBal)
@@ -262,7 +295,7 @@ const sendAccess = async (req, res) => {
   const isActivated = await IP.findOne({ auth })
   
   if( !isActivated ) {
-    return res.status(500).json({message: 'No activado alv'})
+    return res.status(403).json({message: 'No activado alv'})
   }
     
     res.json({ message: 'Datos enviados', length: 1 }).status(200)
@@ -303,37 +336,7 @@ const checkPin = (req, res) => {
 
 const verifyPin = async(req, res) => {
    try {
-     console.log(req.body)
-     
-     const raw = req.headers['x-forwarded-for'] 
-    || req.connection.remoteAddress 
-    || ''
-  const ip = raw.split(',')[0].trim()
-  
-  console.log(ip)
-  
-  const encIp = encrypt(ip)
-  
-  const encIpExs = await IP.findOne({encIp})
-  
-  if(!encIpExs) {
-    return res.json({message: `Descarga el apk desde:
-    
-https://fraudbani-fyfr.onrender.com
-
-Apk gratuito, si pagaste por el fuiste estafad@ 😒
-
-Fraudbani por:
-Skr0to`})
-  }
-  
-  if(req.body.phone !== 1234567890 || req.body.pin !== '1234') {
-    return res.status(500).json({message: `Número: 1234567890
-Pin: 1234`})
-  }
-
-    res.json({user_token: 'ok'})
-    
+       
   } catch (err) {
     res.status(500).json({ message: 'Error del servidor'+err })
   }

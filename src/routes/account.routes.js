@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { checkPinFB, loginFB, signUpFB, verifyPinFB } from '../controllers/index.js'
-import { body, check } from "express-validator"
+import { check } from "express-validator"
 import { fieldVal } from '../middlewares/index.js'
 const router = Router()
 

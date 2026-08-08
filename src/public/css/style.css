@@ -608,40 +608,46 @@ body .main .commentsDiv .newComment .sendCommentBtn {
 body .main .commentsDiv .newComment .sendCommentBtn:hover {
   opacity: .8;
 }
-body .main .commentsDiv .viewComments {
+.viewComments {
   padding: 20px;
 }
-body .main .commentsDiv .viewComments i {
+.viewComments i {
   color: #000;
 }
-body .main .commentsDiv .viewComments .comment {
+.comment {
   background: #E1D4FF;
   border-radius: 10px;
   font-family: InterMedium;
   color: #444;
   padding: 10px;
 }
-body .main .commentsDiv .viewComments .comment img {
+.comment img {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
-body .main .commentsDiv .allComments {
+.cctrlBtn {
+  background: #E1D4FF;
+  border: none;
+  border-radius: 10px;
+  padding: 3px 10px;
+}
+/*body .main .commentsDiv .allComments {
   padding: 20px;
 }
-body .main .commentsDiv .allComments i {
+body .main .commentsDiv .allComments .commentsContainer i {
   color: #000;
 }
-body .main .commentsDiv .allComments .comment {
+body .main .commentsDiv .allComments .commentsContainer .comment {
   background: #E1D4FF;
   border-radius: 10px;
   color: #444;
   font-family: InterMedium;
   padding: 10px;
 }
-body .main .commentsDiv .allComments .comment img {
+body .main .commentsDiv .allComments .commentsContainer .comment img {
   aspect-ratio: 1/1;
   object-fit: cover;
-}
+}*/
 .replies {
   animation: fadeIn 0.2s ease;
   margin-left: 40px;
@@ -663,7 +669,6 @@ body .main .commentsDiv .allComments .comment img {
 }
 .replyForm input, textarea {
   animation: fadeIn 0.2s ease;
-  //background: #ede6fe;
   border: none;
   border-bottom: 1px solid #000;
   margin: 5px;
@@ -676,7 +681,6 @@ body .main .commentsDiv .allComments .comment img {
 }
 .replyForm .txtGp button {
   animation: fadeIn 0.2s ease;
-  //aspect-ratio: 1/1;
   background: #A07CFA;
   border: none;
   border-radius: 125px;
@@ -864,7 +868,7 @@ body .fot footer .fotContent .byTag {
   padding: 0 4px;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
   body header {
     display: block;
   }

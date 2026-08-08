@@ -35,7 +35,8 @@ const getUsers = async(req, res) => {
     return res.render('user/usersList.hbs', {
       total,
       users: usersFormatted, 
-      showNameColumn
+      showNameColumn,
+      upBtn: true
     })
     
   } catch (err) {

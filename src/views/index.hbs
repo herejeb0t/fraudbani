@@ -99,35 +99,26 @@
             <ul class="poppinsText">
               <li>Cierra sesión en urbani en caso de tener sesión activa.</li>
               <li>Desinstala la app oficial.</li>
-              <li><a class="instDwn" style="color: #A07CFA; text-decoration: none;"><b>Descarga</b></a> e instala <b>Fraudbani APK I</b>.</li>
-              <li>Inicia sesión en tu cuenta.</li>
-              <li>Ve a la sección de boletos <b>METRORREY</b>.</li>
-              <li>Toca <b>ADQUIERE TU PASAJE</b></li>
+              <li><a class="instDwn" style="color: #A07CFA; text-decoration: none;"><b>Descarga</b></a> e instala el <b>APK</b>.</li>
+              <li>Ve a <b>Mi Ciudad</b> > <b>Urbani TV</b></li>
+              <li>Toca el botón <b>"Mira el video completo en YouTube"</b> para activar tu usuario.</li>
             </ul>
+            <br>
             <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
-              <img style="margin: 0; width: 110px;" src="/./img/insThumb_1.png">
+              <img style="margin: 0; width: 110px;" src="/./img/ss.jpg">
             </div>
             <br>
             <ul class="poppinsText">
-              <li>Toca el botón <b>Ver Tutorial</b> para abrir el activador (si tu <b>APK I</b> no está activado el <b>APK II</b> no funcionará).</li>
+              <li>Si tu usuario se activó te debe de salir el letrero de activado.</li>
             </ul>
+            <br>
             <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
-              <img style="margin: 0; width: 120px;" src="/./img/insThumb_2.jpg">
+              <img style="margin: 0; width: 110px;" src="/./img/ss1.jpg">
             </div>
             <br>
             <ul class="poppinsText">
-              <li>Una vez activado descarga el <b>APK II</b> del botón <b>Descargar APK II.</b></li>
+              <li>Cierra y abre la app.</li>
             </ul>
-            <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
-              <img style="margin: 0; width: 110px;" src="/./img/insThumb_3.jpg">
-            </div>
-            <br>
-            <ul class="poppinsText">
-              <li>Sin desinstalar el <b>APK I</b> instala el <b>APK II</b> con el botón <b>Actualizar</b>.</li>
-            </ul>
-            <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
-              <img style="margin: 0; width: 110px;" src="/./img/insThumb_4.jpg">
-            </div>
             <br>
             <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Y listo, si te sirvió <a class="share" style="color: #A07CFA; text-decoration: none;"><b>comparte</b></a> con más gente a la que le pueda servir.</p>
             <br>
@@ -140,16 +131,17 @@
             </ul>
             <br>
               <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
-              <img style="margin: 0; width: 110px;" src="/./img/ss1.jpg">
+              <img style="margin: 0; width: 110px;" src="/./img/ss2.jpg">
             </div>
             <br>
             <ul class="poppinsText">
               <li>Haz los cambios que quieras y toca el botón <b>Guardar</b>.</li>
             </ul>
               <div style="align-items: center; justify-content: center; display: flex; width: 100%;">
-              <img style="margin: 0; width: 110px;" src="/./img/ss.jpg">
+              <img style="margin: 0; width: 110px;" src="/./img/ss3.jpg">
             </div>
             <br>
+            <p class="poppinsText" style="font-size: .6rem; padding: 15px;"><b>*</b><b>Ojo</b> estás opciones pueden tarder en aparecer cuando acabas de instalar.<b>*</b></p>
           </div>
           
           <br>
@@ -234,6 +226,9 @@
         </strong>
         <small>{{timeAgo this.createdAt}}</small>
       <p class="" style="padding: 10px;">{{this.comment}}</p>
+      {{#if this.img}}
+          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
+      {{/if}}
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
       
 {{#if this.replies.length}}
@@ -285,74 +280,20 @@
     <br>
   {{/each}}
 
-  {{#if commentsAll.length}}
     <a id="showAllBtn" class="sendCommentBtn poppinsLabel" style="display: block; border: none; background: none; color: #a07cfa; text-align: center; text-decoration: none;">Mostrar todos los comentarios</a>
-  {{/if}}
-</div>
-<div class="allComments" id="allComments" style="display:none">
-  {{#each commentsAll}}
-    <div class="comment" style="padding: 15px;">
-      <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
-      <strong style="padding: 15px;">
-        {{this.name}}
-        {{{devBadge this.itsAFraudbaniDev}}}
-      </strong>
-      <small>{{timeAgo this.createdAt}}</small>
-      <p style="padding: 10px;">{{this.comment}}</p>
-      <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
-      
 
-      
-{{#if this.replies.length}}
-
-  <button 
-    class="toggleRepliesBtn replyBtn" 
-    onclick="toggleReplies('{{this._id}}', this)"
-    style="margin-top:10px;"
-  >
-    Ver respuestas ({{this.replies.length}})
-  </button>
-
-  <div class="replies" id="replies-{{this._id}}" style="display:none;">
-    {{#each this.replies}}
-      <div class="reply">
-        <strong>
-          {{this.name}}
-          {{{devBadge this.itsAFraudbaniDev}}}
-        </strong>
-        <small style="margin-left: 15px;">{{timeAgo this.createdAt}}</small>
-        <p>{{this.comment}}</p>
-                {{#if this.img}}
-        <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
-        {{/if}}
-      </div>
-    {{/each}}
-  </div>
-
-{{/if}}
-      
-  <button class="replyBtn" onclick="toggleReply('{{this._id}}', this)">
-    Responder
-  </button>
-
-
-
-
-    </div>
-    
-  <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-{{this._id}}" style="display:none;">
-    <input type="hidden" name="parentId" value="{{this._id}}">
-    <input type="text" name="name" placeholder="Nombre">
-    <div class="txtGp">
-      <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
-      <button style="color: #fff;" type="submit"><b>Enviar</b> </button>
-    </div>
-  </form>
-    <br>
-  {{/each}}
 </div>
           
         </div>
+
+         <div class="allComments" id="allComments" style="display:none">
+  <div class="commentsContainer" id="commentsContainer" style="padding: 20px;"></div>
+  <div class="pagination" style="display:flex; justify-content:center; gap:15px; align-items:center; margin-bottom: 40px;">
+    <button id="commentsPrevBtn" class="cctrlBtn" disabled><i class="bi bi-arrow-left"></i></button>
+<span id="pageInfo" class="poppinsLabel" style="color: #a07cfa"></span>
+<button id="commentsNextBtn" class="cctrlBtn"><i class="bi bi-arrow-right"></i></button>
+  </div>
+         </div>
         
        <div class="thxTo text-center">
           <h6 class="poppinsLabel" style="font-size: .8rem;">No me agradezcan a mí, agradézcanselo a...</h6>

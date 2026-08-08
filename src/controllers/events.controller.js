@@ -1,281 +1,110 @@
-//import { requests } from '../helpers/index.js'
-import IP from '../models/ip.js'
+import crypto from 'crypto';
+import { Event, IP } from '../models/index.js';
+
+const newEvent = async (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      detailedDescription,
+      fin,
+      location,
+      address, // ojo: tu schema usa "address"
+      key,
+      file_name,
+      inicio,
+      mime_type,
+      nameCategory,
+    } = req.body;
+
+    const newEventDoc = new Event({
+      id: crypto.randomUUID(),
+      title,
+      description,
+      detailedDescription,
+      eventDates: {
+        dates: [inicio, fin],       // ajusta según lo que necesites
+        specific: false,
+      },
+      is_active: true,
+      location,
+      address: address,
+      price: '0.00',      // ajusta o agrégalo a los campos destructurados
+      eventVisible: null,
+      media: [
+        {
+          id: crypto.randomUUID(),
+          key: key || 'https://ejemplo.com/placeholder.jpg',
+          file_name,
+          mime_type,
+          file_size: 0,    // ajusta si lo tienes
+          type: 'COVER',
+        },
+        {
+          id: crypto.randomUUID(),
+          key: key || 'https://ejemplo.com/placeholder.jpg',
+          file_name,
+          mime_type,
+          file_size: 0,
+          type: 'DESCRIPTION',
+        },
+      ],
+      category: {
+        id: crypto.randomUUID(),
+        nameCategory,
+        isActive: true,
+      },
+    });
+
+    const savedEvent = await newEventDoc.save();
+
+    return res.status(201).json({
+      message: 'Evento creado correctamente',
+      data: savedEvent,
+    });
+
+  } catch (error) {
+    console.error('Error al guardar el evento:', error);
+
+    if (error.code === 11000) {
+      return res.status(409).json({ message: 'Ya existe un evento con ese id', error: error.keyValue });
+    }
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ message: 'Error de validación', errors: error.errors });
+    }
+
+    return res.status(500).json({ message: 'Error interno al guardar el evento' });
+  }
+};
 
 const getEvents = async(req, res) => {
-  try {/*
-    const resp = await requests(
-      req,
-      `https://urbani-app-eventos-prod.urbani.io/events`,
-      'GET',
-      null
-    )
-    
-    console.log(resp)
-    
-    resp.data.splice(1, 0, {
-  "id": "24157073-4597-4878-9a5b-a5337d2d3e2b",
-"title": "Holuuu",
-"description": "Holu, Lo prometido es deuda 🏴",
-"detailedDescription": "Holu, Lo prometido es deuda 🏴",
-"eventDates": {
-"dates": [
-"2026-06-06T12:00:00Z",
-"2026-12-31T23:59:59Z"
-],
-"specific": false
-},
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z",
-"is_active": true,
-"location": "Fraudbani está vivo c:",
-"address": "Nuevo León",
-"price": "0",
-"media": [
-{
-"id": "39c5e3a8-7a32-49fd-9cd2-285bc4585eed",
-"key": "https://files.catbox.moe/4eroq0.gif",
-"file_name": "4eroq0.gif",
-"mime_type": "image/gif",
-"file_size": 509227,
-"type": "COVER",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-},
-{
-"id": "d86d4e99-b9c7-4e6e-b817-68f44ed92db4",
-"key": "https://files.catbox.moe/4eroq0.gif",
-"file_name": "4eroq0.gif",
-"mime_type": "image/gif",
-"file_size": 960020,
-"type": "DESCRIPTION",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-}
-],
-"category": {
-"id": "17aee0c6-8765-4d7e-b703-8993a5506996",
-"nameCategory": "Aviso",
-"isActive": true,
-"createdAt": "2026-01-08T16:57:13.021Z",
-"updatedAt": "2026-01-08T16:57:13.021Z"
-}
-})
-    
-    res.send(resp)*/
-    
   const auth = req.headers.authorization
   
-  const authExs = await IP.findOne({ auth })
+  try {
     
-  if(authExs) {
-    authExs.cargoEvents = true
-    await authExs.save()
-  }
+    const authExs = await IP.findOne({ auth })
+
+    if(!authExs || !authExs.auth) {
+      const events = await Event.find({toActive: false})
+      return res.json({ data: events })
+    }
     
-    const now = new Date().toISOString()
-  res.json({
-      "data": [
-/*{
-"id": "24157073-4597-4878-9a5b-a5337d2d3e2b",
-"title": "Tu token 👍🏾",
-"description": `Tu token es --> ${req.headers.authorization}`,
-"detailedDescription": `Tu token es --> ${ req.headers.authorization }`,
-"eventDates": {
-"dates": [
-"2026-01-20T12:00:00Z",
-"2026-12-31T23:59:59Z"
-],
-"specific": false
-},
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z",
-"is_active": true,
-"location": "Nuevo León",
-"address": "Nuevo León",
-"price": "100.00",
-"media": [
-{
-"id": "39c5e3a8-7a32-49fd-9cd2-285bc4585eed",
-"key": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Antifa_logo.svg/1280px-Antifa_logo.svg.png",
-"file_name": "1280px-Antifa_logo.svg.png",
-"mime_type": "image/png",
-"file_size": 509227,
-"type": "COVER",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-},
-{
-"id": "d86d4e99-b9c7-4e6e-b817-68f44ed92db4",
-"key": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Antifa_logo.svg/1280px-Antifa_logo.svg.png",
-"file_name": "1280px-Antifa_logo.svg.png",
-"mime_type": "image/png",
-"file_size": 960020,
-"type": "DESCRIPTION",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-}
-],
-"category": {
-"id": "17aee0c6-8765-4d7e-b703-8993a5506996",
-"nameCategory": "Museos",
-"isActive": true,
-"createdAt": "2026-01-08T16:57:13.021Z",
-"updatedAt": "2026-01-08T16:57:13.021Z"
-}
-}, */       
-{
-"id": "25157073-4597-4878-9a5b-a5337d2d3e2b",
-"title": "Holuuu",
-"description": "Holu, estoy vivo 🗣 🏴",
-"detailedDescription": "Holu, estoy vivo 🗣 🏴",
-"eventDates": {
-"dates": [
-now,
-"2026-12-31T23:59:59Z"
-],
-"specific": false
-},
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z",
-"is_active": true,
-"location": "Fraudbani 🐁",
-"address": "Nuevo León",
-"price": "0",
-"media": [
-{
-"id": "37c5e3a8-7a32-49fd-9cd2-285bc4585eed",
-"key": "https://files.catbox.moe/4eroq0.gif",
-"file_name": "4eroq0.gif",
-"mime_type": "image/gif",
-"file_size": 509227,
-"type": "COVER",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-},
-{
-"id": "d96d4e99-b9c7-4e6e-b817-68f44ed92db4",
-"key": "https://files.catbox.moe/4eroq0.gif",
-"file_name": "4eroq0.gif",
-"mime_type": "image/gif",
-"file_size": 960020,
-"type": "DESCRIPTION",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-}
-],
-"category": {
-"id": "17aee0c6-8765-4d7e-b703-8993a5506996",
-"nameCategory": "Aviso",
-"isActive": true,
-"createdAt": "2026-01-08T16:57:13.021Z",
-"updatedAt": "2026-01-08T16:57:13.021Z"
-}
-},
-{
-"id": "29157073-4597-4878-9a5b-a5337d2d3e2b",
-"title": "Mod Gratuito",
-"description": "Por Skr0to",
-"detailedDescription": "Descargado de --> https://fraudbani-fyfr.onrender.com",
-"eventDates": {
-"dates": [
-now,
-"2026-12-31T23:59:59Z"
-],
-"specific": false
-},
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z",
-"is_active": true,
-"location": "By Skr0to",
-"address": "Nuevo León",
-"price": "0",
-"media": [
-{
-"id": "38c5e3a8-7a32-49fd-9cd2-285bc4585eed",
-"key": "https://i.postimg.cc/2SPMZ0wr/IMG-20260420-092547.jpg",
-"file_name": "IMG-20260420-092547.jpg",
-"mime_type": "image/jpg",
-"file_size": 509227,
-"type": "COVER",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-},
-{
-"id": "d06d4e99-b9c7-4e6e-b817-68f44ed92db4",
-"key": "https://i.postimg.cc/2SPMZ0wr/IMG-20260420-092547.jpg",
-"file_name": "IMG-20260420-092547.jpg",
-"mime_type": "image/jpg",
-"file_size": 960020,
-"type": "DESCRIPTION",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-}
-],
-"category": {
-"id": "17aee0c6-8765-4d7e-b703-8993a5506996",
-"nameCategory": "Aviso",
-"isActive": true,
-"createdAt": "2026-01-08T16:57:13.021Z",
-"updatedAt": "2026-01-08T16:57:13.021Z"
-}
-},
-{
-"id": "37157073-4597-4878-9a5b-a5337d2d3e2b",
-"title": "Compartemeee",
-"description": "",
-"detailedDescription": "Comparteme w, no seas así 😒",
-"eventDates": {
-"dates": [
-now,
-"2026-12-31T23:59:59Z"
-],
-"specific": false
-},
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z",
-"is_active": true,
-"location": "Sin miedo Ql@ 😾",
-"address": "😾",
-"price": "0",
-"media": [
-{
-"id": "44c5e3a8-7a32-49fd-9cd2-285bc4585eed",
-"key": "https://i.postimg.cc/85mmhdk6/IMG-20260425-080045.jpg",
-"file_name": "IMG-20260425-080045.jpg",
-"mime_type": "image/jpg",
-"file_size": 509227,
-"type": "COVER",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-},
-{
-"id": "d04d4e99-b9c7-4e6e-b817-68f44ed92db4",
-"key": "https://i.postimg.cc/85mmhdk6/IMG-20260425-080045.jpg",
-"file_name": "IMG-20260425-080045.jpg",
-"mime_type": "image/jpg",
-"file_size": 960020,
-"type": "DESCRIPTION",
-"createdAt": "2026-03-03T23:57:13.210Z",
-"updatedAt": "2026-03-03T23:57:13.210Z"
-}
-],
-"category": {
-"id": "17aee0c6-8765-4d7e-b703-8993a5506996",
-"nameCategory": "Aviso",
-"isActive": true,
-"createdAt": "2026-01-08T16:57:13.021Z",
-"updatedAt": "2026-01-08T16:57:13.021Z"
-}
-}
-      ]
-    }) 
+    if(!authExs.cargoEvents) {
+      authExs.cargoEvents = true
+      await authExs.save()
+    }
     
-  } catch(err) {
+    const events = await Event.find({ toActive: true })
+
+  res.json({ data: events })
+
+  } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error API externa" });
   }
 }
 
 export {
-  getEvents
+  getEvents,
+  newEvent
 }

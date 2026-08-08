@@ -11,15 +11,7 @@ const sendMessage = (req, res) => {
 🔌Int. Comp: ${req.query.org}
 🔗URL : ${req.query.at}
 ■■■■■■■■■■■■■■■`
-  } else {
-    const { mensaje, nombre } = req.body
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-
-    if(mensaje) msg = `NUEVO MENSAJE 📨
-👤 De: ${ nombre || 'Anonimo' } 
-🗣 Dice: ${ mensaje }
-🌐 IP: ${ ip }`
-  }
+  } 
   
   sender(msg || 'Sin mensaje', res)
   

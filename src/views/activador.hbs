@@ -12,7 +12,8 @@
 
 <script>
   
-  document.querySelector('header').style = 'display: none;'
-  
+  new URLSearchParams(window.location.search).get('user')
+
+  window.history.replaceState({}, '', '/act')
   
 </script>

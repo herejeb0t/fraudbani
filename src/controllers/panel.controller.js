@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
-import User from '../models/user.js'
-import Transaction from '../models/transactions.js'
+import { Transaction, User } from '../models/index.js'
 import { generateUID } from '../helpers/index.js'
 
 const renderPanel = async (req, res) => {

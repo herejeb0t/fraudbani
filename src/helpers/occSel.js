@@ -6,11 +6,11 @@ const palabras = [
   'Jubilado',
   'Ama de casa',
   'Otro'
-];
+]
 
 const ranOcc = () => {
-  const indice = Math.floor(Math.random() * palabras.length);
-  return palabras[indice];
+  const indice = Math.floor(Math.random() * palabras.length)
+  return palabras[indice]
 }
 
 export default ranOcc

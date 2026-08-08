@@ -1,6 +1,10 @@
 import { model, Schema } from 'mongoose'
 
-const ipSchema = Schema({
+const ipSchema = new Schema({
+  activated: {
+    type: Boolean,
+    default: false
+  },
   encIp: {
     type: String,
     default: null,
