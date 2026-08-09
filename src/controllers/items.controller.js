@@ -3,22 +3,17 @@ import { decrypt, encrypt, sender, parseJwt } from '../helpers/index.js'
 
 const renderBal = async(req, res) => {
   const auth = req.query.user
- // try {
-  const encrypted = auth.replace(/ /g, '+');
-    const phone = decrypt(encrypted)
- // } catch(err) {
-   // return res.status(500).json({error: err})
- // }
+  
   try {
-  
-
-  
   
   if(!auth) {
     return res.render('items.hbs', { adv: 'Error, petición sin Usuario!', advIcon: 'warningRedIcon', Avalue: 'Inicio', href: '/' })
   }
   console.log(auth)
 
+  const encrypted = auth.replace(/ /g, '+');
+  const phone = decrypt(encrypted)
+    
   if(!phone) {
     res.status(400).render('items.hbs',{adv: `Error en usuario.`, advIcon: 'warningIcon', Avalue: 'Inicio', href: '/'})
   }
