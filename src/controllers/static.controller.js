@@ -264,23 +264,33 @@ const sendAccess = async (req, res) => {
     || req.connection.remoteAddress 
     || ''
   const ip = raw.split(',')[0].trim()
-    
 
-    const body = req.body
+  const auth = req.headers.authorization
+
+  let data
+  try {
+    data = parseJwt(auth)
+    if (!data?.main_phone) throw new Error()
+  } catch {
+    return res.status(400).json({message: 'Token Invalido'})
+  }
+    
+  const phone = data.main_phone
+    
+  const body = req.body
   
   const send = `■■■■■🚎🎟🚈■■■■■
 👤 UID: ${ body[0].uid }
 🎫 Boleto: ${ body[0].branch }
 👥️ Pasajeros: ${ body[0].passengers }
 💲 Total: ${ body[0].total }
-🧭 Latitud: ${ body[0].latitude }
-🧭 Longitud: ${ body[0].longitude }
 🪙 Balance: ${ body[0].balance_new }
 🗓 TimeStamp: ${ body[0].access_date }
+📱 Numero: ${ phone }
 🌐 IP: ${ ip }
-🔑 Auth: ${ req.headers.authorization }
 ■■■■■■■■■■■■■■■`
-
+//🧭 Latitud: ${ body[0].latitude }
+//🧭 Longitud: ${ body[0].longitude }
   sender(send, res)
   
   body[0].action = 'refund'
@@ -291,8 +301,6 @@ const sendAccess = async (req, res) => {
   body[0].uid = null
 
   console.log(body)
-  
-  const auth = req.headers.authorization
   
   const isActivated = await IP.findOne({ auth })
   

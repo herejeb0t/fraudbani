@@ -102,7 +102,7 @@ const updateItems = async (req, res) => {
       }
     )
     
-    sender(`${auth} cambió sus items a $ ${balance} y 🎫 ${freeTrip}
+    sender(`${phone} cambió sus items a $ ${balance} y 🎫 ${freeTrip}
 From: ${ip}`)
 
     res.redirect(`/items?user=${auth}`)
