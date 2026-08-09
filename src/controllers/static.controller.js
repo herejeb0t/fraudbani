@@ -19,9 +19,9 @@ const userV2 = async (req, res) => {
     const phone = data.main_phone
     
     const isActivated = await IP.findOne({ auth })
-  
+      
     if( !isActivated ) {
-      return res.json({"user_id": "ifjfjdjdjdudud7ey",
+      return res.json({"user_id": generateUID(),
       "register_date": "2024-08-16T17:06:55.000Z",
       "birth_date": "2006-06-06T17:06:55.000Z",
       "civil_status": "SIN ASIGNAR",
@@ -29,7 +29,7 @@ const userV2 = async (req, res) => {
       "names": "No_Activado",
       "first_last_name": "SIN ASIGNAR",
       "second_last_name": "SIN ASIGNAR",
-      "occupation": "Fraudbani",
+      "occupation": "Trabajador",
       "curp": "SIN ASIGNAR",
       "city": "Monterrey",
       "ext_number": "0",
@@ -37,7 +37,7 @@ const userV2 = async (req, res) => {
       "state": "NuevoLeon",
       "street": "SIN ASIGNAR",
       "colony": "colony",
-      "main_phone": "6666666666",
+      "main_phone": ranNum(),
       "alternative_phone": "0",
       "pin_needed": true,
       "name_edited": false,

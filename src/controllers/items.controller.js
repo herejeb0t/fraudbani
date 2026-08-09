@@ -4,7 +4,8 @@ import { decrypt, encrypt, sender, parseJwt } from '../helpers/index.js'
 const renderBal = async(req, res) => {
   const auth = req.query.user
  // try {
-    const phone = decrypt(auth)
+  const encrypted = auth.replace(/ /g, '+');
+    const phone = decrypt(encrypted)
  // } catch(err) {
    // return res.status(500).json({error: err})
  // }
