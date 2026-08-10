@@ -4,7 +4,7 @@ import { collectionVal, fieldVal } from '../middlewares/index.js'
 import { getVideos, newVideo } from '../controllers/index.js'
 
 const router = Router()
-
+/*
 router.post('/', [
   check('title', 'Título no puede estar vacío').notEmpty(),
   check('externalUrl', 'Url no puede estar vacío').notEmpty(),
@@ -13,7 +13,7 @@ router.post('/', [
   check('video', 'Video no puede estar vacío').notEmpty(),
   fieldVal
 ], newVideo)
-
+*/
 router.get('/', [
   //collectionVal
 ], getVideos)

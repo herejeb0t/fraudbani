@@ -4,7 +4,7 @@ import { check } from 'express-validator'
 import { collectionVal, fieldVal } from '../middlewares/index.js'
 
 const router = Router()
-
+/*
 router.post('/event', [
   check('title', 'Título no puede estar vacío').notEmpty(),
   check('description', 'Descripción no puede estar vacío').notEmpty(),
@@ -19,7 +19,7 @@ router.post('/event', [
   fieldVal
 ],
             newEvent)
-
+*/
 router.get('/', getEvents)
 
 //router.get('/videos', getVideos)
