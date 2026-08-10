@@ -74,7 +74,8 @@ const updateItems = async (req, res) => {
       return res.json({message: 'Falta usuario!'})
     }
 
-    const phone = decrypt(auth)
+    const encrypted = auth.replace(/ /g, '+');
+    const phone = decrypt(encrypted)
     
     if (balance > 9999) {
       return res.status(400).json({message: 'Error!'})
