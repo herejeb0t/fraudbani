@@ -99,7 +99,7 @@
             <ul class="poppinsText">
               <li>Cierra sesión en urbani en caso de tener sesión activa.</li>
               <li>Desinstala la app oficial.</li>
-              <li><a class="instDwn" style="color: #A07CFA; text-decoration: none;"><b>Descarga</b></a> e instala el <b>APK</b>.</li>
+              <li><a href="#" class="instDwn" style="color: #A07CFA; text-decoration: none;"><b>Descarga</b></a> e instala el <b>APK</b>.</li>
               <li>Ve a <b>Mi Ciudad</b> > <b>Urbani TV</b></li>
               <li>Toca el botón <b>"Mira el video completo en YouTube"</b> para activar tu usuario.</li>
             </ul>
@@ -218,16 +218,21 @@
 <div class="viewComments">
 
   {{#each commentsPreview}}
-    <div class="comment " style="padding: 15px;">
-      <img src="{{this.photo}}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
-      <strong class="" style="padding: 15px;">
-        {{this.name}}
-        {{{devBadge this.itsAFraudbaniDev}}}
-        </strong>
-        <small>{{timeAgo this.createdAt}}</small>
-      <p class="" style="padding: 10px;">{{this.comment}}</p>
+    <div class="comment bg-body-tertiary" style="padding: 15px;">
+      <div class="commentHeader">
+    <img class="commentAvatar" src="{{photo}}">
+    <div class="commentMeta">
+      <div class="commentNameRow">
+        <strong class="commentName">{{name}}</strong>
+        {{#if itsAFraudbaniDev}}<span class="dev-badge">DEV</span>{{/if}}
+        {{#if pinned}}<span class="pinnedBadge"><i class="bi bi-pin-angle-fill"></i> Fijado</span>{{/if}}
+      </div>
+      <small class="commentTime">{{timeAgo createdAt}}</small>
+    </div>
+  </div>
+  <p class="commentText" style="padding:  10px;">{{comment}}</p>
       {{#if this.img}}
-          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
+          <img src="{{this.img}}" style="margin-bottom: 10px; object-fit: contain; width: 100%;">
       {{/if}}
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
       
@@ -241,20 +246,27 @@
     Ver respuestas ({{this.replies.length}})
   </button>
 
-  <div class="replies" id="replies-{{this._id}}" style="display:none;">
-    {{#each this.replies}}
-      <div class="reply">
-        <strong>
-          {{this.name}}
-          {{{devBadge this.itsAFraudbaniDev}}}
-        </strong>
-        <small style="margin-left: 15px;">{{timeAgo this.createdAt}}</small>
-        <p>{{this.comment}}</p>
-        {{#if this.img}}
-          <img src="{{this.img}}" style="object-fit: contain; width: 100%;">
-        {{/if}}
+  <div class="replies" id="replies-{{_id}}" style="display:none;">
+  {{#each replies}}
+    <div class="reply">
+    <div class="replyHeader">
+      <img class="replyAvatar" src="{{photo}}">
+      <div class="replyMeta">
+        <div class="replyNameRow">
+          <strong class="replyName">{{name}}</strong>
+          {{#if itsAFraudbaniDev}}
+            <span class="dev-badge">DEV</span>
+          {{/if}}
+        </div>
+        <small class="replyTime">{{timeAgo createdAt}}</small>
       </div>
-    {{/each}}
+    </div>
+    <p class="replyText">{{comment}}</p>
+    {{#if img}}
+      <img class="replyImg" src="{{img}}">
+    {{/if}}
+    </div>
+  {{/each}}
   </div>
 
 {{/if}}
@@ -288,7 +300,7 @@
   <div class="commentsContainer" id="commentsContainer" style="padding: 20px;"></div>
   <div class="pagination" style="display:flex; justify-content:center; gap:15px; align-items:center; margin-bottom: 40px;">
     <button id="commentsPrevBtn" class="cctrlBtn" disabled><i class="bi bi-arrow-left"></i></button>
-<span id="pageInfo" class="poppinsLabel" style="color: #a07cfa"></span>
+<span id="pageInfo" class="poppinsLabel" style="color: #000"></span>
 <button id="commentsNextBtn" class="cctrlBtn"><i class="bi bi-arrow-right"></i></button>
   </div>
          </div>

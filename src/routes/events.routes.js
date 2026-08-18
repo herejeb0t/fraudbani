@@ -5,7 +5,7 @@ import { collectionVal, fieldVal } from '../middlewares/index.js'
 
 const router = Router()
 /*
-router.post('/event', [
+router.post('/', [
   check('title', 'Título no puede estar vacío').notEmpty(),
   check('description', 'Descripción no puede estar vacío').notEmpty(),
   check('detailedDescription', 'Descripción detallada no puede estar vacío').notEmpty(),

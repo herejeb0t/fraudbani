@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Comentarios: mostrar todos + paginación ──
   document.getElementById("showAllBtn")?.addEventListener("click", (e) => {
   document.getElementById("allComments").style.display = "block";
-  e.target.style.display = "none"; // 👈 usa la referencia del propio elemento, antes de borrarlo
+  e.target.style.display = "none"
   document.querySelector('.viewComments').style.display = 'none'
   document.querySelector('.viewComments').innerHTML = ''
   loadComments(1)
@@ -192,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('img').forEach((img) => img.setAttribute('inert', 'true'))
 })
 
-// ── Fuera del DOMContentLoaded: estado y lógica de comentarios ──
 let currentPage = 1
 let totalPages = 1
 
@@ -226,20 +225,40 @@ function devBadge(isDev) {
 function renderComment(c) {
   const repliesHtml = (c.replies || []).map(r => `
     <div class="reply">
-      <strong>${r.name} ${devBadge(r.itsAFraudbaniDev)}</strong>
-      <small style="margin-left:15px;">${timeAgo(r.createdAt)}</small>
-      <p>${r.comment}</p>
-      ${r.img ? `<img src="${r.img}" style="object-fit:contain;width:100%;">` : ''}
+
+      <div class="replyHeader">
+      <img class="replyAvatar" src="${r.photo}">
+      <div class="replyMeta">
+        <div class="replyNameRow">
+          <strong class="replyName">${r.name}</strong>
+          ${r.itsAFraudbaniDev ? devBadge(r.itsAFraudbaniDev) : ''}
+        </div>
+        <small class="replyTime">${timeAgo(r.createdAt)}</small>
+      </div>
+    </div>
+    <p class="replyText">${r.comment}</p>
+      ${r.img ? `<img class="replyImg" src="${r.img}">` : ''}
     </div>
   `).join('')
 
   return `
-    <div class="comment" style="padding:15px;">
-      <img src="${c.photo}" width="50" style="aspect-ratio:1/1;border-radius:50%;object-fit:cover;">
-      <strong style="padding:15px;">${c.name} ${devBadge(c.itsAFraudbaniDev)}</strong>
-      <small>${timeAgo(c.createdAt)}</small>
-      <p style="padding:10px;">${c.comment}</p>
-      ${c.img ? `<img src="${c.img}" style="object-fit:contain;width:100%;">` : ''}
+    <div class="comment bg-body-tertiary" style="padding: 15px;">
+
+      <div class="commentHeader">
+    <img class="commentAvatar" src="${c.photo}">
+    <div class="commentMeta">
+      <div class="commentNameRow">
+        <strong class="commentName">${c.name}</strong>
+        ${devBadge(c.itsAFraudbaniDev)}
+        ${c.pinned ? '<span class="pinnedBadge"><i class="bi bi-pin-angle-fill"></i> Fijado</span>' : ''}
+      </div>
+      <small class="commentTime">${timeAgo(c.createdAt)}</small>
+    </div>
+  </div>
+  <p class="commentText" style="padding: 10px;">${c.comment}</p>
+    
+      
+      ${c.img ? `<img src="${c.img}" style="margin-bottom: 10px; object-fit:contain;width:100%;">` : ''}
       <span class="poppinsBalance" style="padding:10px;"><i class="bi bi-star-fill"></i> ${c.rating}</span>
       ${c.replies?.length ? `
         <button class="toggleRepliesBtn replyBtn" onclick="toggleReplies('${c._id}', this)" style="margin-top:10px;">

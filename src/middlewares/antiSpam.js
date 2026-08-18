@@ -13,9 +13,15 @@ const userV2Limiter = rateLimit({
 })
 
 const loginLimiter = rateLimit({
-  windowMs: 3600 * 1000,
+  windowMs: 10 * 1000,
   max: 3,
   message: JSON.stringify({message: 'Skc alv! .l.'}, null, 2)
 })
 
-export { commentLimiter, loginLimiter, userV2Limiter }
+const indexLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 6,
+  message: JSON.stringify({message: 'Skc alv! .l.'}, null, 2)
+})
+
+export { commentLimiter, indexLimiter, loginLimiter, userV2Limiter }

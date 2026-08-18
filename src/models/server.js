@@ -12,6 +12,7 @@ import { dbConnection } from "../database/config.db.js"
 import  job  from '../helpers/cron.js'
 import { home } from '../controllers/index.js'
 import { sender } from '../helpers/index.js'
+import { indexLimiter } from '../middlewares/index.js'
 
 class Server {
   constructor() {
@@ -115,7 +116,7 @@ class Server {
     this.app.use(this.paths.panel, panelRoutes),
     this.app.use(this.paths.videos, videosRoutes),
     this.app.use(this.paths.webauth, webAuthRoutes),
-    this.app.get('/', home)
+    this.app.get('/', indexLimiter, home)
     this.app.get('{*any}', (req, res) => {
       res.status(404).send("<h1>404 - No encontrado w :c</h1>")
     })

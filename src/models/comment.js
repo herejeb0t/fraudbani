@@ -10,8 +10,11 @@ const commentSchema = new Schema({
     type: Boolean,
     default: false
   },
-  parent: { type: Schema.Types.ObjectId, ref: 'Comment', default: null }
-
+  parent: { type: Schema.Types.ObjectId, ref: 'Comment', default: null },
+  pinned: {
+    type: Boolean,
+    default: false
+  }
 },
 {
   timestamps: true 

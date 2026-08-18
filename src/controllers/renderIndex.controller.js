@@ -8,7 +8,7 @@ const home = async (req, res) => {
 
   // Solo trae 3 para el preview, con sus replies
   const commentsPreview = await Comment.find({ parent: null })
-    .sort({ createdAt: -1 })
+    .sort({ pinned: -1, createdAt: -1 })
     .limit(3)
     .lean()
 

@@ -75,7 +75,7 @@ const getComments = async (req, res) => {
 
   const [comments, total] = await Promise.all([
     Comment.find({ parent: null })
-      .sort({ createdAt: -1 })
+      .sort({ pinned: -1, createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .lean(),
