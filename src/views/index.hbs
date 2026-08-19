@@ -94,7 +94,7 @@
         <div class="infoDiv">
           
           <div class="instrucciones infoCard" id="instrucciones">
-            <h6 class="text-center"><b>Instrucciones:</b></h6>
+            <h1 class="text-center" style="font-size: 1rem;"><b>Instrucciones:</b></h1>
             <br>
             <ul class="poppinsText">
               <li>Cierra sesión en urbani en caso de tener sesión activa.</li>
@@ -122,7 +122,7 @@
             <br>
             <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Y listo, si te sirvió <a class="share" style="color: #A07CFA; text-decoration: none;"><b>comparte</b></a> con más gente a la que le pueda servir.</p>
             <br>
-            <h6 class="text-center poppinsLabel">Opcional</h6>
+            <h2 class="text-center" style="font-size: 1rem;" poppinsLabel">Opcional</h2>
             <p class="poppinsText text-center" style="font-size: .8rem; padding: 10px;"><b>Editar saldo congelado / Usuario aleatorio.</b></p>
             <br>
             <ul class="poppinsText">
@@ -147,7 +147,7 @@
           <br>
           
           <div class="recomendaciones infoCard">
-            <h6 class="text-center"><b>Recomendaciones:</b></h6>
+            <h1 class="text-center" style="font-size: 1rem;"><b>Recomendaciones:</b></h1>
             <br>
             <ul class="poppinsText">
               <li>Ir a <b>Perfil</b> < <b>Cerrar sesión</b> antes de desinstalar la app original.</li>
@@ -158,7 +158,7 @@
           <br>
           
           <div class="funciones infoCard">
-            <h6 class="text-center"><b>Funciones:</b></h6>
+            <h1 class="text-center" style="font-size: 1rem;"><b>Funciones:</b></h1>
             <br>
             <ul class="poppinsText">
               <li>Saldo congelado en <b>$300</b> o personalizado <b>($999 máximo)</b>.</li>
@@ -279,15 +279,24 @@
 
 
     </div>
-    
-  <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-{{this._id}}" style="display:none;">
-    <input type="hidden" name="parentId" value="{{this._id}}">
-    <input type="text" name="name" placeholder="Nombre">
-    <div class="txtGp">
-      <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
-      <button style="color: #fff;" type="submit"><b>Enviar</b> </button>
-    </div>
-  </form>
+  
+  <form action="/comment" method="POST" class="replyForm" id="reply-{{this._id}}" style="display:none;" enctype="multipart/form-data">
+  <input type="hidden" name="parentId" value="{{this._id}}">
+
+  <div class="replyFormTop">
+    <label for="replyFile-{{this._id}}" class="reply-file-btn">
+      <img class="replyImgPrev" src="/./img/avatar.png">
+      <div class="reply-edit"><i class="bi bi-camera-fill"></i></div>
+    </label>
+    <input type="file" id="replyFile-{{this._id}}" name="file" accept="image/*" hidden>
+    <input class="replyNameInput" type="text" name="name" placeholder="Nombre (opcional)">
+  </div>
+
+  <div class="txtGp">
+    <textarea class="rplCom" name="comment" placeholder="Escribe tu respuesta..." required></textarea>
+    <button class="replySendBtn" type="submit"><i class="bi bi-send-fill"></i></button>
+  </div>
+</form>
     
     <br>
   {{/each}}

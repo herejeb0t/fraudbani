@@ -85,6 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!file) return
     preview.src = URL.createObjectURL(file)
   })
+  
+  document.addEventListener('change', (e) => {
+  if (e.target.matches('.replyForm input[type="file"]')) {
+    const file = e.target.files[0]
+    if (!file) return
+    const preview = e.target.closest('.replyFormTop').querySelector('.replyImgPrev')
+    preview.src = URL.createObjectURL(file)
+  }
+})
 
   document.querySelector('.sendCommentBtn').addEventListener('click', (e) => {
     e.preventDefault()
@@ -225,39 +234,35 @@ function devBadge(isDev) {
 function renderComment(c) {
   const repliesHtml = (c.replies || []).map(r => `
     <div class="reply">
-
       <div class="replyHeader">
-      <img class="replyAvatar" src="${r.photo}">
-      <div class="replyMeta">
-        <div class="replyNameRow">
-          <strong class="replyName">${r.name}</strong>
-          ${r.itsAFraudbaniDev ? devBadge(r.itsAFraudbaniDev) : ''}
+        <img class="replyAvatar" src="${r.photo}">
+        <div class="replyMeta">
+          <div class="replyNameRow">
+            <strong class="replyName">${r.name}</strong>
+            ${devBadge(r.itsAFraudbaniDev)}
+          </div>
+          <small class="replyTime">${timeAgo(r.createdAt)}</small>
         </div>
-        <small class="replyTime">${timeAgo(r.createdAt)}</small>
       </div>
-    </div>
-    <p class="replyText">${r.comment}</p>
+      <p class="replyText">${r.comment}</p>
       ${r.img ? `<img class="replyImg" src="${r.img}">` : ''}
     </div>
   `).join('')
 
   return `
     <div class="comment bg-body-tertiary" style="padding: 15px;">
-
       <div class="commentHeader">
-    <img class="commentAvatar" src="${c.photo}">
-    <div class="commentMeta">
-      <div class="commentNameRow">
-        <strong class="commentName">${c.name}</strong>
-        ${devBadge(c.itsAFraudbaniDev)}
-        ${c.pinned ? '<span class="pinnedBadge"><i class="bi bi-pin-angle-fill"></i> Fijado</span>' : ''}
+        <img class="commentAvatar" src="${c.photo}">
+        <div class="commentMeta">
+          <div class="commentNameRow">
+            <strong class="commentName">${c.name}</strong>
+            ${devBadge(c.itsAFraudbaniDev)}
+            ${c.pinned ? '<span class="pinnedBadge"><i class="bi bi-pin-angle-fill"></i> Fijado</span>' : ''}
+          </div>
+          <small class="commentTime">${timeAgo(c.createdAt)}</small>
+        </div>
       </div>
-      <small class="commentTime">${timeAgo(c.createdAt)}</small>
-    </div>
-  </div>
-  <p class="commentText" style="padding: 10px;">${c.comment}</p>
-    
-      
+      <p class="commentText" style="padding: 10px;">${c.comment}</p>
       ${c.img ? `<img src="${c.img}" style="margin-bottom: 10px; object-fit:contain;width:100%;">` : ''}
       <span class="poppinsBalance" style="padding:10px;"><i class="bi bi-star-fill"></i> ${c.rating}</span>
       ${c.replies?.length ? `
@@ -268,12 +273,19 @@ function renderComment(c) {
       ` : ''}
       <button class="replyBtn" onclick="toggleReply('${c._id}', this)">Responder</button>
     </div>
-    <form action="/comment" method="POST" class="replyForm py-3 px-3" id="reply-${c._id}" style="display:none;">
+    <form action="/comment" method="POST" class="replyForm" id="reply-${c._id}" style="display:none;" enctype="multipart/form-data">
       <input type="hidden" name="parentId" value="${c._id}">
-      <input type="text" name="name" placeholder="Nombre">
+      <div class="replyFormTop">
+        <label for="replyFile-${c._id}" class="reply-file-btn">
+          <img class="replyImgPrev" src="/./img/avatar.png">
+          <div class="reply-edit"><i class="bi bi-camera-fill"></i></div>
+        </label>
+        <input type="file" id="replyFile-${c._id}" name="file" accept="image/*" hidden>
+        <input class="replyNameInput" type="text" name="name" placeholder="Nombre (opcional)">
+      </div>
       <div class="txtGp">
-        <textarea class="rplCom" name="comment" placeholder="Respuesta"></textarea>
-        <button style="color:#fff;" type="submit"><b>Enviar</b></button>
+        <textarea class="rplCom" name="comment" placeholder="Escribe tu respuesta..." required></textarea>
+        <button class="replySendBtn" type="submit"><i class="bi bi-send-fill"></i></button>
       </div>
     </form>
     <br>
