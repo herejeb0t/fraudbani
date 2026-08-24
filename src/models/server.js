@@ -35,27 +35,31 @@ class Server {
           if (!isDev) return ''
           return `<span class="dev-badge">DEV</span>`
         },
+        reactionsTotal: (reactions) => {
+          if (!reactions) return 0
+          return Object.values(reactions).reduce((a, b) => a + b, 0)
+        },
         timeAgo: (date) => {
-    const seconds = Math.floor((new Date() - new Date(date)) / 1000)
+          const seconds = Math.floor((new Date() - new Date(date)) / 1000)
 
-    const intervals = {
-      año: 31536000,
-      mes: 2592000,
-      semana: 604800,
-      día: 86400,
-      hora: 3600,
-      minuto: 60
-    }
+          const intervals = {
+            año: 31536000,
+            mes: 2592000,
+            semana: 604800,
+            día: 86400,
+            hora: 3600,
+            minuto: 60
+           }
 
-    for (let key in intervals) {
-      const interval = Math.floor(seconds / intervals[key])
-      if (interval >= 1) {
-        return `Hace ${interval} ${key == 'mes' && interval > 1 ? key+'e' : key}${interval > 1 ? 's' : ''}`
-      }
-    }
+           for (let key in intervals) {
+            const interval = Math.floor(seconds / intervals[key])
+             if (interval >= 1) {
+               return `Hace ${interval} ${key == 'mes' && interval > 1 ? key+'e' : key}${interval > 1 ? 's' : ''}`
+             }
+           }
 
-    return 'Hace unos segundos'
-  }
+           return 'Hace unos segundos'
+        }
       }
   })) 
     this.app.set('view engine', '.hbs')

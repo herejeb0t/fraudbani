@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navigator.share({
         title: '',
         text: 'Chécalo 👀',
-        url: window.location.href
+        url: `${window.location.href}?source=share`
       })
       .catch(err => console.log('Share cancelado', err))
     } else {
@@ -312,3 +312,66 @@ async function loadComments(page = 1) {
     console.error(err)
   }
 }
+
+const reactionMeta = {
+  remg: { label: 'Me gusta', class: 'mgAct' },
+  lov:  { label: 'Me encanta', class: 'meAct' },
+  mi:   { label: 'Me importa', class: 'ywAct' },
+  happy:{ label: 'Me divierte', class: 'ywAct' },
+  wow:  { label: 'Me asombra', class: 'ywAct' },
+  sad:  { label: 'Me entristece', class: 'ywAct' },
+  ang:  { label: 'Me enoja', class: 'angAct' }
+}
+
+// Mostrar selector al hover/click sobre el botón
+document.addEventListener('mouseenter', (e) => {
+  if (!e.target.closest?.('.btReac')) return
+  const id = e.target.closest('.btReac').dataset.id
+  const selector = document.querySelector(`.reacSel[data-id="${id}"]`)
+  selector?.classList.remove('idle')
+}, true)
+
+document.addEventListener('mouseleave', (e) => {
+  if (!e.target.closest?.('.mg')) return
+  const id = e.target.closest('.mg').querySelector('.btReac')?.dataset.id
+  const selector = document.querySelector(`.reacSel[data-id="${id}"]`)
+  setTimeout(() => selector?.classList.add('idle'), 300)
+}, true)
+
+// Click en una reacción específica
+document.addEventListener('click', async (e) => {
+  const rsImg = e.target.closest('.rsImg')
+  if (!rsImg) return
+  const selector = rsImg.closest('.reacSel')
+  const id = selector.dataset.id
+  const type = rsImg.dataset.reaction
+  const meta = reactionMeta[type]
+
+  const btReac = document.querySelector(`.btReac[data-id="${id}"]`)
+  const nomEl = btReac.querySelector('.reacNom')
+  nomEl.textContent = meta.label
+  nomEl.className = `reacNom ${meta.class}`
+
+  selector.classList.add('idle')
+
+  try {
+    const res = await fetch(`/comment/${id}/react`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type })
+    })
+    const data = await res.json()
+    const total = Object.values(data.reactions).reduce((a, b) => a + b, 0)
+    document.querySelector(`.me-int[data-id="${id}"] .reactionCount`).textContent = total
+  } catch (err) {
+    console.error('Error al reaccionar', err)
+  }
+})
+
+// Toggle en móvil (tap simple abre el selector, ya que no hay hover)
+document.addEventListener('click', (e) => {
+  const btReac = e.target.closest('.btReac')
+  if (!btReac || e.target.closest('.rsImg')) return
+  const id = btReac.dataset.id
+  document.querySelector(`.reacSel[data-id="${id}"]`)?.classList.toggle('idle')
+})

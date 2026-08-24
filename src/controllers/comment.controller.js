@@ -99,8 +99,26 @@ const getComments = async (req, res) => {
   })
 }
 
+const react = async (req, res) => {
+  const { id } = req.params
+  const { type } = req.body // 'remg', 'lov', 'mi', etc.
+
+  const validTypes = ['remg', 'lov', 'mi', 'happy', 'wow', 'sad', 'ang']
+  if (!validTypes.includes(type)) return res.status(400).json({ error: 'Reacción inválida' })
+
+  const comment = await Comment.findById(id)
+  if (!comment) return res.status(404).json({ error: 'No encontrado' })
+
+  const current = comment.reactions.get(type) || 0
+  comment.reactions.set(type, current + 1)
+  await comment.save()
+
+  res.json({ reactions: Object.fromEntries(comment.reactions) })
+}
+
 export {
   getComments,
   loadFile,
+  react
 }
 

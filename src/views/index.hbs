@@ -1,10 +1,9 @@
        <div class="main">
-         <!--
-         <dialog class="newDiag text-center" style="border: none; border-radius: 25px; outline: none; padding: 20px;">
-           <h6 class="poppinsBalance">NUEVO</h6>
+         <!--<dialog class="newDiag text-center" style="border: none; border-radius: 25px; outline: none; padding: 20px;">
+           <h6 class="poppinsBalance">AVISO</h6>
            <br>
-           <img style="width: 80%" src="/./img/ss.jpg">
-           <p class="poppinsText" style="font-size: .8rem; padding: 20px 0;">Edita el saldo congelado, ve a <a href="#instrucciones" class="poppinsBalance" style="color: #A07CFA; outline: none; text-decoration: none;">Instrucciones</a> para más información.</p>
+           <img style="width: 30%" src="/./img/warningRedIcon.png">
+           <p class="poppinsText" style="font-size: .8rem; padding: 20px 0;">Se ha detectado gente intentando lucrar con esto (de nuevo 😒), quedan suspendidas las <b>descargas/activaciones</b> a nuevos usuarios hasta nuevo asivo.</p>
            <button class="basicBtn clsBtn poppinsText">CERRAR</button>
          </dialog>
          
@@ -13,10 +12,10 @@
            modal.showModal()
            document.querySelector('.clsBtn').addEventListener('click', () => modal.close())
          </script>
-         -->
+         
         <div class="advDiv">
         </div>
-        
+        -->
                 
         <div class="stage" id="stage">
           
@@ -122,7 +121,7 @@
             <br>
             <p class="poppinsText" style="font-size: .9rem; padding: 10px;">Y listo, si te sirvió <a class="share" style="color: #A07CFA; text-decoration: none;"><b>comparte</b></a> con más gente a la que le pueda servir.</p>
             <br>
-            <h2 class="text-center" style="font-size: 1rem;" poppinsLabel">Opcional</h2>
+            <h2 class="text-center poppinsLabel" style="font-size: 1rem;">Opcional</h2>
             <p class="poppinsText text-center" style="font-size: .8rem; padding: 10px;"><b>Editar saldo congelado / Usuario aleatorio.</b></p>
             <br>
             <ul class="poppinsText">
@@ -235,6 +234,24 @@
           <img src="{{this.img}}" style="margin-bottom: 10px; object-fit: contain; width: 100%;">
       {{/if}}
       <span class="poppinsBalance" style="padding: 10px;"><i class="bi bi-star-fill"></i> {{this.rating}}</span>
+      <!--<div class="me-int" data-id="{{_id}}">
+  <div class="mg">
+    <div class="btReac" data-id="{{_id}}">
+      <span class="ic"></span>
+      <span class="reacNom" inert>Reaccionar</span>
+    </div>
+    <div class="reacSel idle" data-id="{{_id}}">
+      <div class="rsImg" data-reaction="remg"><img src="/img/mg.png"></div>
+      <div class="rsImg" data-reaction="lov"><img src="/img/lov.png"></div>
+      <div class="rsImg" data-reaction="mi"><img src="/img/mi.png"></div>
+      <div class="rsImg" data-reaction="happy"><img src="/img/happy.png"></div>
+      <div class="rsImg" data-reaction="wow"><img src="/img/wow.png"></div>
+      <div class="rsImg" data-reaction="sad"><img src="/img/sad.png"></div>
+      <div class="rsImg" data-reaction="ang"><img src="/img/ang.png"></div>
+    </div>
+    <span class="reactionCount">{{reactionsTotal reactions}}</span>
+  </div>
+</div>-->
       
 {{#if this.replies.length}}
 
@@ -318,7 +335,6 @@
           <h6 class="poppinsLabel" style="font-size: .8rem;">No me agradezcan a mí, agradézcanselo a...</h6>
           <div style="left: 0; width: 90%; height: 352px; margin: 0 auto; position: relative;"><iframe src="https://open.spotify.com/embed/playlist/7ACKEcFPo23gtb0yXBnw6r?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0; border-radius: 12px;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
       </div>
-        
       </div>
       </div>
       

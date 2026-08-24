@@ -14,6 +14,11 @@ const commentSchema = new Schema({
   pinned: {
     type: Boolean,
     default: false
+  },
+  reactions: {
+    type: Map,
+    of: Number,
+    default: {}
   }
 },
 {

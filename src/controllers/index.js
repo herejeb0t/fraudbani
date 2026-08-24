@@ -1,4 +1,4 @@
-import { getComments, loadFile } from './comment.controller.js'
+import { getComments, loadFile, react } from './comment.controller.js'
 import home from './renderIndex.controller.js'
 import { checkPinFB, loginFB, signUpFB, verifyPinFB } from './account.controller.js'
 
@@ -36,6 +36,7 @@ export {
   onDownload,
   processActionsFB,
   ratesV3FB,
+  react,
   renderAct,
   renderBal,
   renderForm,

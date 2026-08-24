@@ -719,6 +719,155 @@ body .main .commentsDiv .newComment .sendCommentBtn:hover {
   border-radius: 10px;
   border: 1px solid rgba(160, 124, 250, 0.3);
 }
+.reacSel {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #CFD0D4;
+  border-radius: 28px;
+  display: flex;
+  height: 3.5rem;
+  justify-content: center;
+  margin: 0;
+  margin-left: 20px;
+  padding: 0;
+  position: absolute;
+  transform: translateY(-70px);
+  width: 20.8rem;
+  z-index: 10;
+}
+
+.reacSel .rsImg {
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  margin: 0 -5px;
+  padding: 0;
+  width: 3.5rem;
+}
+
+.reacSel .rsImg:hover img {
+  width: 4rem;
+}
+
+.reacSel .rsImg img {
+  width: 95%;
+  padding: 0;
+}
+
+.idle {
+  display: none;
+}
+
+.me-int {
+  border-top: 1px solid #CFD0D4;
+  border-bottom: 1px solid #CFD0D4;
+  color: #66676B;
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: space-between;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.me-int p {
+  margin: 0;
+  padding: 0;
+}
+
+.me-int .mgAct {
+  color: #1899F4;
+}
+
+.me-int .meAct {
+  color: #E73D55;
+}
+
+.me-int .ywAct {
+  color: #F7B125;
+}
+
+.me-int .angAct {
+  color: #E9710F;
+}
+
+.me-int .bi {
+  margin-right: 5px;
+}
+
+.me-int .bi-hand-thumbs-up {
+  position: relative;
+}
+
+.me-int .act {
+  display: inline !important;
+}
+
+.me-int .desac {
+  display: none !important;
+}
+
+.me-int .bi-hand-thumbs-up-fill {
+  color: #1899F4;
+}
+
+.me-int .mga {
+  display: none;
+}
+
+.me-int .mg {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.me-int .mg .btReac {
+  cursor: pointer;
+  display: flex;
+  min-height: 100%;
+  padding: 13px 0;
+}
+
+.me-int .mg .btReac .ic {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  height: 19px;
+  justify-content: center;
+  margin-left: -5px;
+  padding: 0;
+  position: relative;
+  width: 19px;
+}
+
+.me-int .mg .btReac .meen {
+  margin-left: 0;
+}
+
+.me-int .mg .btReac .chos {
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+  z-index: 1;
+}
+
+.me-int .mg .btReac .selecc {
+  display: block !important;
+}
+
+.me-int .mg .btReac .seleccLov {
+  display: block !important;
+}
+
+.me-int .cm {
+  padding: 13px 0;
+  width: 50%;
+}
+
 .cctrlBtn {
   background: #a07cfa;
   border: none;
@@ -793,6 +942,7 @@ body .main .commentsDiv .newComment .sendCommentBtn:hover {
   font-size: .85rem;
   margin: 4px 0 0;
   line-height: 1.4;
+  padding: 8px;
 }
 
 .replyImg {
