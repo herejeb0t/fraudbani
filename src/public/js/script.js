@@ -231,39 +231,48 @@ function devBadge(isDev) {
   return `<span class="dev-badge">DEV</span>`
 }
 
+function escapeHTML(str = '') {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 function renderComment(c) {
   const repliesHtml = (c.replies || []).map(r => `
     <div class="reply">
       <div class="replyHeader">
-        <img class="replyAvatar" src="${r.photo}">
+        <img class="replyAvatar" src="${escapeHTML(r.photo)}">
         <div class="replyMeta">
           <div class="replyNameRow">
-            <strong class="replyName">${r.name}</strong>
+            <strong class="replyName">${escapeHTML(r.name)}</strong>
             ${devBadge(r.itsAFraudbaniDev)}
           </div>
           <small class="replyTime">${timeAgo(r.createdAt)}</small>
         </div>
       </div>
-      <p class="replyText">${r.comment}</p>
-      ${r.img ? `<img class="replyImg" src="${r.img}">` : ''}
+      <p class="replyText">${escapeHTML(r.comment)}</p>
+      ${r.img ? `<img class="replyImg" src="${escapeHTML(r.img)}">` : ''}
     </div>
   `).join('')
 
   return `
     <div class="comment bg-body-tertiary" style="padding: 15px;">
       <div class="commentHeader">
-        <img class="commentAvatar" src="${c.photo}">
+        <img class="commentAvatar" src="${escapeHTML(c.photo)}">
         <div class="commentMeta">
           <div class="commentNameRow">
-            <strong class="commentName">${c.name}</strong>
+            <strong class="commentName">${escapeHTML(c.name)}</strong>
             ${devBadge(c.itsAFraudbaniDev)}
             ${c.pinned ? '<span class="pinnedBadge"><i class="bi bi-pin-angle-fill"></i> Fijado</span>' : ''}
           </div>
           <small class="commentTime">${timeAgo(c.createdAt)}</small>
         </div>
       </div>
-      <p class="commentText" style="padding: 10px;">${c.comment}</p>
-      ${c.img ? `<img src="${c.img}" style="margin-bottom: 10px; object-fit:contain;width:100%;">` : ''}
+      <p class="commentText" style="padding: 10px;">${escapeHTML(c.comment)}</p>
+      ${c.img ? `<img src="${escapeHTML(c.img)}" style="margin-bottom: 10px; object-fit:contain;width:100%;">` : ''}
       <span class="poppinsBalance" style="padding:10px;"><i class="bi bi-star-fill"></i> ${c.rating}</span>
       ${c.replies?.length ? `
         <button class="toggleRepliesBtn replyBtn" onclick="toggleReplies('${c._id}', this)" style="margin-top:10px;">

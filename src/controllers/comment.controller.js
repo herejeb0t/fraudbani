@@ -52,14 +52,19 @@ const cleanComment = sanitize(req.body.comment, {
   allowedAttributes: {}
 })
 
-    await Comment.create({
-      name: req.body.name || 'Anónimo',
-      comment: cleanComment,
-      photo,
-      parent: req.body.parentId || null,
-      rating: isReply ? undefined : Number(req.body.rating), // 👈 clave
-      replie: isReply ? true : false
-    })
+    const cleanName = sanitize(req.body.name || 'Anónimo', {
+  allowedTags: [],
+  allowedAttributes: {}
+}).slice(0, 60) // límite razonable de longitud
+
+await Comment.create({
+  name: cleanName,
+  comment: cleanComment,
+  photo,
+  parent: req.body.parentId || null,
+  rating: isReply ? undefined : Number(req.body.rating),
+  replie: isReply ? true : false
+})
 
     res.redirect('/#newComment');
   } catch (error) {

@@ -74,7 +74,7 @@ html {
 }
 
 .bgGrad {
-  background: linear-gradient(180deg, #6A4AE3 0%, #7A4CE6 40%, #8A4FE8 70%, #9A53EA 100%);
+  background: linear-gradient(to bottom, #A07CFA 25%, #bfaaff 50%, #A07CFA 70%);
 }
 
 .montserrat-light {
@@ -1198,7 +1198,6 @@ body .fot footer {
   color: #fff;
 }
 body .fot footer .subir, body .fot footer .share {
-  background: linear-gradient(to bottom, #A07CFA 25%, #bfaaff 50%, #A07CFA 70%);
   border: none;
   border-radius: 50%;
   bottom: 75px;
@@ -1219,6 +1218,19 @@ body .fot footer .subir, body .fot footer .share {
 }
 body .fot footer .share {
   display: block;
+}
+body .fot footer .tel-group {
+  border: none;
+  border-radius: 25px;
+  bottom: 140px;
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  margin: 0;
+  padding: 15px;
+  position: fixed;
+  right: 20px;
+  z-index: 101;
 }
 body .fot footer .fotContent {
   align-items: center;
